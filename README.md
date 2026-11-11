@@ -3,7 +3,7 @@
 A static, syllabus-driven study tracker designed for **GitHub Pages (`github.io`)**. Runs 100% in the browser with zero backend server dependencies.
 
 - 🔒 **Passcode Protected**: Client-side lock screen prevents casual browsing on public GitHub Pages.
-- ⚡ **Offline-First & Instant**: All checkbox clicks, timer sessions, comments, and journal notes persist in browser `localStorage`.
+- ⚡ **Offline-First & Instant**: All checkbox clicks, comments, and journal notes persist in browser `localStorage`.
 - 💾 **Cross-Machine Git Sync**: Export your progress as clean YAML, commit it to `_data/syllabi/`, and push to update your baseline across all devices.
 - 🎨 **Anthropic-inspired Aesthetic**: Clean editorial typography, dark/light themes, zen focus music, and micro-celebrations.
 

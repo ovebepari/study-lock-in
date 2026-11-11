@@ -10,7 +10,7 @@ Welcome, agent! This document provides all the context, architecture patterns, a
 
 * **Zero Backend at Runtime**: The app runs 100% client-side in the browser. There is no Python/Node server running in production.
 * **Single Source of Truth**: Curricula and baselines live as native YAML files in `_data/syllabi/*.yml`.
-* **Offline-First & Local Persistence**: All progress (checkboxes, timestamps, journal entries, session timers, comments, custom links) saves immediately to browser `localStorage`.
+* **Offline-First & Local Persistence**: All progress (checkboxes, timestamps, journal entries, comments, custom links) saves immediately to browser `localStorage`.
 * **Passcode Protected**: A client-side lock screen prevents casual browsing when hosted publicly. Default passcode: `lockin`.
 * **Cross-Machine Git Sync**: Users export their updated progress as YAML, commit it to `_data/syllabi/`, and push to GitHub Pages to sync across devices.
 
@@ -42,7 +42,7 @@ index.html <script id="syllabi-data" type="application/json">
 | `_data/activity.yml` | Historical completion log powering the GitHub-style contribution heatmap. |
 | `_layouts/default.html` | Base HTML wrapper; loads Google Fonts, `style.css`, and `app.js` using `relative_url`. |
 | `index.html` | App mount root; embeds JSON scripts via Liquid and contains the `#lockScreen` modal. |
-| `app.js` | Core application logic (state manager, event dispatcher, YAML exporter, lock logic, timer, audio). |
+| `app.js` | Core application logic (state manager, event dispatcher, YAML exporter, lock logic, audio). |
 | `style.css` | Anthropic-inspired warm design system (dark/light themes, typography, animations, responsive). |
 | `zen-music.mp3` | Lo-fi focus audio track with fading controller. |
 | `Gemfile` | Ruby dependencies for local Jekyll serving (`jekyll`, `jekyll-feed`, `webrick`). |

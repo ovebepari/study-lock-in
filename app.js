@@ -4,7 +4,7 @@ function applyTheme(theme) {
   localStorage.setItem('theme-cache', theme);
 }
 function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
   const next = current === 'dark' ? 'light' : 'dark';
   applyTheme(next);
   if (state) {
@@ -13,7 +13,7 @@ function toggleTheme() {
     console.log('[ui-state] theme →', next);
   }
 }
-applyTheme(localStorage.getItem('theme-cache') || 'dark');
+applyTheme(localStorage.getItem('theme-cache') || 'light');
 
 // ===== DIM / FOCUS MODE =====
 let dimMode = localStorage.getItem('dim-mode') === 'true';
@@ -1071,7 +1071,6 @@ function renderApp() {
         <div class="header-right">
           <div class="header-stat"><span class="stat-label">Overall</span><span class="stat-value" id="overallPercent">0%</span></div>
           <div class="header-stat"><span class="stat-label">Streak</span><span class="stat-value" id="streakCount">0 🔥</span></div>
-          <div class="header-stat"><span class="stat-label">Hours</span><span class="stat-value" id="totalHours">0h</span></div>
           <div class="syllabus-switcher" id="syllabusSwitcher" title="Switch syllabus">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
             <select id="syllabusSelect" title="Switch active syllabus"></select>
@@ -1161,7 +1160,6 @@ function renderApp() {
 
     <div class="stats-grid" id="statsGrid">
       <div class="stat-card"><div class="stat-card-icon tasks-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stat-card-info"><span class="stat-card-value" id="completedTasks">0 / 0</span><span class="stat-card-label">Tasks Completed</span></div></div>
-      <div class="stat-card"><div class="stat-card-icon time-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="stat-card-info"><span class="stat-card-value" id="todayHours">0h 0m</span><span class="stat-card-label">Total Study Time</span></div></div>
       <div class="stat-card"><div class="stat-card-icon bonus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stat-card-info"><span class="stat-card-value" id="bonusDone">0 / 0</span><span class="stat-card-label">Bonus Tasks Done</span></div></div>
       <div class="stat-card"><div class="stat-card-icon days-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stat-card-info"><span class="stat-card-value" id="daysComplete">0 / 0</span><span class="stat-card-label">Days Completed</span></div></div>
     </div>
@@ -1189,21 +1187,26 @@ function renderApp() {
       <div class="heatmap-body" id="heatmapBody"></div>
     </div>
 
-    <div class="timer-bar">
-      <div class="timer-display"><div class="timer-icon" id="timerPulse"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><span class="timer-time" id="timerDisplay">00:00:00</span><span class="timer-label">Session Timer</span></div>
-      <div class="timer-day-select"><label for="timerDay">Logging to:</label><select id="timerDay"></select></div>
-      <div class="timer-controls">
-        <button class="timer-btn start" id="timerStart"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg> Start</button>
-        <button class="timer-btn pause" id="timerPause" disabled><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pause</button>
-        <button class="timer-btn stop" id="timerStop" disabled><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><rect x="6" y="6" width="12" height="12" rx="1"/></svg> Save & Stop</button>
-      </div>
-    </div>
-
     <nav class="day-nav" id="dayNav"></nav>
     <div id="addDayFormArea"></div>
     <main class="day-panels" id="dayPanels"></main>
     <section class="journal-section" id="journalSection"></section>
     <footer class="footer"><p>${escapeHtml(meta.title || 'Study Tracker')} · Data saved locally · <span class="editable footer-edit" onclick="editMeta('title', this.closest('.footer').querySelector('p'))" title="Click to edit">✏️</span></p></footer>
+
+    <nav class="bottom-nav" id="bottomNav" aria-label="Sections">
+      <button class="bottom-nav-item active" data-target="statsGrid" onclick="bottomNavGo('statsGrid')" title="Overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span>
+      </button>
+      <button class="bottom-nav-item" data-target="activityHeatmap" onclick="bottomNavGo('activityHeatmap')" title="Activity">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Activity</span>
+      </button>
+      <button class="bottom-nav-item" data-target="dayPanels" onclick="bottomNavGo('dayPanels')" title="Today's tasks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Tasks</span>
+      </button>
+      <button class="bottom-nav-item" data-target="journalSection" onclick="bottomNavGo('journalSection')" title="Journal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>Journal</span>
+      </button>
+    </nav>
   `;
 
   // Bind static events
@@ -1216,12 +1219,8 @@ function renderApp() {
   if (musicOn) musicBtn.classList.add('active');
   document.getElementById('resetBtn').addEventListener('click', resetAll);
   document.getElementById('dataToggle').addEventListener('click', toggleDataPanel);
-  document.getElementById('timerStart').addEventListener('click', startTimer);
-  document.getElementById('timerPause').addEventListener('click', pauseTimer);
-  document.getElementById('timerStop').addEventListener('click', stopTimer);
 
   renderDayNav();
-  renderTimerDaySelect();
   renderActivePanel();
   renderJournal();
   updateStats();
@@ -1233,6 +1232,44 @@ function renderApp() {
     if (h) window._headerObserver.observe(h);
   }
 }
+
+// ===== BOTTOM NAV (phones) =====
+function setBottomNavActive(targetId) {
+  document.querySelectorAll('.bottom-nav-item').forEach(btn =>
+    btn.classList.toggle('active', btn.dataset.target === targetId));
+}
+
+function bottomNavGo(targetId) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  setBottomNavActive(targetId);
+  window._bottomNavLockUntil = Date.now() + 800; // don't let the scroll-spy flicker mid-scroll
+  if (targetId === 'statsGrid') window.scrollTo({ top: 0, behavior: 'smooth' });
+  else el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/** Scroll-spy: highlight the section currently occupying the upper part of the screen. */
+function _syncBottomNavToScroll() {
+  if (Date.now() < (window._bottomNavLockUntil || 0)) return;
+  const items = [...document.querySelectorAll('.bottom-nav-item')];
+  if (!items.length || getComputedStyle(document.getElementById('bottomNav')).display === 'none') return;
+  const probe = window.innerHeight * 0.35;
+  let current = items[0].dataset.target;
+  for (const btn of items) {
+    const el = document.getElementById(btn.dataset.target);
+    if (el && el.getBoundingClientRect().top <= probe) current = btn.dataset.target;
+  }
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+    current = items[items.length - 1].dataset.target; // bottom of page → last section
+  }
+  setBottomNavActive(current);
+}
+let _bottomNavTicking = false;
+window.addEventListener('scroll', () => {
+  if (_bottomNavTicking) return;
+  _bottomNavTicking = true;
+  requestAnimationFrame(() => { _bottomNavTicking = false; _syncBottomNavToScroll(); });
+}, { passive: true });
 
 // ===== RENDER: DAY NAVIGATION =====
 function renderDayNav() {
@@ -1268,14 +1305,6 @@ function renderDayNav() {
   }
 }
 
-// ===== RENDER: TIMER DAY SELECT =====
-function renderTimerDaySelect() {
-  const sel = document.getElementById('timerDay');
-  sel.innerHTML = state.days.map((d, i) =>
-    `<option value="${d.id}"${d.id === state.activeDay ? ' selected' : ''}>Day ${i + 1}</option>`
-  ).join('');
-}
-
 // ===== RENDER: ACTIVE DAY PANEL =====
 function renderActivePanel() {
   const container = document.getElementById('dayPanels');
@@ -1284,15 +1313,12 @@ function renderActivePanel() {
 
   let totalTasks = 0, doneTasks = 0;
   day.blocks.forEach(b => b.tasks.forEach(t => { totalTasks++; if (state.checked[t.id]) doneTasks++; }));
-  const timeLogged = state.timeLog[day.id] || 0;
-  const hrs = Math.floor(timeLogged / 3600), mins = Math.floor((timeLogged % 3600) / 60);
 
   let html = `<div class="day-panel active">
     <div class="day-header">
       <h2 class="day-title editable" onclick="editDayField('${day.id}', 'title', this)" title="Click to edit title">${escapeHtml(day.title)}</h2>
       <p class="day-subtitle editable" onclick="editDayField('${day.id}', 'subtitle', this)" title="Click to edit subtitle">${escapeHtml(day.subtitle || 'Click to add subtitle…')}</p>
       <div class="day-meta">
-        <span class="day-time-logged">⏱ ${hrs}h ${mins}m logged</span>
         <span class="day-progress-text">${doneTasks}/${totalTasks} tasks</span>
         <span class="day-label-tag editable" onclick="editDayField('${day.id}', 'label', this)" title="Click to edit pill label">🏷️ ${escapeHtml(day.label)}</span>
         ${state.days.length > 1 ? `<button class="meta-action-btn danger" onclick="removeDay('${day.id}')" title="Delete day">🗑️</button>` : ''}
@@ -1525,10 +1551,6 @@ function updateStats() {
   el('bonusDone').textContent = `${completedBonus} / ${totalBonus}`;
   el('daysComplete').textContent = `${daysComplete} / ${state.days.length}`;
 
-  let totalSec = 0;
-  for (const d in state.timeLog) totalSec += state.timeLog[d];
-  el('totalHours').textContent = Math.floor(totalSec / 3600) + 'h';
-  el('todayHours').textContent = `${Math.floor(totalSec / 3600)}h ${Math.floor((totalSec % 3600) / 60)}m`;
   el('streakCount').textContent = calculateStreak() + ' 🔥';
 }
 
@@ -1558,9 +1580,6 @@ function switchDay(dayId) {
   console.log('[ui-state] activeDay →', dayId);
   document.querySelectorAll('.day-pill').forEach(p => p.classList.toggle('active', p.dataset.day === dayId));
   renderActivePanel();
-  renderTimerDaySelect();
-  const timerSel = document.getElementById('timerDay');
-  if (timerSel) timerSel.value = dayId;
 }
 
 function showAddDayForm() {
@@ -1595,7 +1614,6 @@ function submitAddDay() {
   postEvent({ op: 'day_add', day });
   cancelAddDay();
   renderDayNav();
-  renderTimerDaySelect();
   renderJournal();
   switchDay(dayId);
   updateStats();
@@ -1611,7 +1629,6 @@ function removeDay(dayId) {
   if (state.activeDay === dayId) state.activeDay = state.days.length ? state.days[0].id : '';
   if (state.journalDay === dayId) state.journalDay = state.days.length ? state.days[0].id : '';
   renderDayNav();
-  renderTimerDaySelect();
   renderActivePanel();
   renderJournal();
   updateStats();
@@ -1862,46 +1879,6 @@ function resolveComments(taskId) {
   delete state.comments[taskId];
   closeCompose();
   showToast('✅ Resolved');
-}
-
-// ===== TIMER =====
-let timerInterval = null, timerSeconds = 0, timerRunning = false;
-
-function startTimer() {
-  if (timerRunning) return;
-  console.log('[timer] startTimer');
-  timerRunning = true;
-  document.getElementById('timerStart').disabled = true;
-  document.getElementById('timerPause').disabled = false;
-  document.getElementById('timerStop').disabled = false;
-  document.getElementById('timerPulse').classList.add('active');
-  timerInterval = setInterval(() => { timerSeconds++; updateTimerDisplay(); }, 1000);
-}
-function pauseTimer() {
-  if (!timerRunning) return;
-  timerRunning = false;
-  clearInterval(timerInterval);
-  document.getElementById('timerStart').disabled = false;
-  document.getElementById('timerPause').disabled = true;
-  document.getElementById('timerPulse').classList.remove('active');
-}
-function stopTimer() {
-  pauseTimer();
-  const dayId = document.getElementById('timerDay').value;
-  console.log('[timer] stopTimer: logging', timerSeconds, 'seconds to', dayId);
-  if (!state.timeLog[dayId]) state.timeLog[dayId] = 0;
-  state.timeLog[dayId] += timerSeconds;
-  postEvent({ op: 'time', dayId, v: timerSeconds });
-  const h = Math.floor(timerSeconds / 3600), m = Math.floor((timerSeconds % 3600) / 60);
-  showToast(`⏱ Logged ${h > 0 ? h + 'h ' : ''}${m}m to selected day`);
-  timerSeconds = 0; updateTimerDisplay();
-  document.getElementById('timerStop').disabled = true;
-  renderActivePanel(); updateStats();
-}
-function updateTimerDisplay() {
-  const h = Math.floor(timerSeconds / 3600), m = Math.floor((timerSeconds % 3600) / 60), s = timerSeconds % 60;
-  document.getElementById('timerDisplay').textContent =
-    String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
 }
 
 // ===== JOURNAL =====
