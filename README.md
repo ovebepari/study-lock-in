@@ -52,6 +52,7 @@ Machine A (Laptop)                 GitHub Repository                 Machine B (
 2. **Before switching machines**:
    - Open the Export panel $\to$ click **"Export for Git (.yml)"**.
    - Move the downloaded `.yml` file into `_data/syllabi/`.
+   - Click **"Export Activity"** and replace `_data/activity.yml` with the downloaded file (keeps the heatmap in sync).
    - Run `./sync-to-github.sh` (or `git add -A && git commit -m "sync" && git push`).
 3. **On Machine B**:
    - Open the site. It automatically pulls the newly deployed baseline from GitHub Pages!
@@ -59,17 +60,19 @@ Machine A (Laptop)                 GitHub Repository                 Machine B (
 
 ---
 
-## 💻 Local Preview (No Ruby/Jekyll Required)
+## 💻 Local Preview (Jekyll)
 
-You can build and preview the site locally using Python (standard library only):
+Preview the site locally with Jekyll via Bundler (Ruby required):
 
 ```bash
-# Build static files into _site/
-python3 scripts/build_static.py
+bundle install
+bundle exec jekyll serve
 
-# Or build and start local web server at http://localhost:4000
-python3 scripts/build_static.py --serve --port 4000
+# With live reload:
+bundle exec jekyll serve --livereload
 ```
+
+The site is served at `http://localhost:4000/study-lock-in/`.
 
 ---
 
@@ -103,8 +106,7 @@ study-lock-in/
 ├── app.js                    # Client-side state, events, lock screen, YAML exporter
 ├── zen-music.mp3             # Focus audio
 ├── scripts/
-│   ├── convert_toml_to_yaml.py  # TOML -> YAML converter
-│   └── build_static.py          # Pure Python static site generator & local preview server
+│   └── convert_toml_to_yaml.py  # TOML -> YAML converter
 ├── sync-to-github.sh         # One-click commit & push script
 └── .github/workflows/
     └── deploy.yml            # GitHub Actions Pages deployment

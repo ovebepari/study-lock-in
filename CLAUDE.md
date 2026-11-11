@@ -46,7 +46,6 @@ index.html <script id="syllabi-data" type="application/json">
 | `style.css` | Anthropic-inspired warm design system (dark/light themes, typography, animations, responsive). |
 | `zen-music.mp3` | Lo-fi focus audio track with fading controller. |
 | `Gemfile` | Ruby dependencies for local Jekyll serving (`jekyll`, `jekyll-feed`, `webrick`). |
-| `scripts/build_static.py` | Standalone Python static site generator & local HTTP server (zero Ruby/Jekyll required). |
 | `scripts/convert_toml_to_yaml.py` | Utility to convert legacy TOML syllabi into Jekyll YAML format. |
 | `sync-to-github.sh` | Bash helper to commit and push progress updates to GitHub. |
 | `.github/workflows/deploy.yml` | GitHub Actions workflow to build and deploy to GitHub Pages. |
@@ -65,22 +64,14 @@ bundle exec jekyll serve --livereload
 ```
 Site will be served at: `http://localhost:4000/study-lock-in/`
 
-### 2. Running Locally with Python (Zero Ruby Required)
-```bash
-# Build static files into _site/
-python3 scripts/build_static.py
-
-# Or build and launch preview server at http://localhost:4000
-python3 scripts/build_static.py --serve --port 4000
-```
-
-### 3. Converting a New TOML Syllabus
+### 2. Converting a New TOML Syllabus
 ```bash
 python3 scripts/convert_toml_to_yaml.py path/to/syllabus.toml
 ```
 The script writes the output directly into `_data/syllabi/<name>.yml`.
 
-### 4. Syncing Progress to GitHub Pages
+### 3. Syncing Progress to GitHub Pages
+Export syllabus progress (**Export for Git**) into `_data/syllabi/` and the activity log (**Export Activity**) over `_data/activity.yml`, then:
 ```bash
 ./sync-to-github.sh
 ```
@@ -168,7 +159,8 @@ All browser storage keys are prefixed to avoid collisions:
    When updating `stateToYaml(state)` or `scripts/convert_toml_to_yaml.py`, maintain exact schema compatibility with `_data/syllabi/*.yml`. Multiline journal text must use block scalars (`|`) and list items must be properly indented.
 
 4. **Activity Heatmap Invariants**:
-   * Always combine base historical activity from `getEmbeddedActivity()` with device activity from `getLocalActivity()`.
+   * Always combine base historical activity from `getEmbeddedActivity()` with device activity from `getLocalActivity()` via `getActivityLog()`, which de-duplicates entries (by `t|syllabus|topic|action`) that exist in both after an `activity.yml` export is committed.
+   * `exportActivity()` writes the merged log as `activity.yml`; keep `t` quoted so Jekyll treats timestamps as strings, not `Time` objects.
    * Date parsing must use local date strings (`toDateStr`) to avoid UTC day-shift bugs.
    * `renderHeatmap()` dynamically detects the active year from data; preserve this so the calendar grid doesn't render empty if the client device clock is in a different year.
 

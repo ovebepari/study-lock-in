@@ -161,6 +161,433 @@ async function sha256(message) {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// ========================================================
+// ASCII ART BACKGROUND ENGINE FOR MINIMAL LOCK SCREEN
+// Moving ambient art: Brain, Education, AI, Math
+// ========================================================
+
+const ASCII_ART_COLLECTION = [
+  // --- 1. BRAIN (Cortex / Neuro / Synapse) ---
+  {
+    category: 'brain',
+    label: '// BRAIN · CORTEX //',
+    lines: [
+      "      .-''''-.     .-''''-.",
+      "    .'        `._.'        '.",
+      "   /   .-.      :      .-.   \\",
+      "  :   (   )     :     (   )   :",
+      "  :    `-'      :      `-'    :",
+      "   \\           / \\           /",
+      "    '.____..-'     '-..____.'"
+    ]
+  },
+  {
+    category: 'brain',
+    label: '// SYNAPSE MESH //',
+    lines: [
+      "        [🧠]",
+      "      (o)=====(o)",
+      "     / | \\   / | \\",
+      "    *  |  * *  |  *",
+      "     \\ | /   \\ | /",
+      "      (o)=====(o)"
+    ]
+  },
+  {
+    category: 'brain',
+    label: '// NEURAL IQ //',
+    lines: [
+      "      .-'\"\"'-.",
+      "    .'  ____  '.",
+      "   /   / __ \\   \\",
+      "  |   | (__) |   |",
+      "  |    \\____/    |",
+      "   \\  BRAIN-AI  /",
+      "    '.  PSYCHE .'",
+      "      '-....-'"
+    ]
+  },
+
+  // --- 2. EDUCATION (Books / Scholar / Syllabus) ---
+  {
+    category: 'education',
+    label: '// KNOWLEDGE · STUDY //',
+    lines: [
+      "       ______   ______",
+      "     .-\"      \\ /      \"-.",
+      "    |  STUDY   |   LOCK   |",
+      "    |  LEARN   |   GROW   |",
+      "    |  DEEP    |   FOCUS  |",
+      "    '----------'----------'"
+    ]
+  },
+  {
+    category: 'education',
+    label: '// ACADEMIA · DEGREE //',
+    lines: [
+      "          .--------.",
+      "         /          \\",
+      "        /  KNOWLEDGE \\",
+      "       *--------------*",
+      "       | \\          / |",
+      "          \\        /",
+      "           '------'"
+    ]
+  },
+  {
+    category: 'education',
+    label: '// SYLLABUS · ARCHIVE //',
+    lines: [
+      "     .-------------------.",
+      "    /__KNOWLEDGE_BASE___/|",
+      "   |  CURRICULUM // ML | |",
+      "   |-------------------|/|",
+      "   |  STUDY // LOCK-IN | |",
+      "   '-------------------'/"
+    ]
+  },
+
+  // --- 3. AI (Neural Nets / Transformer / Tensors) ---
+  {
+    category: 'ai',
+    label: '// DEEP NEURAL NET //',
+    lines: [
+      "   [IN]     [HIDDEN]     [OUT]",
+      "    (o)-------(o)--------(o)",
+      "     \\       /   \\      /",
+      "      \\     /     \\    /",
+      "       (o)---------(o)",
+      "      /   \\       /   \\",
+      "    (o)-------(o)--------(o)",
+      "     W·x + b   -->   ReLU(z)"
+    ]
+  },
+  {
+    category: 'ai',
+    label: '// TRANSFORMER ATTENTION //',
+    lines: [
+      "   +-------------------------+",
+      "   | ATTENTION IS ALL U NEED |",
+      "   |   Q·K^T / sqrt(d_k)     |",
+      "   |     [ TRANSFORMER ]     |",
+      "   +-------------------------+"
+    ]
+  },
+  {
+    category: 'ai',
+    label: '// AI TENSOR AGENT //',
+    lines: [
+      "       .------------.",
+      "      /  AI AGENT   /|",
+      "     +-------------+ |",
+      "     |  [ 0 1 0 ]  | |",
+      "     |  TENSOR_NET |/",
+      "     '-------------'"
+    ]
+  },
+
+  // --- 4. MATH (Calculus / Integrals / Euler / Linear Algebra) ---
+  {
+    category: 'math',
+    label: '// CALCULUS & LIMITS //',
+    lines: [
+      "         b",
+      "        /",
+      "       |  f(x) dx = F(b) - F(a)",
+      "      /",
+      "     a",
+      "     lim_{x→0} (sin x / x) = 1"
+    ]
+  },
+  {
+    category: 'math',
+    label: '// EULER & BASEL SERIES //',
+    lines: [
+      "       e^(i·π) + 1 = 0",
+      "         ∞",
+      "        ---",
+      "        \\    1       π²",
+      "        /   ---  =  ----",
+      "        ---  k²       6",
+      "        k=1"
+    ]
+  },
+  {
+    category: 'math',
+    label: '// EIGEN & GRADIENT //',
+    lines: [
+      "     [ cos θ  -sin θ ]",
+      "     [ sin θ   cos θ ]",
+      "     det(A - λI) = 0",
+      "     ∇_θ L = E[ ∇ log p(x) ]"
+    ]
+  }
+];
+
+const ASCII_SCATTERED_SYMBOLS = [
+  "∫ f(x) dx", "∑ x_i", "∂L/∂w", "σ(Wx+b)", "∇_θ L", "e^(iπ) = -1",
+  "det(A)", "λ_max", "lim x→∞", "√2", "π ≈ 3.1415", "∞", "∀x ∈ ℝ",
+  "∃ε > 0", "P(A|B)", "H(X)", "E=mc²", "c²=a²+b²", "Q·K^T / √d",
+  "softmax", "argmax", "ReLU", "[0 1 0 1]", "loss → 0.00", "epoch++",
+  "tensor", "synapse", "cortex", "axiom", "lemma", "Q.E.D.", "f: X → Y",
+  "⟨u, v⟩", "∥W∥₂", "μ ± 2σ", "dx/dt", "∮ B·dl = μ₀I", "∇²ψ", "argmax_y P(y|x)"
+];
+
+const _lockAscii = {
+  running: false,
+  animId: null,
+  canvas: null,
+  ctx: null,
+  sprites: [],
+  particles: [],
+  mouse: { x: -9999, y: -9999 },
+  initialized: false
+};
+
+function initLockAscii() {
+  const canvas = document.getElementById('lockAsciiCanvas');
+  if (!canvas) return false;
+  _lockAscii.canvas = canvas;
+  _lockAscii.ctx = canvas.getContext('2d');
+  
+  function resize() {
+    if (!_lockAscii.canvas) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    _lockAscii.canvas.width = Math.floor(w * dpr);
+    _lockAscii.canvas.height = Math.floor(h * dpr);
+    _lockAscii.canvas.style.width = w + 'px';
+    _lockAscii.canvas.style.height = h + 'px';
+    _lockAscii.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  const lockScreen = document.getElementById('lockScreen');
+  if (lockScreen) {
+    lockScreen.addEventListener('click', (e) => {
+      if (!e.target.closest('button, a')) {
+        const input = document.getElementById('passcodeInput');
+        if (input && document.activeElement !== input) input.focus();
+      }
+    });
+    lockScreen.addEventListener('mousemove', (e) => {
+      _lockAscii.mouse.x = e.clientX;
+      _lockAscii.mouse.y = e.clientY;
+    });
+    lockScreen.addEventListener('mouseleave', () => {
+      _lockAscii.mouse.x = -9999;
+      _lockAscii.mouse.y = -9999;
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (!_isUnlocked) {
+      const input = document.getElementById('passcodeInput');
+      if (input && document.activeElement !== input && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        input.focus();
+      }
+    }
+  });
+
+  // Create ASCII Sprites
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  const numSprites = Math.max(6, Math.min(ASCII_ART_COLLECTION.length, Math.floor(W / 180)));
+  
+  _lockAscii.sprites = ASCII_ART_COLLECTION.slice(0, numSprites).map((art, idx) => {
+    const maxLine = Math.max(...art.lines.map(l => l.length));
+    const spriteW = maxLine * 7.2;
+    const spriteH = (art.lines.length + 2) * 14;
+    
+    // Spread them in a grid-like distribution with random jitter
+    const cols = Math.ceil(Math.sqrt(numSprites));
+    const rows = Math.ceil(numSprites / cols);
+    const col = idx % cols;
+    const row = Math.floor(idx / cols);
+    
+    const startX = (col / cols) * W + (Math.random() - 0.5) * 80;
+    const startY = (row / rows) * H + (Math.random() - 0.5) * 60;
+    
+    const speed = 0.2 + Math.random() * 0.25;
+    const angle = Math.random() * Math.PI * 2;
+
+    return {
+      category: art.category,
+      label: art.label,
+      lines: art.lines,
+      w: spriteW,
+      h: spriteH,
+      x: startX,
+      y: startY,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      phase: Math.random() * Math.PI * 2,
+      phaseSpeed: 0.0012 + Math.random() * 0.001,
+      amplitude: 5 + Math.random() * 6
+    };
+  });
+
+  // Create scattered math & tech particles
+  const numParticles = Math.min(38, Math.max(20, Math.floor(W / 45)));
+  _lockAscii.particles = [];
+  for (let i = 0; i < numParticles; i++) {
+    const sym = ASCII_SCATTERED_SYMBOLS[i % ASCII_SCATTERED_SYMBOLS.length];
+    const speed = 0.12 + Math.random() * 0.22;
+    const angle = Math.random() * Math.PI * 2;
+    _lockAscii.particles.push({
+      text: sym,
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      seed: Math.random() * 1000,
+      size: 10 + Math.random() * 2.5
+    });
+  }
+
+  _lockAscii.initialized = true;
+  return true;
+}
+
+function startLockAscii() {
+  if (_lockAscii.running) return;
+  if (!_lockAscii.initialized) {
+    initLockAscii();
+  }
+  _lockAscii.running = true;
+
+  function loop(time) {
+    if (!_lockAscii.running) return;
+    renderLockAscii(time);
+    _lockAscii.animId = requestAnimationFrame(loop);
+  }
+
+  _lockAscii.animId = requestAnimationFrame(loop);
+}
+
+function stopLockAscii() {
+  _lockAscii.running = false;
+  if (_lockAscii.animId) {
+    cancelAnimationFrame(_lockAscii.animId);
+    _lockAscii.animId = null;
+  }
+}
+
+function renderLockAscii(time) {
+  const ctx = _lockAscii.ctx;
+  const canvas = _lockAscii.canvas;
+  if (!ctx || !canvas) return;
+
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  ctx.clearRect(0, 0, W, H);
+
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+  // 1. Draw Scattered Math & AI Particles in Background
+  ctx.font = '10.5px "JetBrains Mono", monospace';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+
+  for (let i = 0; i < _lockAscii.particles.length; i++) {
+    const p = _lockAscii.particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+
+    // Wrap boundaries
+    if (p.x < -120) p.x = W + 50;
+    if (p.x > W + 120) p.x = -50;
+    if (p.y < -50) p.y = H + 30;
+    if (p.y > H + 50) p.y = -30;
+
+    // Gentle pulse
+    const pulse = Math.sin(time * 0.0015 + p.seed) * 0.5 + 0.5;
+    const alpha = isLight ? (0.08 + pulse * 0.12) : (0.12 + pulse * 0.18);
+
+    ctx.fillStyle = isLight
+      ? `rgba(50, 45, 40, ${alpha.toFixed(3)})`
+      : `rgba(235, 230, 220, ${alpha.toFixed(3)})`;
+    ctx.fillText(p.text, p.x, p.y);
+  }
+
+  // 2. Draw Moving Multi-line ASCII Art Sprites
+  for (let i = 0; i < _lockAscii.sprites.length; i++) {
+    const s = _lockAscii.sprites[i];
+
+    // Physics update with bobbing
+    s.x += s.vx;
+    s.y += s.vy;
+
+    // Boundary wrapping
+    if (s.x > W + 100) s.x = -s.w - 50;
+    if (s.x < -s.w - 100) s.x = W + 50;
+    if (s.y > H + 80) s.y = -s.h - 50;
+    if (s.y < -s.h - 80) s.y = H + 50;
+
+    // Interactive gentle mouse push
+    const centerX = s.x + s.w / 2;
+    const centerY = s.y + s.h / 2;
+    const dx = centerX - _lockAscii.mouse.x;
+    const dy = centerY - _lockAscii.mouse.y;
+    const dist = Math.hypot(dx, dy);
+    if (dist < 180 && dist > 0) {
+      const force = ((180 - dist) / 180) * 0.8;
+      s.x += (dx / dist) * force;
+      s.y += (dy / dist) * force;
+    }
+
+    const bobY = s.y + Math.sin(time * s.phaseSpeed + s.phase) * s.amplitude;
+
+    // Category styling & subtle color tinting
+    let artColor, labelColor;
+    if (isLight) {
+      if (s.category === 'brain') {
+        artColor = 'rgba(2, 132, 199, 0.22)';
+        labelColor = 'rgba(2, 132, 199, 0.35)';
+      } else if (s.category === 'education') {
+        artColor = 'rgba(180, 83, 9, 0.22)';
+        labelColor = 'rgba(180, 83, 9, 0.35)';
+      } else if (s.category === 'ai') {
+        artColor = 'rgba(126, 34, 206, 0.22)';
+        labelColor = 'rgba(126, 34, 206, 0.35)';
+      } else { // math
+        artColor = 'rgba(40, 35, 30, 0.25)';
+        labelColor = 'rgba(40, 35, 30, 0.38)';
+      }
+    } else {
+      if (s.category === 'brain') {
+        artColor = 'rgba(56, 189, 248, 0.28)';
+        labelColor = 'rgba(56, 189, 248, 0.45)';
+      } else if (s.category === 'education') {
+        artColor = 'rgba(251, 191, 36, 0.28)';
+        labelColor = 'rgba(251, 191, 36, 0.45)';
+      } else if (s.category === 'ai') {
+        artColor = 'rgba(168, 85, 247, 0.28)';
+        labelColor = 'rgba(168, 85, 247, 0.45)';
+      } else { // math
+        artColor = 'rgba(245, 240, 230, 0.32)';
+        labelColor = 'rgba(217, 119, 6, 0.48)';
+      }
+    }
+
+    // Render category tag
+    ctx.font = '9px "JetBrains Mono", monospace';
+    ctx.fillStyle = labelColor;
+    ctx.fillText(s.label, s.x, bobY);
+
+    // Render ASCII art body lines
+    ctx.font = '10.5px "JetBrains Mono", monospace';
+    ctx.fillStyle = artColor;
+    const lineHeight = 13.5;
+    for (let l = 0; l < s.lines.length; l++) {
+      ctx.fillText(s.lines[l], s.x, bobY + (l + 1) * lineHeight);
+    }
+  }
+}
+
 function getSiteConfig() {
   const el = document.getElementById('site-config');
   return el ? JSON.parse(el.textContent || '{}') : { baseurl: '', passcodeHash: '' };
@@ -171,12 +598,14 @@ function checkLockState() {
   const lockScreen = document.getElementById('lockScreen');
   if (unlocked) {
     _isUnlocked = true;
+    stopLockAscii();
     if (lockScreen) lockScreen.style.display = 'none';
     return true;
   } else {
     _isUnlocked = false;
     if (lockScreen) {
       lockScreen.style.display = 'flex';
+      startLockAscii();
       const input = document.getElementById('passcodeInput');
       if (input) { input.value = ''; setTimeout(() => input.focus(), 100); }
     }
@@ -205,6 +634,7 @@ async function handleUnlock(e) {
   if (enteredHash === targetHash || entered === 'lockin') {
     localStorage.setItem('study-lock-in:unlocked', 'true');
     _isUnlocked = true;
+    stopLockAscii();
     const lockScreen = document.getElementById('lockScreen');
     if (lockScreen) {
       lockScreen.style.opacity = '0';
@@ -233,6 +663,7 @@ function lockApp() {
   if (lockScreen) {
     lockScreen.style.display = 'flex';
     lockScreen.style.opacity = '1';
+    startLockAscii();
     const input = document.getElementById('passcodeInput');
     if (input) { input.value = ''; input.focus(); }
     const errorEl = document.getElementById('lockError');
@@ -682,6 +1113,10 @@ function renderApp() {
                 <span class="data-btn-icon">📦</span>
                 <span class="data-btn-text">Backup State<small>.json</small></span>
               </button>
+              <button class="data-btn" onclick="exportActivity()" title="Download the merged activity log to replace _data/activity.yml and commit">
+                <span class="data-btn-icon">🔥</span>
+                <span class="data-btn-text">Export Activity<small>activity.yml</small></span>
+              </button>
             </div>
           </div>
           <div class="data-divider"></div>
@@ -752,9 +1187,6 @@ function renderApp() {
         </div>
       </div>
       <div class="heatmap-body" id="heatmapBody"></div>
-      <div class="heatmap-footer">
-        <div class="heatmap-months" id="heatmapMonths"></div>
-      </div>
     </div>
 
     <div class="timer-bar">
@@ -828,6 +1260,12 @@ function renderDayNav() {
     <span class="day-pill-label">ADD DAY</span>
   </button>`;
   nav.innerHTML = html;
+
+  // On phones the day-nav is a single horizontally scrolling row; keep the active day visible
+  const activePill = nav.querySelector('.day-pill.active');
+  if (activePill && nav.scrollWidth > nav.clientWidth) {
+    nav.scrollLeft = activePill.offsetLeft - (nav.clientWidth - activePill.offsetWidth) / 2;
+  }
 }
 
 // ===== RENDER: TIMER DAY SELECT =====
@@ -2043,10 +2481,52 @@ function getLocalActivity() {
   }
 }
 
+const _activityKey = (e) => `${e.t}|${e.syllabus}|${e.topic}|${e.action}`;
+
+/** Base (committed) activity + device-only activity, de-duplicated and in time order.
+ *  De-duplication matters once you export activity.yml and push: the same entries
+ *  then exist both in the embedded data and in this device's localStorage. */
 function getActivityLog() {
   const base = getEmbeddedActivity();
+  const seen = new Set(base.map(_activityKey));
+  const local = getLocalActivity().filter(e => !seen.has(_activityKey(e)));
+  return [...base, ...local].sort((a, b) => new Date(a.t) - new Date(b.t));
+}
+
+/** Drop local entries that are already part of the committed _data/activity.yml. */
+function pruneLocalActivity() {
   const local = getLocalActivity();
-  return [...base, ...local];
+  if (!local.length) return;
+  const seen = new Set(getEmbeddedActivity().map(_activityKey));
+  const remaining = local.filter(e => !seen.has(_activityKey(e)));
+  if (remaining.length !== local.length) {
+    localStorage.setItem('study-lock-in:activity', JSON.stringify(remaining));
+    console.log(`[activity] pruned ${local.length - remaining.length} entries already in activity.yml`);
+  }
+}
+
+function activityToYaml(log) {
+  const lines = [
+    '# Study Lock-In — activity log (powers the contribution heatmap)',
+    '# Exported: ' + new Date().toISOString(),
+  ];
+  for (const e of log) {
+    if (!e || !e.t) continue;
+    lines.push(`- t: ${JSON.stringify(e.t)}`);
+    lines.push(`  syllabus: ${JSON.stringify(e.syllabus || '')}`);
+    lines.push(`  topic: ${JSON.stringify(e.topic || '')}`);
+    lines.push(`  action: ${JSON.stringify(e.action || 'done')}`);
+  }
+  return lines.join('\n') + '\n';
+}
+
+/** Download the full merged log as activity.yml — drop it into _data/ and commit. */
+function exportActivity() {
+  const log = getActivityLog();
+  const newCount = log.length - getEmbeddedActivity().length;
+  const blob = new Blob([activityToYaml(log)], { type: 'text/yaml;charset=utf-8' });
+  downloadBlob(blob, 'activity.yml');
+  showToast(`🔥 Exported activity.yml (${log.length} entries, ${newCount} new) — replace _data/activity.yml & commit`);
 }
 
 function appendLocalActivity(topic, action) {
@@ -2086,8 +2566,7 @@ function renderHeatmap(activityLog) {
   if (!Array.isArray(activityLog)) activityLog = [];
 
   const body = document.getElementById('heatmapBody');
-  const monthsEl = document.getElementById('heatmapMonths');
-  if (!body || !monthsEl) return;
+  if (!body) return;
 
   // Local date string helper (avoids UTC timezone shift)
   const toDateStr = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -2226,24 +2705,42 @@ function renderHeatmap(activityLog) {
     html += '</div>';
   }
   html += '</div></div>';
+  // Month labels live inside the scrollable body so they scroll with the grid on narrow screens
+  html += '<div class="heatmap-months"></div>';
   body.innerHTML = html;
 
-  const weekSize = 13;
-  const monthGap = 4;
-  let monthHtml = '';
+  // Position month labels from the rendered week columns, so they stay aligned
+  // whatever cell size the current breakpoint uses.
+  const gridEl = body.querySelector('.heatmap-grid');
+  const weekEls = body.querySelectorAll('.heatmap-week');
+  const monthsEl = body.querySelector('.heatmap-months');
+  const gridLeft = gridEl.getBoundingClientRect().left;
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-  const yearPositions = monthPositions.filter(mp => mp.year === targetYear);
-  for (let i = 0; i < yearPositions.length; i++) {
-    const mp = yearPositions[i];
-    let px = mp.weekIndex * weekSize;
-    const gapsBefore = monthPositions.filter((p, idx) => idx > 0 && p.weekIndex <= mp.weekIndex).length;
-    px += gapsBefore * monthGap;
-    monthHtml += `<span class="heatmap-month-label" style="position:absolute;left:${px}px">${monthNames[mp.month]}</span>`;
+  let monthHtml = '';
+  for (const mp of monthPositions) {
+    if (mp.year !== targetYear || !weekEls[mp.weekIndex]) continue;
+    const px = weekEls[mp.weekIndex].getBoundingClientRect().left - gridLeft;
+    monthHtml += `<span class="heatmap-month-label" style="left:${px}px">${monthNames[mp.month]}</span>`;
   }
-  monthsEl.style.position = 'relative';
-  monthsEl.style.height = '14px';
+  monthsEl.style.width = gridEl.scrollWidth + 'px';
   monthsEl.innerHTML = monthHtml;
+
+  // When the grid overflows (phones), scroll so today / the latest activity is in view
+  if (body.scrollWidth > body.clientWidth) {
+    const focusCell = body.querySelector(`.heatmap-cell[data-date="${toDateStr(today)}"]`)
+      || [...body.querySelectorAll('.heatmap-cell[data-date]:not(.future)')].pop();
+    if (focusCell) {
+      const cellX = focusCell.getBoundingClientRect().left - body.getBoundingClientRect().left + body.scrollLeft;
+      body.scrollLeft = Math.max(0, cellX - body.clientWidth + 48);
+    }
+  }
+
+  // Touch devices have no hover tooltips — tapping a cell shows its summary instead
+  body.onclick = (e) => {
+    const cell = e.target.closest('.heatmap-cell[title]');
+    if (!cell || !window.matchMedia('(hover: none)').matches) return;
+    showToast(cell.getAttribute('title').split('\n')[0]);
+  };
 }
 
 function formatHeatmapDate(dateStr) {
@@ -2261,6 +2758,7 @@ async function bootTracker() {
   if (state.meta && state.meta.title) document.title = state.meta.title;
 
   loadTrophyPile();
+  pruneLocalActivity();
   renderHeatmap(getActivityLog());
   console.log('[boot] Ready.');
 }
