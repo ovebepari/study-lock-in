@@ -1168,7 +1168,7 @@ function renderApp() {
       <div class="heatmap-header">
         <h3 class="heatmap-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Study Activity — ${new Date().getFullYear()}
+          Study Activity
         </h3>
         <div class="heatmap-legend">
           <span class="heatmap-legend-label">Less</span>
@@ -2564,31 +2564,36 @@ function renderHeatmap(activityLog) {
     }
   }
 
-  // Determine target year
+  // Rolling 12-month window: the 11 previous months + the current month (shown last).
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  let targetYear = today.getFullYear();
+  let anchor = new Date(today);
 
-  // If no activity in current year, check if there is activity in another year
-  const activeYears = Object.keys(dailyData).map(d => parseInt(d.split('-')[0], 10)).filter(y => !isNaN(y));
-  if (!activeYears.includes(targetYear) && activeYears.length > 0) {
-    targetYear = Math.max(...activeYears);
+  // If the device clock is far from the data (no activity in the window ending today),
+  // anchor the window on the latest activity date so the grid never renders empty.
+  const activeDates = Object.keys(dailyData).filter(d => dailyData[d].count > 0).sort();
+  if (activeDates.length) {
+    const windowStartStr = toDateStr(new Date(today.getFullYear(), today.getMonth() - 11, 1));
+    const hasActivityInWindow = activeDates.some(d => d >= windowStartStr && d <= toDateStr(today));
+    if (!hasActivityInWindow) anchor = new Date(activeDates[activeDates.length - 1] + 'T00:00:00');
   }
 
-  // Update title year if element exists
+  const rangeStart = new Date(anchor.getFullYear(), anchor.getMonth() - 11, 1); // 1st of month, 11 months back
+  const endDate = new Date(anchor.getFullYear(), anchor.getMonth() + 1, 0);     // last day of anchor month
+  const monthNamesShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const rangeLabel = `${monthNamesShort[rangeStart.getMonth()]} ${rangeStart.getFullYear()} – ${monthNamesShort[endDate.getMonth()]} ${endDate.getFullYear()}`;
+
   const titleEl = document.querySelector('.heatmap-title');
   if (titleEl) {
     titleEl.innerHTML = `
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Study Activity — ${targetYear}
+      Study Activity <span class="heatmap-range">${rangeLabel}</span>
     `;
   }
 
-  const endDate = new Date(targetYear, 11, 31); // Dec 31
-  const startDate = new Date(targetYear, 0, 1); // Jan 1
-  // Align start to the previous Sunday
-  const startDay = startDate.getDay();
-  if (startDay !== 0) startDate.setDate(startDate.getDate() - startDay);
+  // Align grid start to the Sunday on/before the window start
+  const startDate = new Date(rangeStart);
+  startDate.setDate(startDate.getDate() - startDate.getDay());
 
   const weeks = [];
   let currentDate = new Date(startDate);
@@ -2601,13 +2606,14 @@ function renderHeatmap(activityLog) {
     const dateStr = toDateStr(currentDate);
     const data = dailyData[dateStr] || { count: 0, topics: [] };
     const level = Math.min(8, data.count);
-    const isFuture = (targetYear === today.getFullYear()) && (currentDate > today);
+    const isFuture = currentDate > today;
+    const outOfRange = currentDate < rangeStart; // padding days before the window
 
-    if (data.count > 0) totalActivities += data.count;
+    if (data.count > 0 && !outOfRange) totalActivities += data.count;
 
     const m = currentDate.getMonth();
     const y = currentDate.getFullYear();
-    if (m !== lastMonth && y === targetYear) {
+    if (m !== lastMonth && !outOfRange) {
       monthPositions.push({ month: m, year: y, weekIndex: weeks.length });
       lastMonth = m;
     }
@@ -2615,6 +2621,7 @@ function renderHeatmap(activityLog) {
     weekCells.push({
       date: dateStr,
       level: isFuture ? -1 : level,
+      outOfRange,
       count: data.count,
       topics: data.topics,
       dayOfWeek: currentDate.getDay(),
@@ -2649,7 +2656,9 @@ function renderHeatmap(activityLog) {
       }
     }
     for (const cell of week) {
-      if (cell.level < 0) {
+      if (cell.outOfRange) {
+        html += '<span class="heatmap-cell empty"></span>';
+      } else if (cell.level < 0) {
         html += `<span class="heatmap-cell future" data-level="0" data-date="${cell.date}"></span>`;
       } else {
         const tooltipLines = [];
@@ -2695,9 +2704,9 @@ function renderHeatmap(activityLog) {
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   let monthHtml = '';
   for (const mp of monthPositions) {
-    if (mp.year !== targetYear || !weekEls[mp.weekIndex]) continue;
+    if (!weekEls[mp.weekIndex]) continue;
     const px = weekEls[mp.weekIndex].getBoundingClientRect().left - gridLeft;
-    monthHtml += `<span class="heatmap-month-label" style="left:${px}px">${monthNames[mp.month]}</span>`;
+    monthHtml += `<span class="heatmap-month-label" style="left:${px}px">${monthNames[mp.month]}${mp.month === 0 ? ` ’${String(mp.year).slice(2)}` : ''}</span>`;
   }
   monthsEl.style.width = gridEl.scrollWidth + 'px';
   monthsEl.innerHTML = monthHtml;

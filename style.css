@@ -3306,3 +3306,11 @@ button, a, input, select, textarea, .block-header, .day-pill {
 @media (max-width: 360px) {
   .stat-card-icon { display: none; }
 }
+
+/* Heatmap rolling-window range label */
+.heatmap-range {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 4px;
+}

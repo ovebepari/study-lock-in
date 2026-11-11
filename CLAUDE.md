@@ -162,7 +162,7 @@ All browser storage keys are prefixed to avoid collisions:
    * Always combine base historical activity from `getEmbeddedActivity()` with device activity from `getLocalActivity()` via `getActivityLog()`, which de-duplicates entries (by `t|syllabus|topic|action`) that exist in both after an `activity.yml` export is committed.
    * `exportActivity()` writes the merged log as `activity.yml`; keep `t` quoted so Jekyll treats timestamps as strings, not `Time` objects.
    * Date parsing must use local date strings (`toDateStr`) to avoid UTC day-shift bugs.
-   * `renderHeatmap()` dynamically detects the active year from data; preserve this so the calendar grid doesn't render empty if the client device clock is in a different year.
+   * `renderHeatmap()` shows a rolling 12-month window (the 11 previous months + the current month, rendered last). If there is no activity in that window (e.g. device clock far from the data), it anchors the window on the latest activity date instead; preserve this so the grid never renders empty.
 
 5. **Aesthetic & UX Fidelity**:
    Preserve the Anthropic-inspired warm cream palette, typography (`Inter` + `JetBrains Mono`), micro-animations (card hover lift, checkbox bounce, Khan Academy-style particle burst, trophy pile), and Zen focus audio.
