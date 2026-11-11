@@ -475,7 +475,7 @@ function postEvent(event) {
 const _UI_STATE_KEY = 'study-tracker-ui';
 
 function _uiStateKey() {
-  return `${_UI_STATE_KEY}:${_activeSyllabusFile || 'default'}`;
+  return `${_UI_STATE_KEY}:${_activeSyllabusKey || 'default'}`;
 }
 
 function saveUIState() {
@@ -2015,16 +2015,79 @@ function loadTrophyPile() {
   renderTrophyChips(false);
 }
 
-// ===== INIT =====
-// ─── Activity Heatmap ───────────────────────────────────────────
+// ===== ACTIVITY DATA & HEATMAP =====
+
+function getEmbeddedActivity() {
+  const el = document.getElementById('activity-data');
+  if (!el || !el.textContent.trim()) return [];
+  try {
+    const parsed = JSON.parse(el.textContent);
+    if (Array.isArray(parsed)) return parsed;
+    if (parsed && typeof parsed === 'object') {
+      if (Array.isArray(parsed.log)) return parsed.log;
+      return Object.values(parsed);
+    }
+    return [];
+  } catch (err) {
+    console.warn('Could not parse activity data JSON:', err);
+    return [];
+  }
+}
+
+function getLocalActivity() {
+  try {
+    const raw = localStorage.getItem('study-lock-in:activity');
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function getActivityLog() {
+  const base = getEmbeddedActivity();
+  const local = getLocalActivity();
+  return [...base, ...local];
+}
+
+function appendLocalActivity(topic, action) {
+  try {
+    const log = getLocalActivity();
+    log.push({
+      t: new Date().toISOString(),
+      syllabus: state?.meta?.title || _activeSyllabusKey,
+      topic: topic || 'Task',
+      action: action || 'done',
+    });
+    localStorage.setItem('study-lock-in:activity', JSON.stringify(log));
+    renderHeatmap(getActivityLog());
+  } catch (e) {
+    console.warn('Failed to append local activity', e);
+  }
+}
+
+function findTaskText(taskId) {
+  if (!state || !state.days) return taskId;
+  for (const d of state.days) {
+    for (const b of (d.blocks || [])) {
+      for (const t of (b.tasks || [])) {
+        if (t.id === taskId) return t.text;
+      }
+    }
+  }
+  return taskId;
+}
+
 function fetchActivity() {
   return Promise.resolve(getActivityLog());
 }
 
 function renderHeatmap(activityLog) {
+  activityLog = activityLog || getActivityLog();
+  if (!Array.isArray(activityLog)) activityLog = [];
+
   const body = document.getElementById('heatmapBody');
   const monthsEl = document.getElementById('heatmapMonths');
-  if (!body) return;
+  if (!body || !monthsEl) return;
 
   // Local date string helper (avoids UTC timezone shift)
   const toDateStr = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -2032,9 +2095,10 @@ function renderHeatmap(activityLog) {
   // Aggregate daily counts: { "2026-11-01": { count: 3, topics: [...] } }
   const dailyData = {};
   for (const entry of activityLog) {
-    // Convert UTC timestamp to local date
-    const dateStr = entry.t ? toDateStr(new Date(entry.t)) : '';
-    if (!dateStr) continue;
+    if (!entry || !entry.t) continue;
+    const entryDate = new Date(entry.t);
+    if (isNaN(entryDate.getTime())) continue;
+    const dateStr = toDateStr(entryDate);
     if (!dailyData[dateStr]) dailyData[dateStr] = { count: 0, topics: [] };
     if (entry.action === 'done') {
       dailyData[dateStr].count++;
@@ -2044,11 +2108,28 @@ function renderHeatmap(activityLog) {
     }
   }
 
-  // Build grid for full calendar year (Jan 1 – Dec 31)
+  // Determine target year
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const endDate = new Date(today.getFullYear(), 11, 31); // Dec 31
-  const startDate = new Date(today.getFullYear(), 0, 1); // Jan 1
+  let targetYear = today.getFullYear();
+
+  // If no activity in current year, check if there is activity in another year
+  const activeYears = Object.keys(dailyData).map(d => parseInt(d.split('-')[0], 10)).filter(y => !isNaN(y));
+  if (!activeYears.includes(targetYear) && activeYears.length > 0) {
+    targetYear = Math.max(...activeYears);
+  }
+
+  // Update title year if element exists
+  const titleEl = document.querySelector('.heatmap-title');
+  if (titleEl) {
+    titleEl.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Study Activity — ${targetYear}
+    `;
+  }
+
+  const endDate = new Date(targetYear, 11, 31); // Dec 31
+  const startDate = new Date(targetYear, 0, 1); // Jan 1
   // Align start to the previous Sunday
   const startDay = startDate.getDay();
   if (startDay !== 0) startDate.setDate(startDate.getDate() - startDay);
@@ -2057,21 +2138,20 @@ function renderHeatmap(activityLog) {
   let currentDate = new Date(startDate);
   let weekCells = [];
   let totalActivities = 0;
-  const monthPositions = []; // { month, weekIndex }
+  const monthPositions = [];
   let lastMonth = -1;
 
   while (currentDate <= endDate) {
     const dateStr = toDateStr(currentDate);
     const data = dailyData[dateStr] || { count: 0, topics: [] };
     const level = Math.min(8, data.count);
-    const isFuture = currentDate > today;
+    const isFuture = (targetYear === today.getFullYear()) && (currentDate > today);
 
     if (data.count > 0) totalActivities += data.count;
 
-    // Track month boundaries
     const m = currentDate.getMonth();
     const y = currentDate.getFullYear();
-    if (m !== lastMonth) {
+    if (m !== lastMonth && y === targetYear) {
       monthPositions.push({ month: m, year: y, weekIndex: weeks.length });
       lastMonth = m;
     }
@@ -2095,21 +2175,18 @@ function renderHeatmap(activityLog) {
   // Render grid
   const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
   let html = '<div class="heatmap-grid">';
-  // Day labels column
   html += '<div class="heatmap-day-labels">';
   for (const label of dayLabels) {
     html += `<span class="heatmap-day-label">${label}</span>`;
   }
   html += '</div>';
 
-  // Week columns — build set of week indices that start a new month
   const monthStartWeeks = new Set(monthPositions.filter((_, i) => i > 0).map(mp => mp.weekIndex));
   html += '<div class="heatmap-weeks">';
   for (let wi = 0; wi < weeks.length; wi++) {
     const week = weeks[wi];
     const isMonthStart = monthStartWeeks.has(wi);
     html += `<div class="heatmap-week${isMonthStart ? ' month-start' : ''}">`;
-    // Pad first week if it doesn't start on Sunday
     if (week.length < 7 && weeks.indexOf(week) === 0) {
       for (let p = 0; p < 7 - week.length; p++) {
         html += '<span class="heatmap-cell empty"></span>';
@@ -2122,7 +2199,6 @@ function renderHeatmap(activityLog) {
         const tooltipLines = [];
         if (cell.count > 0) {
           tooltipLines.push(`${cell.count} task${cell.count > 1 ? 's' : ''} on ${formatHeatmapDate(cell.date)}`);
-          // Group by syllabus
           const bySyllabus = {};
           for (const t of cell.topics) {
             if (!bySyllabus[t.syllabus]) bySyllabus[t.syllabus] = [];
@@ -2131,7 +2207,7 @@ function renderHeatmap(activityLog) {
           for (const [syl, topics] of Object.entries(bySyllabus)) {
             tooltipLines.push(`\n${syl}:`);
             for (const top of topics.slice(0, 5)) {
-              const short = top.length > 60 ? top.substring(0, 57) + '...' : top;
+              const short = top && top.length > 60 ? top.substring(0, 57) + '...' : (top || '');
               tooltipLines.push(`  • ${short}`);
             }
             if (topics.length > 5) tooltipLines.push(`  … and ${topics.length - 5} more`);
@@ -2142,7 +2218,6 @@ function renderHeatmap(activityLog) {
         html += `<span class="heatmap-cell" data-level="${cell.level}" data-date="${cell.date}" title="${escapeHtml(tooltipLines.join('\n'))}"></span>`;
       }
     }
-    // Pad last week
     if (week.length < 7 && weeks.indexOf(week) === weeks.length - 1) {
       for (let p = 0; p < 7 - week.length; p++) {
         html += '<span class="heatmap-cell empty"></span>';
@@ -2153,17 +2228,12 @@ function renderHeatmap(activityLog) {
   html += '</div></div>';
   body.innerHTML = html;
 
-  // Month labels — position based on actual week pixel offsets
-  // Each week = 11px wide + 2px gap = 13px; month-start weeks add 4px extra
-  const weekSize = 13; // 11px cell + 2px gap
-  const monthGap = 4;  // .month-start margin-left
+  const weekSize = 13;
+  const monthGap = 4;
   let monthHtml = '';
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-  // Filter to current year only (skip Dec padding from previous year)
-  const thisYear = today.getFullYear();
-  const yearPositions = monthPositions.filter(mp => mp.year === thisYear);
-
+  const yearPositions = monthPositions.filter(mp => mp.year === targetYear);
   for (let i = 0; i < yearPositions.length; i++) {
     const mp = yearPositions[i];
     let px = mp.weekIndex * weekSize;
