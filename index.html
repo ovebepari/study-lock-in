@@ -1,0 +1,41 @@
+---
+layout: default
+title: "Study Lock-In"
+---
+<script id="syllabi-data" type="application/json">
+{{ site.data.syllabi | jsonify }}
+</script>
+<script id="activity-data" type="application/json">
+{{ site.data.activity | jsonify }}
+</script>
+<script id="site-config" type="application/json">
+{
+  "baseurl": "{{ site.baseurl }}",
+  "passcodeHash": "{{ site.passcode_hash }}"
+}
+</script>
+
+<!-- Lock Screen Modal Overlay -->
+<div id="lockScreen" class="lock-screen-overlay" style="display: none;">
+  <div class="lock-card">
+    <div class="lock-icon-badge">🔒</div>
+    <h2 class="lock-title">Study Lock-In</h2>
+    <p class="lock-subtitle">Enter passcode to unlock your study workspace</p>
+    <form id="lockForm" onsubmit="handleUnlock(event)">
+      <div class="lock-input-group">
+        <input type="password" id="passcodeInput" placeholder="Enter passcode" autocomplete="current-password" autofocus />
+        <button type="button" class="lock-toggle-pwd" onclick="togglePasscodeVisibility()" title="Show/Hide">👁️</button>
+      </div>
+      <p id="lockError" class="lock-error-text"></p>
+      <button type="submit" class="lock-submit-btn">Unlock Workspace</button>
+      <div class="lock-hint">Default passcode: <code>lockin</code></div>
+    </form>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Loading tracker…</p>
+  </div>
+</div>

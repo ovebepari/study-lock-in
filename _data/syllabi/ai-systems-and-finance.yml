@@ -1,0 +1,638 @@
+meta:
+  title: AI Systems & Finance
+  subtitle: 7-Day Systems-First AI, MLOps & Finance Bootcamp
+state:
+  theme: light
+  active_day: day-1
+  journal_day: day-1
+  start_date: '2026-11-01T06:27:59.622Z'
+days:
+- title: 'Day 1: Linear Algebra, MatMul & Autograd'
+  subtitle: The Math Kernel — building the foundation of every neural network
+  label: LinAlg
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Morning — Math Engine
+    badge: morning
+    icon: ☀️
+    tasks:
+    - text: 'Watch 3Blue1Brown: Essence of Linear Algebra (Ch. 1–7). Focus on matrices
+        as linear transformations, dot products as similarity, matmul as composing
+        transformations.'
+      done: true
+      done_at: '2026-11-01T06:27:59Z'
+      comments: []
+      resources:
+      - label: 3B1B Linear Algebra
+        url: https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab
+    - text: 'Watch 3B1B Neural Networks Ch. 1–4 (~65 min): What is a neural network,
+        Gradient descent, Backpropagation, Backprop calculus.'
+      done: true
+      done_at: '2026-11-02T02:38:54Z'
+      comments: []
+      resources:
+      - label: 3B1B Neural Nets
+        url: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+  - title: Afternoon — Autograd & Backprop
+    badge: afternoon
+    icon: 🔧
+    tasks:
+    - text: 'Watch Karpathy''s ''The spelled-out intro to neural networks and backpropagation:
+        building micrograd'' (2.5 hrs). Code the 100-line Python autograd engine alongside
+        him.'
+      done: false
+      comments: []
+      resources:
+      - label: Karpathy micrograd
+        url: https://www.youtube.com/watch?v=VMj-3S1tku0
+      - label: micrograd repo
+        url: https://github.com/karpathy/micrograd
+    - text: 'Solve Problem Set — Day 1: Cosine similarity by hand, Shape Inspector
+        (matmul dimensions), Chain Rule trace.'
+      done: false
+      comments: []
+  - title: 'Evening — Finance: Value Creation'
+    badge: evening
+    icon: 🌙
+    tasks:
+    - text: 'Read The Personal MBA frameworks: ''Iron Law of the Market'' and ''12
+        Standard Forms of Value''.'
+      done: false
+      comments: []
+      resources:
+      - label: Personal MBA
+        url: https://personalmba.com/
+    - text: 'Watch Y Combinator''s ''How to Build a Product'' (Michael Seibel). Understand
+        why people part with money: reducing friction, saving time, mitigating risk,
+        increasing status.'
+      done: true
+      done_at: '2026-11-02T02:39:15Z'
+      comments: []
+      resources:
+      - label: YC How to Build
+        url: https://www.youtube.com/watch?v=C27RVio2rOs
+  - title: Bonus Deep-Dives
+    badge: bonus
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'IEEE 754 Formats (FP32 vs FP16 vs BF16 vs FP8): Understand bit-level
+        layout of Sign, Exponent, Mantissa. Why BF16 replaced FP16.'
+      done: true
+      done_at: '2026-11-02T02:39:20Z'
+      comments: []
+    - text: 'Einstein Summation (torch.einsum): 20 min learning einsum notation for
+        tensor contractions and batch matmuls.'
+      done: true
+      done_at: '2026-11-05T04:12:03Z'
+      comments: []
+    - text: 'Finance: Operating Leverage — high-fixed-cost/low-marginal-cost (software)
+        vs. linear human-labor businesses.'
+      done: false
+      comments: []
+- title: 'Day 2: Transformer Internals & Vocabulary Mastery'
+  subtitle: From attention mechanisms to the full LLM training pipeline
+  label: Transformers
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Morning — Architecture (Visual-First)
+    badge: morning
+    icon: ☀️
+    tasks:
+    - text: Read 'The Illustrated Transformer' by Jay Alammar (~35 min). Focus on
+        the Decoder half. Track how 1 token embedding becomes Q, K, V vectors.
+      done: false
+      comments: []
+      resources:
+      - label: Illustrated Transformer
+        url: https://jalammar.github.io/illustrated-transformer/
+    - text: 'Watch 3B1B Ch. 5: ''But what is a GPT? Visual intro to Transformers''
+        (27 min).'
+      done: false
+      comments: []
+      resources:
+      - label: 3B1B Ch.5 GPT
+        url: https://www.youtube.com/watch?v=wjZofJX0v4M
+    - text: 'Watch 3B1B Ch. 6: ''Attention in transformers, visually explained'' (26
+        min). Visualize Q×Kᵀ as a token similarity lookup table.'
+      done: false
+      comments: []
+      resources:
+      - label: 3B1B Ch.6 Attention
+        url: https://www.youtube.com/watch?v=eMlx5fFNoYc
+  - title: Afternoon — LLM Lifecycle & LoRA
+    badge: afternoon
+    icon: 🔧
+    tasks:
+    - text: 'Study the 4-stage pipeline: Base Model (pre-training) → SFT (instruction
+        tuning) → RLHF/DPO (alignment) → LoRA (adaptation).'
+      done: true
+      done_at: '2026-11-02T02:39:48Z'
+      comments: []
+    - text: Watch Karpathy's 'State of GPT' Microsoft Build talk — conceptual overview
+        of the Pre-training → SFT → RLHF pipeline.
+      done: false
+      comments: []
+      resources:
+      - label: State of GPT
+        url: https://www.youtube.com/watch?v=bZQun8Y4L2A
+    - text: 'Understand LoRA math: frozen W₀ [4096×4096] + trainable A [4096×r] ×
+        B [r×4096]. Calculate compression ratio (r=8 → 0.39% params).'
+      done: false
+      comments: []
+    - text: 'Study Open Weights vs. Open Source licensing: Llama (restricted) vs.
+        Qwen/Mistral (Apache 2.0) vs. OLMo (true open source).'
+      done: true
+      done_at: '2026-11-02T02:40:05Z'
+      comments: []
+    - text: 'Solve Problem Set — Day 2: O(N²) context bomb, LoRA compression ratio,
+        Accounting triage (P&L vs. Cash Flow).'
+      done: false
+      comments: []
+  - title: 'Evening — Finance: Accounting as Telemetry'
+    badge: evening
+    icon: 🌙
+    tasks:
+    - text: 'Watch MIT 15.401 Ses 1: Introduction & Course Overview (~1hr 15min).
+        Map Balance Sheet to cluster state.'
+      done: true
+      done_at: '2026-11-02T02:40:09Z'
+      comments: []
+      resources:
+      - label: MIT 15.401 Playlist
+        url: https://www.youtube.com/playlist?list=PLUl4u3cNGP63B2lDhyKOsImI7FjCf6eDn
+    - text: 'Watch MIT 15.401 Ses 2: Present Value Relations I (~1hr 19min). Learn
+        Time Value of Money and PV operator.'
+      done: true
+      done_at: '2026-11-02T02:40:10Z'
+      comments: []
+      resources:
+      - label: MIT Ses 2 PV
+        url: https://www.youtube.com/watch?v=U03Md5enU-0
+    - text: 'Map: Income Statement = request throughput, Balance Sheet = cluster state
+        snapshot, Cash Flow = actual memory I/O.'
+      done: false
+      comments: []
+  - title: Bonus Deep-Dives
+    badge: bonus
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'GQA (Grouped-Query Attention) & MQA: How sharing K/V heads across Q heads
+        slashes KV Cache VRAM by 75%.'
+      done: false
+      comments: []
+    - text: 'RoPE (Rotary Position Embeddings): Encoding token order by rotating Q
+        and K in complex 2D space. NTK-aware scaling / YaRN for 128k+ context.'
+      done: false
+      comments: []
+    - text: 'MoE (Mixture of Experts): Mixtral/DeepSeek-V3 gating router activating
+        2 of 8 experts per token — giant intelligence at small inference cost.'
+      done: false
+      comments: []
+    - text: 'Finance: CapEx vs. OpEx & GPU Depreciation — H100/B200 depreciation over
+        4–6 years on balance sheets.'
+      done: true
+      done_at: '2026-11-02T02:23:59Z'
+      comments: []
+- title: 'Day 3: GPU Architecture, SIMD & Parallel Computing'
+  subtitle: From your CPU's AVX-512 to NVIDIA CUDA cores and memory hierarchies
+  label: GPU/CUDA
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Morning — CPU SIMD to GPU SIMT
+    badge: morning
+    icon: ☀️
+    tasks:
+    - text: Compare i5-1135G7 AVX-512 (16 FP32 per cycle) to GPU SIMT (thousands of
+        CUDA cores, 32-thread Warps, Streaming Multiprocessors).
+      done: false
+      comments: []
+    - text: 'Read NVIDIA CUDA Refresher blog series. Study GPU hierarchy: HBM (VRAM)
+        → L2 Cache → SRAM (Shared Memory / Registers).'
+      done: true
+      done_at: '2026-11-02T02:40:33Z'
+      comments: []
+      resources:
+      - label: CUDA Refresher
+        url: https://developer.nvidia.com/blog/tag/cuda-refresher/
+    - text: 'Understand FlashAttention: keeping intermediate matrices in fast SRAM
+        instead of slow HBM round-trips.'
+      done: false
+      comments: []
+      resources:
+      - label: FlashAttention Paper
+        url: https://arxiv.org/abs/2205.14135
+  - title: Afternoon — Memory Hierarchy & Roofline
+    badge: afternoon
+    icon: 🔧
+    tasks:
+    - text: 'Study the Roofline Model: Arithmetic Intensity = FLOPS / Memory Bandwidth.
+        RTX 3090 crossover: 142T / 936G ≈ 151 FLOPs/Byte.'
+      done: false
+      comments: []
+    - text: 'Memorize the hardware cheat sheet numbers: DDR4 ~45 GB/s, 3090 936 GB/s,
+        A100 2039 GB/s, H100 3350 GB/s.'
+      done: false
+      comments: []
+    - text: 'Solve Problem Set — Day 3: AVX-512 FP32 vs INT8 throughput, The Wrapper
+        Margin Trap (2.5% gross margin!).'
+      done: false
+      comments: []
+  - title: 'Evening — Finance: SaaS & AI Unit Economics'
+    badge: evening
+    icon: 🌙
+    tasks:
+    - text: Study CAC (Customer Acquisition Cost), LTV (Lifetime Value), Gross Margin,
+        Payback Period.
+      done: true
+      done_at: '2026-11-02T02:31:40Z'
+      comments: []
+    - text: Calculate why traditional SaaS has 80% gross margins while poorly optimized
+        AI wrappers drop to 30% (GPU inference COGS).
+      done: true
+      done_at: '2026-11-02T02:31:36Z'
+      comments: []
+  - title: Bonus Deep-Dives
+    badge: bonus
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'OpenAI Triton Language: Write Vector Addition & Fused Softmax kernels
+        in Python. Learn kernel fusion to eliminate HBM reads/writes.'
+      done: false
+      comments: []
+      resources:
+      - label: Triton Tutorials
+        url: https://triton-lang.org/main/getting-started/tutorials/index.html
+    - text: 'NVIDIA Nsight Systems (nsys) & PyTorch Profiler: Read GPU execution flamegraphs.
+        Spot ''GPU starvation''.'
+      done: false
+      comments: []
+    - text: 'Finance: Jevons Paradox in Compute — why making inference 10x cheaper
+        per token causes total GPU spending to increase.'
+      done: true
+      done_at: '2026-11-02T02:27:15Z'
+      comments: []
+- title: 'Day 4: Local CPU Inference on Dell Latitude'
+  subtitle: Hands-on with llama.cpp, quantization, and your i5-1135G7 / 32GB RAM
+  label: llama.cpp
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Morning — Quantization & Memory Math
+    badge: morning
+    icon: ☀️
+    tasks:
+    - text: 'Master the footprint formula: RAM(GB) ≈ Params(B) × Bytes_per_Param ×
+        1.2. Calculate Q4_K_M sizes for 7B, 14B, 32B, 70B models.'
+      done: true
+      done_at: '2026-11-01T10:02:51Z'
+      comments: []
+    - text: Understand why CPU inference is memory-bandwidth bound (not compute-bound)
+        at ~45 GB/s DDR4.
+      done: true
+      done_at: '2026-11-01T10:02:58Z'
+      comments: []
+    - text: 'Calculate theoretical decode ceiling: 4.7GB model on 45 GB/s bus → ~9.5
+        tok/s max.'
+      done: true
+      done_at: '2026-11-01T10:03:02Z'
+      comments: []
+  - title: Afternoon — Hands-On Lab
+    badge: afternoon
+    icon: 🔧
+    tasks:
+    - text: Clone and compile llama.cpp from source with AVX2/AVX-512 flags for Tiger
+        Lake i5.
+      done: true
+      done_at: '2026-11-02T02:41:35Z'
+      comments: []
+      resources:
+      - label: llama.cpp repo
+        url: https://github.com/ggerganov/llama.cpp
+    - text: Download Llama-3.1-8B-Instruct-Q4_K_M.gguf (~4.9 GB) from HuggingFace.
+      done: true
+      done_at: '2026-11-02T02:41:38Z'
+      comments: []
+      resources:
+      - label: HuggingFace GGUF
+        url: https://huggingface.co/models?search=gguf
+    - text: Download Qwen-2.5-14B-Instruct-Q4_K_M.gguf (~8.5 GB).
+      done: true
+      done_at: '2026-11-02T02:41:39Z'
+      comments: []
+    - text: 'Run llama-bench: profile CPU thread scaling (-t 4 vs -t 8), RAM allocation,
+        tokens/sec during Prefill vs. Decode.'
+      done: true
+      done_at: '2026-11-02T02:41:42Z'
+      comments: []
+    - text: 'Solve Problem Set — Day 4: Will 70B fit in 32GB? Sweet-spot model sizing
+        for your RAM.'
+      done: true
+      done_at: '2026-11-02T02:41:50Z'
+      comments: []
+  - title: 'Evening — Finance: Pricing Psychology'
+    badge: evening
+    icon: 🌙
+    tasks:
+    - text: Read ProfitWell (Patrick Campbell) guide on Value-Based Pricing.
+      done: false
+      comments: []
+    - text: Learn cost-plus pricing (charging per token) vs. value-metric pricing
+        (charging per resolved ticket / automated PR).
+      done: true
+      done_at: '2026-11-02T02:42:08Z'
+      comments: []
+  - title: Bonus Deep-Dives
+    badge: bonus
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'Intel Iris Xe GPU Offloading: Compile llama.cpp with -DGGML_VULKAN=ON
+        or -DGGML_SYCL=ON, compare iGPU vs CPU.'
+      done: false
+      comments: []
+    - text: 'Speculative Decoding in llama.cpp: Use a 0.5B draft model alongside 7B
+        target model and measure speedup.'
+      done: false
+      comments: []
+    - text: 'mmap & Linux Page Cache: Inspect how llama.cpp uses mmap(). Run vmtouch
+        to verify model pages aren''t swapped.'
+      done: false
+      comments: []
+    - text: 'Finance: Price Discrimination & Tiering — Good / Better / Best enterprise
+        tiers (Rate-limited API → VPC → Custom LoRA).'
+      done: false
+      comments: []
+- title: 'Day 5: Inference Engineering, vLLM & Vast.ai'
+  subtitle: GPU inference serving, PagedAttention, and cloud GPU penny-pinching
+  label: vLLM
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Morning — Prefill vs. Decode Phases
+    badge: morning
+    icon: ☀️
+    tasks:
+    - text: Read 'LLM Inference Unveiled' / Learn Inference book. Study Prefill (compute-bound,
+        TTFT) vs. Decode (memory-bandwidth-bound, ITL).
+      done: false
+      comments: []
+      resources:
+      - label: LLM Inference Handbook
+        url: https://www.bentoml.com/blog/llm-inference-handbook
+    - text: 'Understand PagedAttention: non-contiguous KV Cache allocation like OS
+        virtual memory paging.'
+      done: true
+      done_at: '2026-11-02T02:43:31Z'
+      comments: []
+    - text: 'Study Continuous Batching: loading weights once and multiplying against
+        32-128 user prompts simultaneously.'
+      done: true
+      done_at: '2026-11-02T02:43:32Z'
+      comments: []
+  - title: Afternoon — Vast.ai & vLLM Lab
+    badge: afternoon
+    icon: 🔧
+    tasks:
+    - text: Load $5 into Vast.ai. Rent a Spot RTX 3090 (24GB) or RTX 4090 for ~$0.15–$0.30/hr.
+      done: false
+      comments: []
+      resources:
+      - label: Vast.ai
+        url: https://vast.ai/
+    - text: Spin up the official vllm/vllm-openai Docker container serving a 7B/8B
+        AWQ quantized model.
+      done: false
+      comments: []
+      resources:
+      - label: vLLM Docs
+        url: https://docs.vllm.ai/
+    - text: Inspect Continuous Batching & KV Cache usage via vLLM's /metrics Prometheus
+        endpoint. Connect to Grafana if possible.
+      done: false
+      comments: []
+    - text: Tear down the Vast.ai instance immediately after to save cents!
+      done: false
+      comments: []
+    - text: 'Solve Problem Set — Day 5: The OOM Mystery (25 users × 8k context × 160KB),
+        API vs. Self-Hosted crossover math.'
+      done: false
+      comments: []
+  - title: 'Evening — Finance: Time Value of Money'
+    badge: evening
+    icon: 🌙
+    tasks:
+    - text: Study NPV (Net Present Value), IRR (Internal Rate of Return), and Opportunity
+        Cost.
+      done: false
+      comments: []
+    - text: 'Apply to engineering: build in-house vs. buy an API. Evaluate if a 2-month
+        project yields positive ROI.'
+      done: false
+      comments: []
+  - title: Bonus Deep-Dives
+    badge: bonus
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'Disaggregated Prefill & Decode Serving: Split Prefill onto compute-dense
+        nodes, stream KV Cache over RDMA/RoCEv2 to Decode nodes.'
+      done: false
+      comments: []
+    - text: 'Guided Decoding / Structured Outputs: Outlines or XGrammar compile JSON
+        Schema into FSMs masking invalid logits — 100% valid JSON.'
+      done: false
+      comments: []
+    - text: 'Multi-GPU Interconnects: PCIe Gen4 (~32 GB/s) vs. NVLink (600–900 GB/s).
+        Why Tensor Parallelism bottlenecks on consumer PCIe.'
+      done: false
+      comments: []
+    - text: 'Finance: FinOps & Spot Instance Arbitrage — stateless checkpointing layers
+        for Spot GPU SIGTERM failover.'
+      done: false
+      comments: []
+- title: 'Day 6: Vector DBs, Hybrid RAG & Agentic Loops'
+  subtitle: Qdrant, HNSW, BM25 + dense hybrid search, and building a ReAct agent
+  label: RAG/Agents
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Morning — Docker Vector DB Lab
+    badge: morning
+    icon: ☀️
+    tasks:
+    - text: 'Run: docker run -p 6333:6333 qdrant/qdrant'
+      done: true
+      done_at: '2026-11-01T09:37:02Z'
+      comments: []
+      resources:
+      - label: Qdrant Docs
+        url: https://qdrant.tech/documentation/
+    - text: Write a Python script to ingest 1,000 markdown docs using bge-small-en-v1.5
+        embeddings.
+      done: true
+      done_at: '2026-11-01T09:37:02Z'
+      comments: []
+      resources:
+      - label: bge-small HF
+        url: https://huggingface.co/BAAI/bge-small-en-v1.5
+    - text: Inspect HNSW index parameters (m, ef_construct). Understand it as a multi-layered
+        skip-list graph.
+      done: true
+      done_at: '2026-11-01T09:37:05Z'
+      comments: []
+  - title: Afternoon — Hybrid Search & Agents
+    badge: afternoon
+    icon: 🔧
+    tasks:
+    - text: Combine Dense Vector Search (cosine) with Sparse BM25 using Reciprocal
+        Rank Fusion (RRF).
+      done: false
+      comments: []
+    - text: 'Build a raw 50-line Python ReAct Agent loop (while True: prompt → LLM
+        JSON tool call → execute tool → append stdout). No LangChain!'
+      done: true
+      done_at: '2026-11-01T09:37:12Z'
+      comments: []
+    - text: 'Solve Problem Set — Day 6: Why pure vector search fails for hex error
+        codes, The Infinite Agent Loop (context overflow).'
+      done: false
+      comments: []
+  - title: 'Evening — Finance: B2B Sales & Problem Discovery'
+    badge: evening
+    icon: 🌙
+    tasks:
+    - text: Read 'The Mom Test' (Rob Fitzpatrick) summary. Learn to interview engineers/managers
+        for budget-backed problems.
+      done: false
+      comments: []
+      resources:
+      - label: The Mom Test
+        url: http://momtestbook.com/
+  - title: Bonus Deep-Dives
+    badge: bonus
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'Binary & Scalar Quantization in Qdrant: Cut RAM 32x using 1-bit compression
+        + XOR/POPCNT, rescore top 50 in full precision.'
+      done: false
+      comments: []
+    - text: 'Model Context Protocol (MCP): Anthropic''s universal USB-C for connecting
+        LLMs to tools via JSON-RPC servers.'
+      done: false
+      comments: []
+    - text: 'Sandboxing Agent Code: gVisor (runsc) / Firecracker microVMs to stop
+        prompt injection from wiping your host.'
+      done: false
+      comments: []
+    - text: 'Finance: Switching Costs & Data Moats — Why wrapper startups die; build
+        defensibility via proprietary workflow data.'
+      done: false
+      comments: []
+- title: 'Day 7: Production MLOps, Vertex AI & Capstone'
+  subtitle: CI/CD → CT, model observability, and your SRE Incident RCA Agent
+  label: MLOps
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Morning — GCP Vertex AI & MLOps
+    badge: morning
+    icon: ☀️
+    tasks:
+    - text: Map CI/CD to Continuous Training (CT) and Evaluation Pipelines. Study
+        Vertex AI Model Garden & Endpoints.
+      done: true
+      done_at: '2026-11-02T02:46:34Z'
+      comments: []
+      resources:
+      - label: Vertex AI Docs
+        url: https://cloud.google.com/vertex-ai/docs
+    - text: 'Study LLM Observability: Tracing with Arize Phoenix or Langfuse. Automated
+        evals with RAGAS (Context Precision, Faithfulness).'
+      done: true
+      done_at: '2026-11-02T02:46:28Z'
+      comments: []
+      resources:
+      - label: Arize Phoenix
+        url: https://phoenix.arize.com/
+      - label: Langfuse
+        url: https://langfuse.com/
+      - label: RAGAS
+        url: https://docs.ragas.io/
+    - text: Study Made With ML (Goku Mohandas) — free MLOps course with GitHub Actions,
+        Docker, Ray, experiment tracking.
+      done: false
+      comments: []
+      resources:
+      - label: Made With ML
+        url: https://madewithml.com/
+  - title: Afternoon — Capstone Build
+    badge: afternoon
+    icon: 🔧
+    tasks:
+    - text: 'Build an SRE Incident Root-Cause Analysis Agent: connect Qdrant DB +
+        local llama.cpp (or Vast.ai vLLM) to process K8s crash logs.'
+      done: false
+      comments: []
+    - text: Expose the agent via FastAPI with Prometheus metrics (/metrics endpoint).
+      done: false
+      comments: []
+    - text: 'Solve Problem Set — Day 7: Latency Budget Decomposition (2s SLA), The
+        1-Minute CFO Pitch ($60k savings).'
+      done: false
+      comments: []
+    - text: 'Review SRE Incident Drills: Work through all 10 production AI debugging
+        scenarios.'
+      done: false
+      comments: []
+  - title: 'Evening — Finance: Micro-SaaS Blueprint'
+    badge: evening
+    icon: 🌙
+    tasks:
+    - text: Draft a 1-page business model canvas for an AI/MLOps problem from your
+        4 years of SRE work.
+      done: false
+      comments: []
+    - text: 'Define: buyer persona, quantifiable ROI (e.g., reduce MTTR 30%, cut GPU
+        waste 40%), and pricing tiers.'
+      done: false
+      comments: []
+  - title: Bonus Deep-Dives
+    badge: bonus
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'K8s GPU Sharing: MIG (Multi-Instance GPU) hardware-partitioning into
+        7 slices, CUDA MPS for process-level sharing.'
+      done: false
+      comments: []
+    - text: 'Semantic Caching & LLM Gateways: Deploy LiteLLM as proxy in front of
+        Vertex AI / OpenAI / vLLM with Redis caching.'
+      done: false
+      comments: []
+      resources:
+      - label: LiteLLM
+        url: https://docs.litellm.ai/
+    - text: 'Finance: Writing the 1-Page Executive ROI Memo — Situation → Complication
+        → Resolution → Financial Impact structure.'
+      done: false
+      comments: []
+- title: Extras
+  subtitle: ''
+  label: Extras
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: More AddOns
+    badge: morning
+    icon: ☀️
+    tasks:
+    - text: LoRA Details
+      done: false
+      comments: []

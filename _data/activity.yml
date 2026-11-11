@@ -1,0 +1,940 @@
+- t: '2026-01-05T11:21:00Z'
+  syllabus: Work & Infra
+  topic: HAProxy health check tuning — reducing false positive backend downs
+  action: done
+- t: '2026-01-08T08:40:00Z'
+  syllabus: Work & Infra
+  topic: S3 lifecycle policies — transitioning old backups to Glacier
+  action: done
+- t: '2026-01-13T08:09:00Z'
+  syllabus: Work & Infra
+  topic: Technical debt prioritization — mapping debt to business impact
+  action: done
+- t: '2026-01-13T09:47:00Z'
+  syllabus: Work & Infra
+  topic: Runbook review — automated rollback procedures for canary deployments
+  action: done
+- t: '2026-01-19T13:56:00Z'
+  syllabus: Work & Infra
+  topic: gRPC vs REST benchmark — latency comparison for internal services
+  action: done
+- t: '2026-01-22T04:48:00Z'
+  syllabus: Daily Study Log
+  topic: Kafka consumer group rebalancing — CooperativeStickyAssignor vs eager
+  action: done
+- t: '2026-01-27T09:54:00Z'
+  syllabus: Daily Study Log
+  topic: 'Google Spanner: TrueTime and external consistency across datacenters'
+  action: done
+- t: '2026-01-28T08:05:00Z'
+  syllabus: Work & Infra
+  topic: On-call handoff notes — grafana alert tuning to reduce false positives
+  action: done
+- t: '2026-01-28T12:46:00Z'
+  syllabus: Work & Infra
+  topic: PagerDuty escalation policy review — reducing MTTR for P1 incidents
+  action: done
+- t: '2026-02-09T03:40:00Z'
+  syllabus: Work & Infra
+  topic: Terraform state management — remote backend with locking in S3+DynamoDB
+  action: done
+- t: '2026-02-09T14:21:00Z'
+  syllabus: Work & Infra
+  topic: OpenTelemetry traces — instrumenting gRPC calls with span context
+  action: done
+- t: '2026-02-12T13:28:00Z'
+  syllabus: Work & Infra
+  topic: Feature flag management — LaunchDarkly vs Unleash comparison
+  action: done
+- t: '2026-02-18T12:40:00Z'
+  syllabus: Work & Infra
+  topic: Code review best practices article — Google engineering practices guide
+  action: done
+- t: '2026-02-20T04:02:00Z'
+  syllabus: Daily Study Log
+  topic: Watch Martin Kleppmann's distributed systems lecture — logical clocks
+  action: done
+- t: '2026-02-26T11:23:00Z'
+  syllabus: Work & Infra
+  topic: Prometheus PromQL deep dive — rate vs irate for counter metrics
+  action: done
+- t: '2026-03-06T13:24:00Z'
+  syllabus: Work & Infra
+  topic: Grafana dashboard templates — standardizing service health panels
+  action: done
+- t: '2026-03-06T15:32:00Z'
+  syllabus: Work & Infra
+  topic: MongoDB sharding strategy — hashed vs range shard key for time series
+  action: done
+- t: '2026-03-09T11:11:00Z'
+  syllabus: Daily Study Log
+  topic: eBPF tracing — writing a simple packet counter with bpftrace
+  action: done
+- t: '2026-03-10T09:30:00Z'
+  syllabus: Work & Infra
+  topic: Post-incident review template — 5 whys root cause analysis on DB failover
+  action: done
+- t: '2026-03-10T13:02:00Z'
+  syllabus: Work & Infra
+  topic: WAF rule tuning — reducing false positives on API endpoints
+  action: done
+- t: '2026-03-16T08:10:00Z'
+  syllabus: Daily Study Log
+  topic: OWASP Top 10 refresh — SSRF and broken access control patterns
+  action: done
+- t: '2026-03-16T09:34:00Z'
+  syllabus: Daily Study Log
+  topic: CockroachDB architecture article — how they use Raft for range-level replication
+  action: done
+- t: '2026-03-18T03:03:00Z'
+  syllabus: Work & Infra
+  topic: SLO workshop — defining error budgets for payment service (99.95% target)
+  action: done
+- t: '2026-03-26T03:47:00Z'
+  syllabus: Work & Infra
+  topic: Artifact registry migration — JFrog to GCR cost comparison
+  action: done
+- t: '2026-03-31T11:13:00Z'
+  syllabus: Work & Infra
+  topic: Istio service mesh read — sidecar injection and mTLS between services
+  action: done
+- t: '2026-04-02T09:07:00Z'
+  syllabus: Daily Study Log
+  topic: Consistent hashing article — virtual nodes and jump hash comparison
+  action: done
+- t: '2026-04-03T07:13:00Z'
+  syllabus: Daily Study Log
+  topic: Bloom filters article — probabilistic membership testing for cache layers
+  action: done
+- t: '2026-04-03T08:16:00Z'
+  syllabus: Daily Study Log
+  topic: JWT security pitfalls — alg:none attack, key confusion, token replay
+  action: done
+- t: '2026-04-04T09:20:00Z'
+  syllabus: Daily Study Log
+  topic: perf stat deep dive — IPC, cache misses, branch mispredictions on a real
+    binary
+  action: done
+- t: '2026-04-04T13:04:00Z'
+  syllabus: Daily Study Log
+  topic: HTTP/3 QUIC protocol — why UDP-based transport wins for multiplexing
+  action: done
+- t: '2026-04-10T05:35:00Z'
+  syllabus: Daily Study Log
+  topic: B-tree vs LSM-tree — write amplification tradeoffs in storage engines
+  action: done
+- t: '2026-04-12T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Gemini Wireshark Session
+  action: done
+- t: '2026-04-12T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Cloudflare 500tbps Article
+  action: done
+- t: '2026-04-12T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Local LLM - ollama
+  action: done
+- t: '2026-04-13T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Raft Concurrency Problems
+  action: done
+- t: '2026-04-15T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: TCP_NODELAY
+  action: done
+- t: '2026-04-16T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: AI Infra Roadmap
+  action: done
+- t: '2026-04-16T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Hardware Comparisons
+  action: done
+- t: '2026-04-17T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Learning manage web app
+  action: done
+- t: '2026-04-18T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: GPU Architecture
+  action: done
+- t: '2026-04-18T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Money laundering vid
+  action: done
+- t: '2026-04-18T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Chess puzzles
+  action: done
+- t: '2026-04-18T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: CV repolish - add Raft implementation
+  action: done
+- t: '2026-04-18T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Industrial Revolution
+  action: done
+- t: '2026-04-19T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Cookie based authentication flaws
+  action: done
+- t: '2026-04-19T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: TPU Wikipedia (Amir Salek)
+  action: done
+- t: '2026-04-19T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Latency Numbers Everyone Should know
+  action: done
+- t: '2026-04-20T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: CPU branch prediction
+  action: done
+- t: '2026-04-20T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Raft Log Replication
+  action: done
+- t: '2026-04-21T03:11:00Z'
+  syllabus: Daily Study Log
+  topic: Linux io_uring — async I/O interface replacing epoll for high-throughput
+    servers
+  action: done
+- t: '2026-04-22T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: AI and SRE Priority Table
+  action: done
+- t: '2026-04-22T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Raft Implementation Quiz
+  action: done
+- t: '2026-04-23T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Raft gemini session
+  action: done
+- t: '2026-04-24T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: chess
+  action: done
+- t: '2026-04-24T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: DB connection pool
+  action: done
+- t: '2026-04-25T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: A closer look at Raft internals
+  action: done
+- t: '2026-04-29T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: why mapreduce was abandoned
+  action: done
+- t: '2026-04-30T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: CV edits
+  action: done
+- t: '2026-04-30T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Linux namespaces
+  action: done
+- t: '2026-04-30T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Namespaces and Cgroups
+  action: done
+- t: '2026-05-03T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Linux CAP (capabilities/permissions)
+  action: done
+- t: '2026-05-03T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Raft advanced Quiz
+  action: done
+- t: '2026-05-04T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Raft code read from github
+  action: done
+- t: '2026-05-04T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Docker DNS <-> host DNS
+  action: done
+- t: '2026-05-04T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: DP House Robber
+  action: done
+- t: '2026-05-11T17:30:00Z'
+  syllabus: Daily Study Log
+  topic: Apache Flink article — exactly-once processing with checkpointing
+  action: done
+- t: '2026-05-12T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: PROD Jdbc pool analysis
+  action: done
+- t: '2026-05-15T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: todo - zot, docker in QA, tarcane, jfrog
+  action: done
+- t: '2026-05-15T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Vasilios Syrakis - let go Atlassian vid
+  action: done
+- t: '2026-05-18T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Virtual-Memory article (2%)
+  action: done
+- t: '2026-06-01T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Vector logshipper transport mechanisms
+  action: done
+- t: '2026-06-01T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: SSL Labs book
+  action: done
+- t: '2026-06-02T16:10:00Z'
+  syllabus: Work & Infra
+  topic: Vault secrets management — dynamic database credentials rotation
+  action: done
+- t: '2026-06-09T15:14:00Z'
+  syllabus: Work & Infra
+  topic: Database connection pooling — PgBouncer vs Pgpool-II comparison
+  action: done
+- t: '2026-06-10T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: RabbitMQ article
+  action: done
+- t: '2026-06-15T03:34:00Z'
+  syllabus: Work & Infra
+  topic: Zero-trust network design article — BeyondCorp model
+  action: done
+- t: '2026-07-07T09:35:00Z'
+  syllabus: Work & Infra
+  topic: Redis cluster failover testing — sentinel vs cluster mode tradeoffs
+  action: done
+- t: '2026-07-07T11:00:00Z'
+  syllabus: Work & Infra
+  topic: API versioning strategies — URL path vs header vs query param
+  action: done
+- t: '2026-07-08T04:27:00Z'
+  syllabus: Work & Infra
+  topic: K8s network policies — restricting pod-to-pod traffic in prod namespace
+  action: done
+- t: '2026-07-09T03:35:00Z'
+  syllabus: Work & Infra
+  topic: Ansible playbook for rotating TLS certs across 40 nodes
+  action: done
+- t: '2026-07-13T15:00:00Z'
+  syllabus: Daily Study Log
+  topic: DNS over HTTPS (DoH) vs DNS over TLS (DoT) security tradeoffs
+  action: done
+- t: '2026-07-20T04:57:00Z'
+  syllabus: Work & Infra
+  topic: Nginx config hardening — rate limiting and request body size limits
+  action: done
+- t: '2026-07-23T05:30:00Z'
+  syllabus: Work & Infra
+  topic: ArgoCD GitOps setup — app-of-apps pattern for multi-cluster deploy
+  action: done
+- t: '2026-07-23T15:17:00Z'
+  syllabus: Work & Infra
+  topic: Chaos engineering read — Netflix Chaos Monkey principles
+  action: done
+- t: '2026-08-03T03:03:00Z'
+  syllabus: Work & Infra
+  topic: Helm chart refactor — extracting shared values into library chart
+  action: done
+- t: '2026-08-04T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Semaphores in bash
+  action: done
+- t: '2026-08-12T03:29:00Z'
+  syllabus: Work & Infra
+  topic: GitHub Actions workflow — matrix builds for multi-arch Docker images
+  action: done
+- t: '2026-08-17T10:53:00Z'
+  syllabus: Work & Infra
+  topic: ELK stack tuning — ILM rollover policy for 30-day log retention
+  action: done
+- t: '2026-08-20T04:05:00Z'
+  syllabus: Daily Study Log
+  topic: NUMA-aware memory allocation — why page placement matters for multi-socket
+    servers
+  action: done
+- t: '2026-08-20T11:24:00Z'
+  syllabus: Daily Study Log
+  topic: Podman vs Docker — rootless containers and daemonless architecture
+  action: done
+- t: '2026-08-21T16:41:00Z'
+  syllabus: Daily Study Log
+  topic: systemd deep dive — unit files, socket activation, cgroup integration
+  action: done
+- t: '2026-08-27T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Bullet proof SSL and TLS (50% done in last few months)
+  action: done
+- t: '2026-08-27T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Reading \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  action: done
+- t: '2026-08-28T03:29:00Z'
+  syllabus: Work & Infra
+  topic: Jenkins shared library refactor — DRY pipeline for microservices
+  action: done
+- t: '2026-08-29T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: article read - How we saved 100 terabytes of memory by optimizing 1.1.1.1's
+    DNS cache (Cloudflare blog)
+  action: done
+- t: '2026-08-29T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: jemalloc in oracle JVM
+  action: done
+- t: '2026-08-29T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: LD_PRELOAD r&d
+  action: done
+- t: '2026-08-30T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: centralized-docker-deploy script
+  action: done
+- t: '2026-08-31T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: centralized-docker-deploy script
+  action: done
+- t: '2026-09-10T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Hello Interview - Kafka Deep Dive
+  action: done
+- t: '2026-09-10T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Hello Interview - How do Time Series Databases Work?
+  action: done
+- t: '2026-09-13T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Falcon Kafka Cluster R&D
+  action: done
+- t: '2026-09-13T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Kafka Administration
+  action: done
+- t: '2026-09-15T06:41:00Z'
+  syllabus: Daily Study Log
+  topic: OCI image spec — how container layers work at the filesystem level
+  action: done
+- t: '2026-09-16T15:06:00Z'
+  syllabus: Daily Study Log
+  topic: Read Designing Data-Intensive Applications Ch.5 — Replication
+  action: done
+- t: '2026-09-18T04:03:00Z'
+  syllabus: Daily Study Log
+  topic: 'TCP congestion control: CUBIC vs BBR algorithms comparison'
+  action: done
+- t: '2026-09-18T09:11:00Z'
+  syllabus: Daily Study Log
+  topic: Paxos vs Raft — why Raft won in practice (understandability + leader election)
+  action: done
+- t: '2026-09-25T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: Vector JSON Logging
+  action: done
+- t: '2026-09-25T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: LogScale Autosharding
+  action: done
+- t: '2026-10-02T04:34:00Z'
+  syllabus: Daily Study Log
+  topic: mTLS deep dive — how service mesh sidecars handle certificate rotation
+  action: done
+- t: '2026-10-12T12:00:00Z'
+  syllabus: Daily Study Log
+  topic: How to build conternainer FS using linux primitives
+  action: done
+- t: '2026-10-20T03:19:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Define: buyer persona, quantifiable ROI (e.g., reduce MTTR 30%, cut GPU
+    waste 40%), and pricing tiers.'
+  action: done
+- t: '2026-10-20T08:38:00Z'
+  syllabus: AI Systems & Finance
+  topic: Learn cost-plus pricing (charging per token) vs. value-metric pricing (charging
+    per resolved ticket / automated PR).
+  action: done
+- t: '2026-10-20T11:01:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Solve Problem Set — Day 6: Why pure vector search fails for hex error codes,
+    The Infinite Agent Loop (context overflow).'
+  action: done
+- t: '2026-10-20T11:24:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Finance: Switching Costs & Data Moats — Why wrapper startups die; build
+    defensibility via proprietary workflow data.'
+  action: done
+- t: '2026-10-20T13:36:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Read NVIDIA CUDA Refresher blog series. Study GPU hierarchy: HBM (VRAM)
+    → L2 Cache → SRAM (Shared Memory / Registers).'
+  action: done
+- t: '2026-10-20T17:21:00Z'
+  syllabus: AI Systems & Finance
+  topic: Clone and compile llama.cpp from source with AVX2/AVX-512 flags for Tiger
+    Lake i5.
+  action: done
+- t: '2026-10-20T17:32:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Finance: Jevons Paradox in Compute — why making inference 10x cheaper per
+    token causes total GPU spending to increase.'
+  action: done
+- t: '2026-10-21T03:36:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Study LLM Observability: Tracing with Arize Phoenix or Langfuse. Automated
+    evals with RAGAS (Context Precision, Faithfulness).'
+  action: done
+- t: '2026-10-21T04:32:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Solve Problem Set — Day 5: The OOM Mystery (25 users × 8k context × 160KB),
+    API vs. Self-Hosted crossover math.'
+  action: done
+- t: '2026-10-21T06:09:00Z'
+  syllabus: AI Systems & Finance
+  topic: Read 'LLM Inference Unveiled' / Learn Inference book. Study Prefill (compute-bound,
+    TTFT) vs. Decode (memory-bandwidth-bound, ITL).
+  action: done
+- t: '2026-10-21T06:59:00Z'
+  syllabus: AI Systems & Finance
+  topic: Draft a 1-page business model canvas for an AI/MLOps problem from your 4
+    years of SRE work.
+  action: done
+- t: '2026-10-21T09:51:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Review SRE Incident Drills: Work through all 10 production AI debugging
+    scenarios.'
+  action: done
+- t: '2026-10-21T10:01:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Study the 4-stage pipeline: Base Model (pre-training) → SFT (instruction
+    tuning) → RLHF/DPO (alignment) → LoRA (adaptation).'
+  action: done
+- t: '2026-10-21T15:23:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Build a raw 50-line Python ReAct Agent loop (while True: prompt → LLM JSON
+    tool call → execute tool → append stdout). No LangChain!'
+  action: done
+- t: '2026-10-22T03:24:00Z'
+  syllabus: AI Systems & Finance
+  topic: Write a Python script to ingest 1,000 markdown docs using bge-small-en-v1.5
+    embeddings.
+  action: done
+- t: '2026-10-22T05:07:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'IEEE 754 Formats (FP32 vs FP16 vs BF16 vs FP8): Understand bit-level layout
+    of Sign, Exponent, Mantissa. Why BF16 replaced FP16.'
+  action: done
+- t: '2026-10-22T08:14:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch Karpathy''s ''The spelled-out intro to neural networks and backpropagation:
+    building micrograd'' (2.5 hrs). Code the 100-line Python autograd engine alongside
+    him.'
+  action: done
+- t: '2026-10-22T08:40:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Disaggregated Prefill & Decode Serving: Split Prefill onto compute-dense
+    nodes, stream KV Cache over RDMA/RoCEv2 to Decode nodes.'
+  action: done
+- t: '2026-10-22T14:50:00Z'
+  syllabus: AI Systems & Finance
+  topic: Study CAC (Customer Acquisition Cost), LTV (Lifetime Value), Gross Margin,
+    Payback Period.
+  action: done
+- t: '2026-10-22T15:01:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch MIT 15.401 Ses 2: Present Value Relations I (~1hr 19min). Learn Time
+    Value of Money and PV operator.'
+  action: done
+- t: '2026-10-22T15:53:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Master the footprint formula: RAM(GB) ≈ Params(B) × Bytes_per_Param × 1.2.
+    Calculate Q4_K_M sizes for 7B, 14B, 32B, 70B models.'
+  action: done
+- t: '2026-10-23T05:36:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'mmap & Linux Page Cache: Inspect how llama.cpp uses mmap(). Run vmtouch
+    to verify model pages aren''t swapped.'
+  action: done
+- t: '2026-10-23T07:24:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Map: Income Statement = request throughput, Balance Sheet = cluster state
+    snapshot, Cash Flow = actual memory I/O.'
+  action: done
+- t: '2026-10-23T08:38:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch 3B1B Neural Networks Ch. 1–4 (~65 min): What is a neural network,
+    Gradient descent, Backpropagation, Backprop calculus.'
+  action: done
+- t: '2026-10-23T08:46:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch 3B1B Neural Networks Ch. 1–4 (~65 min): What is a neural network,
+    Gradient descent, Backpropagation, Backprop calculus.'
+  action: done
+- t: '2026-10-23T09:36:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Study Open Weights vs. Open Source licensing: Llama (restricted) vs. Qwen/Mistral
+    (Apache 2.0) vs. OLMo (true open source).'
+  action: done
+- t: '2026-10-23T09:46:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Understand FlashAttention: keeping intermediate matrices in fast SRAM instead
+    of slow HBM round-trips.'
+  action: done
+- t: '2026-10-23T11:00:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Multi-GPU Interconnects: PCIe Gen4 (~32 GB/s) vs. NVLink (600–900 GB/s).
+    Why Tensor Parallelism bottlenecks on consumer PCIe.'
+  action: done
+- t: '2026-10-23T16:16:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Solve Problem Set — Day 4: Will 70B fit in 32GB? Sweet-spot model sizing
+    for your RAM.'
+  action: done
+- t: '2026-10-24T03:24:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Understand PagedAttention: non-contiguous KV Cache allocation like OS virtual
+    memory paging.'
+  action: done
+- t: '2026-10-24T04:53:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Finance: FinOps & Spot Instance Arbitrage — stateless checkpointing layers
+    for Spot GPU SIGTERM failover.'
+  action: done
+- t: '2026-10-24T05:55:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Read The Personal MBA frameworks: ''Iron Law of the Market'' and ''12 Standard
+    Forms of Value''.'
+  action: done
+- t: '2026-10-24T06:04:00Z'
+  syllabus: AI Systems & Finance
+  topic: Understand why CPU inference is memory-bandwidth bound (not compute-bound)
+    at ~45 GB/s DDR4.
+  action: done
+- t: '2026-10-24T07:21:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'NVIDIA Nsight Systems (nsys) & PyTorch Profiler: Read GPU execution flamegraphs.
+    Spot ''GPU starvation''.'
+  action: done
+- t: '2026-10-24T12:01:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Solve Problem Set — Day 3: AVX-512 FP32 vs INT8 throughput, The Wrapper
+    Margin Trap (2.5% gross margin!).'
+  action: done
+- t: '2026-10-24T12:37:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Solve Problem Set — Day 4: Will 70B fit in 32GB? Sweet-spot model sizing
+    for your RAM.'
+  action: done
+- t: '2026-10-25T04:52:00Z'
+  syllabus: AI Systems & Finance
+  topic: Download Qwen-2.5-14B-Instruct-Q4_K_M.gguf (~8.5 GB).
+  action: done
+- t: '2026-10-25T05:11:00Z'
+  syllabus: AI Systems & Finance
+  topic: Expose the agent via FastAPI with Prometheus metrics (/metrics endpoint).
+  action: done
+- t: '2026-10-25T07:04:00Z'
+  syllabus: AI Systems & Finance
+  topic: Study CAC (Customer Acquisition Cost), LTV (Lifetime Value), Gross Margin,
+    Payback Period.
+  action: done
+- t: '2026-10-25T08:19:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Solve Problem Set — Day 7: Latency Budget Decomposition (2s SLA), The 1-Minute
+    CFO Pitch ($60k savings).'
+  action: done
+- t: '2026-10-25T12:51:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Intel Iris Xe GPU Offloading: Compile llama.cpp with -DGGML_VULKAN=ON or
+    -DGGML_SYCL=ON, compare iGPU vs CPU.'
+  action: done
+- t: '2026-10-25T14:52:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Understand FlashAttention: keeping intermediate matrices in fast SRAM instead
+    of slow HBM round-trips.'
+  action: done
+- t: '2026-10-25T17:16:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Understand PagedAttention: non-contiguous KV Cache allocation like OS virtual
+    memory paging.'
+  action: done
+- t: '2026-10-26T06:16:00Z'
+  syllabus: AI Systems & Finance
+  topic: vLLM r&d
+  action: done
+- t: '2026-10-26T08:24:00Z'
+  syllabus: AI Systems & Finance
+  topic: Map CI/CD to Continuous Training (CT) and Evaluation Pipelines. Study Vertex
+    AI Model Garden & Endpoints.
+  action: done
+- t: '2026-10-26T10:25:00Z'
+  syllabus: AI Systems & Finance
+  topic: Why inference matters more than training
+  action: done
+- t: '2026-10-26T10:39:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch MIT 15.401 Ses 2: Present Value Relations I (~1hr 19min). Learn Time
+    Value of Money and PV operator.'
+  action: done
+- t: '2026-10-26T12:37:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'OpenAI Triton Language: Write Vector Addition & Fused Softmax kernels in
+    Python. Learn kernel fusion to eliminate HBM reads/writes.'
+  action: done
+- t: '2026-10-26T13:05:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Study Continuous Batching: loading weights once and multiplying against
+    32-128 user prompts simultaneously.'
+  action: done
+- t: '2026-10-26T14:29:00Z'
+  syllabus: AI Systems & Finance
+  topic: Clone and compile llama.cpp from source with AVX2/AVX-512 flags for Tiger
+    Lake i5.
+  action: done
+- t: '2026-10-27T06:00:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Read NVIDIA CUDA Refresher blog series. Study GPU hierarchy: HBM (VRAM)
+    → L2 Cache → SRAM (Shared Memory / Registers).'
+  action: done
+- t: '2026-10-27T06:36:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Understand FlashAttention: keeping intermediate matrices in fast SRAM instead
+    of slow HBM round-trips.'
+  action: undone
+- t: '2026-10-27T08:39:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch Y Combinator''s ''How to Build a Product'' (Michael Seibel). Understand
+    why people part with money: reducing friction, saving time, mitigating risk, increasing
+    status.'
+  action: done
+- t: '2026-10-27T09:37:00Z'
+  syllabus: AI Systems & Finance
+  topic: Read 'The Mom Test' (Rob Fitzpatrick) summary. Learn to interview engineers/managers
+    for budget-backed problems.
+  action: done
+- t: '2026-10-27T11:28:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'RoPE (Rotary Position Embeddings): Encoding token order by rotating Q and
+    K in complex 2D space. NTK-aware scaling / YaRN for 128k+ context.'
+  action: done
+- t: '2026-10-27T12:30:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Study Open Weights vs. Open Source licensing: Llama (restricted) vs. Qwen/Mistral
+    (Apache 2.0) vs. OLMo (true open source).'
+  action: done
+- t: '2026-10-27T14:32:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch 3B1B Ch. 5: ''But what is a GPT? Visual intro to Transformers'' (27
+    min).'
+  action: done
+- t: '2026-10-28T06:41:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Understand LoRA math: frozen W₀ [4096×4096] + trainable A [4096×r] × B [r×4096].
+    Calculate compression ratio (r=8 → 0.39% params).'
+  action: done
+- t: '2026-10-28T09:02:00Z'
+  syllabus: AI Systems & Finance
+  topic: Download Llama-3.1-8B-Instruct-Q4_K_M.gguf (~4.9 GB) from HuggingFace.
+  action: done
+- t: '2026-10-28T09:28:00Z'
+  syllabus: AI Systems & Finance
+  topic: Map CI/CD to Continuous Training (CT) and Evaluation Pipelines. Study Vertex
+    AI Model Garden & Endpoints.
+  action: done
+- t: '2026-10-28T10:28:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Study LLM Observability: Tracing with Arize Phoenix or Langfuse. Automated
+    evals with RAGAS (Context Precision, Faithfulness).'
+  action: done
+- t: '2026-10-28T14:37:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Model Context Protocol (MCP): Anthropic''s universal USB-C for connecting
+    LLMs to tools via JSON-RPC servers.'
+  action: done
+- t: '2026-10-28T17:18:00Z'
+  syllabus: AI Systems & Finance
+  topic: Load $5 into Vast.ai. Rent a Spot RTX 3090 (24GB) or RTX 4090 for ~$0.15–$0.30/hr.
+  action: done
+- t: '2026-10-29T05:29:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Finance: Operating Leverage — high-fixed-cost/low-marginal-cost (software)
+    vs. linear human-labor businesses.'
+  action: done
+- t: '2026-10-29T05:34:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Run llama-bench: profile CPU thread scaling (-t 4 vs -t 8), RAM allocation,
+    tokens/sec during Prefill vs. Decode.'
+  action: done
+- t: '2026-10-29T06:34:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch MIT 15.401 Ses 1: Introduction & Course Overview (~1hr 15min). Map
+    Balance Sheet to cluster state.'
+  action: done
+- t: '2026-10-29T09:23:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Finance: Jevons Paradox in Compute — why making inference 10x cheaper per
+    token causes total GPU spending to increase.'
+  action: done
+- t: '2026-10-29T12:12:00Z'
+  syllabus: AI Systems & Finance
+  topic: Calculate why traditional SaaS has 80% gross margins while poorly optimized
+    AI wrappers drop to 30% (GPU inference COGS).
+  action: done
+- t: '2026-10-29T12:13:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Semantic Caching & LLM Gateways: Deploy LiteLLM as proxy in front of Vertex
+    AI / OpenAI / vLLM with Redis caching.'
+  action: done
+- t: '2026-10-29T16:13:00Z'
+  syllabus: AI Systems & Finance
+  topic: Spin up the official vllm/vllm-openai Docker container serving a 7B/8B AWQ
+    quantized model.
+  action: done
+- t: '2026-10-29T16:18:00Z'
+  syllabus: AI Systems & Finance
+  topic: Inspect HNSW index parameters (m, ef_construct). Understand it as a multi-layered
+    skip-list graph.
+  action: done
+- t: '2026-10-30T03:43:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'GQA (Grouped-Query Attention) & MQA: How sharing K/V heads across Q heads
+    slashes KV Cache VRAM by 75%.'
+  action: done
+- t: '2026-10-30T03:57:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Sandboxing Agent Code: gVisor (runsc) / Firecracker microVMs to stop prompt
+    injection from wiping your host.'
+  action: done
+- t: '2026-10-30T04:04:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Study Continuous Batching: loading weights once and multiplying against
+    32-128 user prompts simultaneously.'
+  action: done
+- t: '2026-10-30T06:01:00Z'
+  syllabus: AI Systems & Finance
+  topic: Download Llama-3.1-8B-Instruct-Q4_K_M.gguf (~4.9 GB) from HuggingFace.
+  action: done
+- t: '2026-10-30T07:45:00Z'
+  syllabus: AI Systems & Finance
+  topic: Learn cost-plus pricing (charging per token) vs. value-metric pricing (charging
+    per resolved ticket / automated PR).
+  action: done
+- t: '2026-10-30T12:02:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch MIT 15.401 Ses 1: Introduction & Course Overview (~1hr 15min). Map
+    Balance Sheet to cluster state.'
+  action: done
+- t: '2026-10-31T04:08:00Z'
+  syllabus: AI Systems & Finance
+  topic: Tear down the Vast.ai instance immediately after to save cents!
+  action: done
+- t: '2026-10-31T08:17:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Finance: Writing the 1-Page Executive ROI Memo — Situation → Complication
+    → Resolution → Financial Impact structure.'
+  action: done
+- t: '2026-10-31T12:52:00Z'
+  syllabus: AI Systems & Finance
+  topic: Calculate why traditional SaaS has 80% gross margins while poorly optimized
+    AI wrappers drop to 30% (GPU inference COGS).
+  action: done
+- t: '2026-10-31T13:20:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Finance: CapEx vs. OpEx & GPU Depreciation — H100/B200 depreciation over
+    4–6 years on balance sheets.'
+  action: done
+- t: '2026-10-31T13:43:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch 3B1B Ch. 6: ''Attention in transformers, visually explained'' (26
+    min). Visualize Q×Kᵀ as a token similarity lookup table.'
+  action: done
+- t: '2026-10-31T14:36:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Solve Problem Set — Day 2: O(N²) context bomb, LoRA compression ratio, Accounting
+    triage (P&L vs. Cash Flow).'
+  action: done
+- t: '2026-11-01T06:45:15Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch 3B1B Neural Networks Ch. 1–4 (~65 min): What is a neural network,
+    Gradient descent, Backpropagation, Backprop calculus.'
+  action: done
+- t: '2026-11-01T06:45:16Z'
+  syllabus: AI Systems & Finance
+  topic: 'Watch 3B1B Neural Networks Ch. 1–4 (~65 min): What is a neural network,
+    Gradient descent, Backpropagation, Backprop calculus.'
+  action: undone
+- t: '2026-11-01T09:37:02Z'
+  syllabus: AI Systems & Finance
+  topic: 'Run: docker run -p 6333:6333 qdrant/qdrant'
+  action: done
+- t: '2026-11-01T09:37:02Z'
+  syllabus: AI Systems & Finance
+  topic: Write a Python script to ingest 1,000 markdown docs using bge-small-en-v1.5
+    embeddings.
+  action: done
+- t: '2026-11-01T09:37:05Z'
+  syllabus: AI Systems & Finance
+  topic: Inspect HNSW index parameters (m, ef_construct). Understand it as a multi-layered
+    skip-list graph.
+  action: done
+- t: '2026-11-01T09:37:12Z'
+  syllabus: AI Systems & Finance
+  topic: 'Build a raw 50-line Python ReAct Agent loop (while True: prompt → LLM JSON
+    tool call → execute tool → append stdout). No LangChain!'
+  action: done
+- t: '2026-11-01T10:02:37Z'
+  syllabus: AI Systems & Finance
+  topic: 'Master the footprint formula: RAM(GB) ≈ Params(B) × Bytes_per_Param × 1.2.
+    Calculate Q4_K_M sizes for 7B, 14B, 32B, 70B models.'
+  action: done
+- t: '2026-11-01T10:02:40Z'
+  syllabus: AI Systems & Finance
+  topic: 'Master the footprint formula: RAM(GB) ≈ Params(B) × Bytes_per_Param × 1.2.
+    Calculate Q4_K_M sizes for 7B, 14B, 32B, 70B models.'
+  action: undone
+- t: '2026-11-01T10:02:51Z'
+  syllabus: AI Systems & Finance
+  topic: 'Master the footprint formula: RAM(GB) ≈ Params(B) × Bytes_per_Param × 1.2.
+    Calculate Q4_K_M sizes for 7B, 14B, 32B, 70B models.'
+  action: done
+- t: '2026-11-01T10:02:58Z'
+  syllabus: AI Systems & Finance
+  topic: Understand why CPU inference is memory-bandwidth bound (not compute-bound)
+    at ~45 GB/s DDR4.
+  action: done
+- t: '2026-11-01T10:03:02Z'
+  syllabus: AI Systems & Finance
+  topic: 'Calculate theoretical decode ceiling: 4.7GB model on 45 GB/s bus → ~9.5
+    tok/s max.'
+  action: done
+- t: '2026-11-01T10:43:00Z'
+  syllabus: AI Systems & Finance
+  topic: 'Finance: CapEx vs. OpEx & GPU Depreciation — H100/B200 depreciation over
+    4–6 years on balance sheets.'
+  action: done
+- t: '2026-11-05T04:12:03Z'
+  syllabus: AI Systems & Finance
+  topic: 'Einstein Summation (torch.einsum): 20 min learning einsum notation for tensor
+    contractions and batch matmuls.'
+  action: done
+- t: '2026-11-05T09:10:10Z'
+  syllabus: Math for ML/DL/Neural Networks
+  topic: 'Watch 3B1B ''Essence of Linear Algebra'' Ch.1 — Vectors, what even are they?
+    (~9 min). Don''t just watch — pause every time a vector moves on screen and ask:
+    what did that transformation DO to space? The whole series is on the playlist
+    link below.'
+  action: done
+- t: '2026-11-07T10:07:11Z'
+  syllabus: HuggingFace LLM Course
+  topic: Introduction
+  action: done
+- t: '2026-11-07T19:03:56Z'
+  syllabus: HuggingFace LLM Course
+  topic: 'Lesson 1:  Practical Deep Learning for Coders'
+  action: done
+- t: '2026-11-08T17:23:11Z'
+  syllabus: HuggingFace LLM Course
+  topic: 'Lesson 2:  Practical Deep Learning for Coders'
+  action: done

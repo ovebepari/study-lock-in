@@ -1,0 +1,21 @@
+title: "Study Lock-In"
+description: "Interactive study tracker with dynamic syllabus management, lock screen, and offline-first persistence"
+url: "https://ovebepari.github.io"
+baseurl: "/study-lock-in"
+
+# Jekyll and GitHub Pages settings
+markdown: kramdown
+plugins:
+  - jekyll-feed
+
+# Passcode Lock Configuration
+# Default passcode: lockin
+# Hash: SHA-256 of "lockin"
+passcode_hash: "ef537ff85794828b8460be01daab559098fb6eb696fc9df92ea8ab5c1c0e3579"
+
+# Files to exclude from Jekyll generation
+exclude:
+  - scripts/
+  - README.md
+  - sync-to-github.sh
+  - .gitignore

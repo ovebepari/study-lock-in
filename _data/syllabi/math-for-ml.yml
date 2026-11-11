@@ -1,0 +1,1271 @@
+meta:
+  title: Math for ML/DL/Neural Networks
+  subtitle: Linear Algebra → Calculus → Backprop — from trig intuition to editing
+    weights by hand
+state:
+  theme: dark
+  active_day: day-4
+  journal_day: day-1
+  start_date: '2026-11-05T09:10:10.387Z'
+days:
+- title: 'Day 1: What Even Is a Vector?'
+  subtitle: Reframe vectors from physics arrows to objects in space — the first real
+    shift in thinking
+  label: Vectors
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B ''Essence of Linear Algebra'' Ch.1 — Vectors, what even are
+        they? (~9 min). Don''t just watch — pause every time a vector moves on screen
+        and ask: what did that transformation DO to space? The whole series is on
+        the playlist link below.'
+      done: true
+      done_at: '2026-11-05T09:10:10Z'
+      comments: []
+      resources:
+      - label: '3B1B: Essence of Linear Algebra (full playlist)'
+        url: https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab
+    - text: Watch 3B1B Essence of LA Ch.2 — Linear combinations, span, and basis vectors
+        (~10 min). Pay attention to the moment he describes 'span' — it's the set
+        of all vectors reachable by scaling and adding. Draw this on paper while watching.
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.1 — Vectors, what even are they?'
+        url: https://www.youtube.com/watch?v=fNk_zzaMoSs
+      - label: '3B1B: Ch.2 — Linear combinations, span, and basis vectors'
+        url: https://www.youtube.com/watch?v=k7RM-ot2NWY
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'On paper: Draw a 2D coordinate system. Plot v=[2,3] and w=[-1,2]. (1)
+        Add them tip-to-tail. What''s v+w? (2) Scale v by 0.5. By -1. What does -v
+        mean geometrically? (3) Compute 2v + w. Plot it.'
+      done: false
+      comments: []
+    - text: 'On paper — Span question: What 2D region does the single vector [1,0]
+        span? What about [2,0]? What about [1,0] and [0,1] together? What about [1,0]
+        and [2,0] together? Why does the last case NOT span the plane? Write your
+        reasoning in words.'
+      done: false
+      comments: []
+  - title: Bridge to Your Trig Knowledge
+    badge: evening
+    icon: 🔗
+    tasks:
+    - text: 'You already know sin and cos as x/y components of a unit circle point.
+        Write the vector [cos(45°), sin(45°)] numerically. What is its length? (Hint:
+        √(x²+y²) — the Pythagorean theorem in vector form.) This unit-circle vector
+        idea will return when we study activation functions and attention.'
+      done: false
+      comments: []
+- title: 'Day 2: Matrices as Transformations of Space'
+  subtitle: 'The core mental model: a matrix doesn''t store numbers — it describes
+    HOW to warp space'
+  label: Matrices
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B Essence of LA Ch.3 — Linear transformations and matrices (~11
+        min). The key insight: a matrix transformation is FULLY described by where
+        it sends the two basis vectors î=[1,0] and ĵ=[0,1]. Everything else follows
+        from linearity.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.3 — Linear transformations and matrices'
+        url: https://www.youtube.com/watch?v=kYB8JQd5Ctg
+    - text: 'Watch 3B1B Essence of LA Ch.4 — Matrix multiplication as composition
+        (~10 min). Two matrices multiplied = applying one transformation then another.
+        This is HUGE for neural nets: each layer is a matrix transformation, and the
+        whole network is composed transformations.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.4 — Matrix multiplication as composition'
+        url: https://www.youtube.com/watch?v=XkY2DOUCWMU
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Given matrix M = [[2,0],[0,3]], apply it to vector [1,1] by hand: M·v
+        = [2·1+0·1, 0·1+3·1] = [2,3]. Now draw the original [1,1] and transformed
+        [2,3] on paper. What did M do? (It stretched x by 2 and y by 3.) Apply M to
+        [1,0] and [0,1]. Where do the basis vectors land?'
+      done: false
+      comments: []
+    - text: 'Hand-compute this matrix multiplication: A=[[1,2],[3,4]], B=[[5,6],[7,8]].
+        Compute A·B. Remember: (A·B)[row i, col j] = dot product of row i of A with
+        column j of B. Then compute B·A. Are they equal? This non-commutativity is
+        critical — layer order in a neural net MATTERS.'
+      done: false
+      comments: []
+  - title: Connect to Neural Nets
+    badge: evening
+    icon: 🧠
+    tasks:
+    - text: 'Preview insight (read, don''t worry if fuzzy): In a neural net, one layer''s
+        computation is literally: output = W·input + b, where W is a weight matrix
+        and b is a bias vector. The matrix W is what you will eventually edit by hand.
+        Everything you''re learning now is preparation for understanding exactly what
+        happens when you change a single number in W.'
+      done: false
+      comments: []
+- title: 'Day 3: The Dot Product — Similarity, Projection, and Why It''s Everywhere'
+  subtitle: The dot product is the fundamental operation of neural nets, attention,
+    and cosine similarity
+  label: Dot Product
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B Essence of LA Ch.9 — Dot products and duality (~13 min). Key
+        idea: the dot product a·b = |a||b|cos(θ), where θ is the angle between them.
+        This means: if two vectors point the same direction, dot product is large
+        and positive. Opposite directions: large negative. Perpendicular: zero.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.9 — Dot products and duality'
+        url: https://www.youtube.com/watch?v=LyGKzcYT2FM
+    - text: Watch StatQuest 'Dot Products' (~12 min) for a complementary, ML-focused
+        explanation. StatQuest is unusually clear at building from scratch.
+      done: false
+      comments: []
+      resources:
+      - label: 'StatQuest: Dot Products'
+        url: https://www.youtube.com/watch?v=e0HAkOVBBP4
+      - label: StatQuest YouTube channel
+        url: https://www.youtube.com/@statquest
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Hand-compute: a=[3,4], b=[1,2]. Dot product a·b = 3·1 + 4·2 = 11. Now
+        compute |a| (length of a) = √(3²+4²) = 5. Compute |b| = √5. Use the formula
+        a·b = |a||b|cos(θ) to find θ. Use a calculator for arccos — the goal is seeing
+        the formula in action.'
+      done: false
+      comments: []
+    - text: 'Neural net connection exercise: Imagine a neuron with weights w=[0.5,
+        -0.3, 0.8] and input x=[1.0, 2.0, 0.5]. The neuron''s ''raw score'' is w·x
+        = 0.5·1 + (-0.3)·2 + 0.8·0.5. Compute it. This dot product IS the core computation
+        of a neuron. Everything else (activation function, bias) is built on top of
+        this.'
+      done: false
+      comments: []
+  - title: Geometric Intuition
+    badge: evening
+    icon: 🔗
+    tasks:
+    - text: 'Revisit your trig knowledge: cos(0°)=1, cos(90°)=0, cos(180°)=-1. The
+        dot product formula a·b=|a||b|cos(θ) means the dot product literally MEASURES
+        alignment between vectors. In ML, this is used everywhere: cosine similarity
+        between word embeddings, attention scores in transformers, the neuron ''firing''
+        based on how aligned its weights are with its input.'
+      done: false
+      comments: []
+- title: 'Day 4: Matrix Transpose, Shapes, and Why They Matter'
+  subtitle: The unglamorous but essential bookkeeping of linear algebra — shape errors
+    will haunt you in code
+  label: Transpose & Shapes
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch & Read
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: Watch Khan Academy 'Transpose of a matrix' (~8 min). The transpose A^T
+        flips a matrix across its diagonal — rows become columns. This seems trivial
+        until you realize that in neural net backpropagation, transposing weight matrices
+        is what lets you flow gradients BACKWARDS through a layer.
+      done: false
+      comments: []
+      resources:
+      - label: 'Khan Academy: Transpose of a Matrix'
+        url: https://www.khanacademy.org/math/linear-algebra/matrix-transformations/matrix-transpose/v/linear-algebra-transpose-of-a-matrix
+      - label: 'Khan Academy: Linear Algebra'
+        url: https://www.khanacademy.org/math/linear-algebra
+    - text: 'Watch 3B1B Essence of LA Ch.5 — Three-dimensional linear transformations
+        (~4 min). Brief but important: 3D works identically to 2D — just with a third
+        basis vector k̂=[0,0,1]. Neural nets work in hundreds or thousands of dimensions
+        — same rules apply.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.5 — Three-dimensional linear transformations'
+        url: https://www.youtube.com/watch?v=rHLEWRxRGiM
+  - title: Shape Exercises — Critical Skill
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Shape tracking exercise: If A is shape (3,4) and B is shape (4,2), then
+        A·B is shape (3,2). The inner dimensions must match — (3,4)·(4,2) works because
+        both have 4. Compute shapes only (not values) for: (5,3)·(3,1) = ?, (2,2)·(2,4)
+        = ?, (1,8)·(8,3) = ?. This is the most common source of errors in neural net
+        code.'
+      done: false
+      comments: []
+    - text: 'If W (weights) is shape (4,3) and x (input) is shape (3,1), verify that
+        W·x gives shape (4,1) — a vector of 4 neuron outputs. Now: what shape is W^T?
+        What would W^T·(something) compute? (Don''t worry about the answer yet — just
+        get comfortable thinking about shapes.)'
+      done: false
+      comments: []
+  - title: Review Day 1–4
+    badge: evening
+    icon: 🔄
+    tasks:
+    - text: 'Self-test without looking at notes: (1) What does it mean for two vectors
+        to be linearly dependent? (2) What does a matrix transformation DO to space?
+        (3) What does the dot product geometrically measure? (4) If matrix A is (m,n)
+        and B is (n,p), what shape is A·B? Write answers on paper, then check.'
+      done: false
+      comments: []
+- title: 'Day 5: The Determinant — How Much Does a Transformation Scale Space?'
+  subtitle: The determinant tells you if a transformation crushes, flips, or expands
+    space — and whether it's reversible
+  label: Determinant
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B Essence of LA Ch.6 — The determinant (~10 min). Key idea:
+        det(M) is the factor by which M scales areas (2D) or volumes (3D). det=0 means
+        the transformation COLLAPSES space into a lower dimension — the matrix is
+        singular (non-invertible). This matters in ML: a singular weight matrix means
+        information is lost.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.6 — The determinant'
+        url: https://www.youtube.com/watch?v=Ip3X9LOh2dk
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Hand-compute det([[a,b],[c,d]]) = ad - bc. Try: det([[2,3],[1,4]]) =
+        2·4 - 3·1 = 5. Try: det([[1,2],[2,4]]) — what does det=0 tell you about these
+        two rows? (They''re linearly dependent — one is a multiple of the other.)'
+      done: false
+      comments: []
+    - text: What is det(identity matrix) = det([[1,0],[0,1]])? What does that mean
+        geometrically? What is det of a rotation matrix [[cos θ, -sin θ],[sin θ, cos
+        θ]]? (Compute it — you'll find det=1 regardless of θ. Rotations preserve area.
+        Satisfying, right?)
+      done: false
+      comments: []
+  - title: Connect
+    badge: evening
+    icon: 🔗
+    tasks:
+    - text: 'Think about why a neural network''s weight matrix should NOT be initialized
+        to all zeros or all the same value. Hint: what''s the determinant of a matrix
+        where all rows are identical? What does that mean for information flow through
+        that layer?'
+      done: false
+      comments: []
+- title: 'Day 6: Inverse Matrices and What ''Solving'' Means'
+  subtitle: The inverse undoes a transformation — when it exists. When it doesn't,
+    you use approximations (like gradient descent)
+  label: Inverse & Rank
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B Essence of LA Ch.7 — Inverse matrices, column space, and null
+        space (~12 min). The inverse A^-1 is the matrix that ''undoes'' A: A^-1·A
+        = I (identity). Key point: the inverse only exists when det(A) ≠ 0. When no
+        exact inverse exists, we approximate solutions — which is fundamentally what
+        gradient descent does.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.7 — Inverse matrices, column space, null space'
+        url: https://www.youtube.com/watch?v=uQhTuRlWMxw
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Given A=[[2,1],[5,3]], verify that A^-1 = [[3,-1],[-5,2]] by computing
+        A·A^-1. You should get the identity matrix [[1,0],[0,1]]. The formula for
+        2x2 inverse: if A=[[a,b],[c,d]], then A^-1 = (1/det(A))·[[d,-b],[-c,a]].'
+      done: false
+      comments: []
+    - text: What is the 'column space' of a matrix? It's the set of all possible outputs
+        W·x as x ranges over all inputs. If your neural network's weight matrix has
+        a small column space (low rank), it can only produce a limited variety of
+        outputs — this is the concept behind LoRA (Low-Rank Adaptation), a popular
+        technique for fine-tuning large models cheaply.
+      done: false
+      comments: []
+  - title: Bonus Deep-Dive
+    badge: evening
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'Watch 3B1B Essence of LA Ch.8 — Nonsquare matrices as transformations
+        between dimensions (~5 min). Neural network layers are almost always nonsquare:
+        a layer going from 784 inputs to 128 neurons uses a (128, 784) weight matrix.
+        This maps from 784D space to 128D space.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.8 — Nonsquare matrices as transformations between dimensions'
+        url: https://www.youtube.com/watch?v=bqJ_wEvWJWg
+- title: 'Day 7: Eigenvalues & Eigenvectors — Vectors That Don''t Change Direction'
+  subtitle: Hard to build intuition for at first, but essential for understanding
+    PCA, attention, and optimization
+  label: Eigenvalues
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: Watch 3B1B Essence of LA Ch.14 — Eigenvectors and eigenvalues (~17 min).
+        An eigenvector v of matrix A satisfies A·v = λ·v — the matrix only SCALES
+        it by λ (the eigenvalue), never rotates it. These are the 'special directions'
+        of a transformation. This is a harder concept — watch it twice if needed.
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.14 — Eigenvectors and eigenvalues'
+        url: https://www.youtube.com/watch?v=PFDu9oVAE-g
+    - text: 'Watch 3B1B Essence of LA Ch.15 — Abstract vector spaces (~16 min). Optional
+        but mind-expanding: functions can be treated as vectors. This is why neural
+        networks and Fourier analysis share the same underlying math.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.15 — Abstract vector spaces'
+        url: https://www.youtube.com/watch?v=TgKwz5Ikpc8
+      - label: 'StatQuest: PCA Eigenvectors (intuition for ML)'
+        url: https://www.youtube.com/watch?v=fOpLdWYnmbY
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Given A=[[2,1],[1,2]], verify that v=[1,1] is an eigenvector: compute
+        A·[1,1] = [3,3] = 3·[1,1]. So λ=3. Now check v=[1,-1]: A·[1,-1] = [1,-1] =
+        1·[1,-1]. So λ=1. These two eigenvectors are the ''natural axes'' of this
+        transformation — it stretches along [1,1] by 3× and leaves [1,-1] unchanged.'
+      done: false
+      comments: []
+  - title: Why This Matters for ML
+    badge: evening
+    icon: 🧠
+    tasks:
+    - text: 'Read (brief): Eigenvalues are behind PCA (Principal Component Analysis)
+        — finding the ''most important directions'' in your data. They''re also behind
+        why training very deep networks can be unstable: if the eigenvalues of the
+        weight matrices are > 1, signals explode; if < 1, they vanish. This is literally
+        the ''vanishing/exploding gradient problem'' in geometric terms.'
+      done: false
+      comments: []
+- title: 'Day 8: Norms, Distances, and Measuring Vectors'
+  subtitle: How do you measure the 'size' of a vector or matrix? This is the basis
+    of loss functions and regularization
+  label: Norms
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch & Read
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: Watch Khan Academy 'Vector norm' (~8 min). The L2 norm ||v|| = √(v₁² +
+        v₂² + ... + vₙ²) is the Euclidean length. The L1 norm ||v||₁ = |v₁| + |v₂|
+        + ... + |vₙ| is the sum of absolute values ('Manhattan distance'). Both appear
+        constantly in ML loss functions and regularization.
+      done: false
+      comments: []
+      resources:
+      - label: 'Khan Academy: Vector norms'
+        url: https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/magnitude-of-vectors/v/vector-magnitude
+      - label: 'Khan Academy: Linear Algebra'
+        url: https://www.khanacademy.org/math/linear-algebra
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Compute L2 norm of v=[3,4]: ||v|| = √(9+16) = 5. Compute L1 norm: |3|+|4|
+        = 7. For w=[-2, 1, 2]: L2 = ?, L1 = ?. Now compute the ''distance'' between
+        two vectors a=[1,2] and b=[4,6]: ||a-b|| = ||[-3,-4]|| = 5. This is Euclidean
+        distance — the same as the geometric distance formula from trig.'
+      done: false
+      comments: []
+    - text: 'Loss function preview: Mean Squared Error (MSE) loss = (1/n)·Σ(predicted
+        - actual)². This is essentially the squared L2 norm between your predictions
+        and the truth, divided by n. Write out MSE for predictions=[3.0, 1.0] and
+        actuals=[2.5, 1.5]. This is what gradient descent minimizes.'
+      done: false
+      comments: []
+  - title: Phase 1 Checkpoint
+    badge: evening
+    icon: ✅
+    tasks:
+    - text: 'Phase 1 self-assessment — answer WITHOUT notes: (1) What does a matrix
+        transformation do to space? (2) What does det=0 imply? (3) What is an eigenvector?
+        (4) What does the dot product measure? (5) What is the L2 norm of [5,12]?
+        Score yourself and journal which concepts need a re-watch.'
+      done: false
+      comments: []
+- title: 'Day 9: Derivatives from First Principles'
+  subtitle: You know slope. A derivative is slope — but at a point, not a line. We
+    build it from scratch
+  label: Derivatives
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B ''Essence of Calculus'' Ch.1 — The essence of calculus (~17
+        min). The key insight: a derivative is the instantaneous rate of change —
+        the slope of the curve AT a specific point. 3B1B builds it visually without
+        needing any formulas first. The whole Essence of Calculus playlist is linked
+        below.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Essence of Calculus Ch.1 — The essence of calculus'
+        url: https://www.youtube.com/watch?v=WUvTyaaNkzM
+      - label: '3B1B: Essence of Calculus (full playlist)'
+        url: https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr
+    - text: 'Watch 3B1B Essence of Calculus Ch.2 — The paradox of the derivative (~18
+        min). The formal definition: f''(x) = lim[h→0] (f(x+h) - f(x)) / h. This is
+        the slope of the tangent line. For neural nets, we ask: ''if I nudge this
+        weight by a tiny amount h, how much does the loss change?'' That IS the derivative.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.2 — The paradox of the derivative'
+        url: https://www.youtube.com/watch?v=9vKqVkMQHKk
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Use the limit definition to find the derivative of f(x) = x² at x=3:
+        f''(3) = lim[h→0] ((3+h)² - 3²) / h. Expand (3+h)² = 9 + 6h + h². So (9+6h+h²
+        - 9)/h = (6h+h²)/h = 6+h → 6 as h→0. So f''(3) = 6. The slope of x² at x=3
+        is 6. This same process, applied to a loss function, gives you the gradient.'
+      done: false
+      comments: []
+    - text: 'Numerical check: Approximate the derivative of f(x)=x² at x=3 using h=0.001:
+        (f(3.001)-f(3))/0.001 = (9.006001 - 9)/0.001 = 6.001. Close to 6! This numerical
+        approximation trick is called finite differences — Karpathy uses exactly this
+        to verify backpropagation implementations.'
+      done: false
+      comments: []
+- title: 'Day 10: Derivative Rules — Power, Product, and Chain'
+  subtitle: The chain rule is THE rule that makes backpropagation possible. Everything
+    builds to this.
+  label: Chain Rule
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B Essence of Calculus Ch.3 — Derivative formulas through geometry
+        (~18 min). Key rules to know: d/dx[xⁿ] = n·xⁿ⁻¹ (power rule). d/dx[sin(x)]
+        = cos(x). d/dx[eˣ] = eˣ (e is its own derivative — remarkable!). d/dx[ln(x)]
+        = 1/x. These show up constantly in ML.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.3 — Derivative formulas through geometry'
+        url: https://www.youtube.com/watch?v=S0_qX4VJhMQ
+    - text: 'Watch 3B1B Essence of Calculus Ch.4 — Visualizing the chain rule and
+        product rule (~16 min). THE most important video for ML. Chain rule: if y
+        = f(g(x)), then dy/dx = f''(g(x)) · g''(x). Neural networks are chains of
+        functions. Backpropagation IS the chain rule applied repeatedly through the
+        layers.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.4 — Visualizing the chain rule and product rule'
+        url: https://www.youtube.com/watch?v=YG15m2VwSjA
+  - title: Paper Exercises — Do Not Skip These
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Power rule practice: find derivatives of (a) f(x)=x³, (b) f(x)=5x², (c)
+        f(x)=x⁻¹, (d) f(x)=√x = x^(1/2). Answers: (a) 3x², (b) 10x, (c) -x⁻², (d)
+        (1/2)x^(-1/2). Check yourself.'
+      done: false
+      comments: []
+    - text: 'Chain rule practice — this is crucial: If f(x) = (3x+1)², what is f''(x)?
+        Let u = 3x+1 (inner function), so f = u². Then f''(x) = df/du · du/dx = 2u
+        · 3 = 6(3x+1). Try: g(x) = sin(x²). h(x) = e^(2x). Write out the inner and
+        outer functions explicitly for each before differentiating.'
+      done: false
+      comments: []
+    - text: 'Neural net chain rule preview: Suppose loss L = (output - target)², output
+        = W·x + b, and W is a weight. What is dL/dW? By chain rule: dL/dW = dL/d(output)
+        · d(output)/dW = 2(output-target) · x. This is the gradient of the loss with
+        respect to the weight. This exact formula is what gradient descent uses to
+        update W.'
+      done: false
+      comments: []
+- title: 'Day 11: Partial Derivatives — When a Function Takes Many Inputs'
+  subtitle: 'Neural networks have thousands of weights. Partial derivatives let us
+    ask: how does the loss change if we tweak just ONE weight?'
+  label: Partial Derivatives
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch Khan Academy ''Partial derivatives, introduction'' (~10 min). A
+        partial derivative ∂f/∂x treats all OTHER variables as constants and differentiates
+        with respect to x only. For f(x,y) = x²y + y³: ∂f/∂x = 2xy (treat y as constant),
+        ∂f/∂y = x² + 3y² (treat x as constant).'
+      done: false
+      comments: []
+      resources:
+      - label: 'Khan Academy: Partial derivatives, introduction'
+        url: https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/partial-derivative-and-gradient-articles/a/introduction-to-partial-derivatives
+      - label: 'Khan Academy: Multivariable Calculus'
+        url: https://www.khanacademy.org/math/multivariable-calculus
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Compute partial derivatives of f(x,y) = 3x²y + 2xy³ - 5y. Find ∂f/∂x
+        and ∂f/∂y. Answers: ∂f/∂x = 6xy + 2y³, ∂f/∂y = 3x² + 6xy² - 5. Notice: each
+        partial derivative is itself a function of both x and y.'
+      done: false
+      comments: []
+    - text: 'Neural network concrete example: Loss L = (w₁·x₁ + w₂·x₂ - y)². Compute
+        ∂L/∂w₁ and ∂L/∂w₂. These are the gradients we''ll use to update weights w₁
+        and w₂. Let u = w₁x₁ + w₂x₂ - y. Then L = u², so ∂L/∂w₁ = 2u · x₁ and ∂L/∂w₂
+        = 2u · x₂.'
+      done: false
+      comments: []
+- title: 'Day 12: The Gradient — All Partial Derivatives at Once'
+  subtitle: The gradient is a vector of partial derivatives. It points in the direction
+    of STEEPEST ASCENT of the loss surface.
+  label: Gradient
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: Watch 3B1B Essence of Calculus Ch.8 — Implicit differentiation (~11 min)
+        and Ch.9 — Limits (optional, ~18 min). Focus on Ch.8 — the core point is that
+        the gradient ∇f = [∂f/∂x₁, ∂f/∂x₂, ..., ∂f/∂xₙ] stacks all partial derivatives
+        into one vector.
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.8 — Integration and the fundamental theorem'
+        url: https://www.youtube.com/watch?v=rfG8ce4nNh0
+      - label: '3B1B: Ch.9 — What does area have to do with slope?'
+        url: https://www.youtube.com/watch?v=FnJqaIESC2s
+    - text: 'Watch Khan Academy ''Gradient'' (~12 min). Key geometric insight: the
+        gradient vector at a point always points in the direction of steepest INCREASE
+        of the function. To minimize a function (reduce loss), you move in the NEGATIVE
+        gradient direction. This is gradient descent.'
+      done: false
+      comments: []
+      resources:
+      - label: 'Khan Academy: Gradient and directional derivatives'
+        url: https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient-of-a-scalar-field
+      - label: 'StatQuest: Gradient Descent, Step-by-Step'
+        url: https://www.youtube.com/watch?v=sDv4f4s2SB8
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: Given f(x,y) = x² + y², compute the gradient ∇f = [∂f/∂x, ∂f/∂y] = [2x,
+        2y]. At point (3,4), ∇f = [6,8]. This vector points AWAY from the origin —
+        directly uphill on the paraboloid bowl. Moving in direction -[6,8] = [-6,-8]
+        takes you toward the minimum at (0,0). Draw this on paper.
+      done: false
+      comments: []
+    - text: 'Loss landscape exercise: Imagine loss L as a hilly surface over all possible
+        weight values. At current weights (w₁, w₂), you compute ∇L = [∂L/∂w₁, ∂L/∂w₂]
+        = [0.5, -0.3]. Gradient descent says: new_w = old_w - α·∇L, where α (learning
+        rate) = 0.1. Compute new w₁ and w₂. Repeat 3 iterations starting from (w₁=1,
+        w₂=1) and L = w₁² + w₂².'
+      done: false
+      comments: []
+- title: 'Day 13: Gradient Descent — The Engine of Learning'
+  subtitle: Gradient descent is how neural networks learn. Every training step is
+    one iteration of this algorithm.
+  label: Gradient Descent
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B Neural Networks Ch.2 — ''Gradient descent, how neural networks
+        learn'' (~21 min). This is THE clearest visual explanation of gradient descent
+        applied to neural nets. Watch carefully: he walks through the entire update
+        rule, the loss landscape, and why learning rate matters.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Neural Networks Ch.2 — Gradient descent'
+        url: https://www.youtube.com/watch?v=IHZwWFHWa-w
+      - label: '3B1B: Neural Networks playlist'
+        url: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Simulate gradient descent by hand on L(w) = w² - 4w + 5. (1) Find dL/dw
+        = 2w - 4. (2) Start at w=0, learning rate α=0.1. Update: w_new = w - α·(2w-4).
+        Iterate 10 times and record w at each step. Where does it converge? (Answer:
+        w=2, the minimum. Verify: dL/dw = 0 at w=2.)'
+      done: false
+      comments: []
+    - text: 'Learning rate intuition experiment: Redo the previous exercise with α=0.01
+        (slow convergence), then with α=1.5 (observe oscillation or divergence). Journal
+        what you observe. This intuition for learning rate behavior will serve you
+        when you eventually tune real neural net training.'
+      done: false
+      comments: []
+  - title: Connect
+    badge: evening
+    icon: 🧠
+    tasks:
+    - text: 'Think about this: when you ''edit weights manually'' in a neural net,
+        you are performing gradient descent by hand — computing the gradient at each
+        weight and nudging each weight in the negative gradient direction. The goal
+        of this syllabus is to make you able to do EXACTLY this calculation by hand
+        for a small network.'
+      done: false
+      comments: []
+- title: 'Day 14: Matrix Calculus — Derivatives of Vectors and Matrices'
+  subtitle: Taking derivatives with respect to weight MATRICES (not just scalars).
+    This is where LA and calculus merge.
+  label: Matrix Calculus
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch & Read
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch ''Matrix Calculus for Machine Learning'' by fast.ai (~30 min lecture).
+        Focus on the key result: if loss L is a scalar and W is a matrix, then ∂L/∂W
+        is a matrix of the SAME shape as W — where each entry (i,j) is ∂L/∂W_ij.'
+      done: false
+      comments: []
+      resources:
+      - label: 'fast.ai: Matrix Calculus for Deep Learning (lecture)'
+        url: https://www.youtube.com/watch?v=5G7NkIQBFNk
+      - label: Matrix Calculus You Need for Deep Learning (Parr & Howard)
+        url: https://explained.ai/matrix-calculus/
+    - text: 'Read sections 1–3 of ''The Matrix Calculus You Need for Deep Learning''
+        by Parr & Howard (linked above). It''s written for programmers, not mathematicians.
+        Sections 1–3 cover the core rules you need for backprop. Estimated reading:
+        30–40 minutes.'
+      done: false
+      comments: []
+  - title: Key Result to Memorize
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'The most important matrix calculus result for neural nets: if z = W·x,
+        then ∂L/∂W = ∂L/∂z · xᵀ (outer product), and ∂L/∂x = Wᵀ · ∂L/∂z. The TRANSPOSE
+        of W appears when flowing gradients backward. This is why we computed W^T
+        earlier — that''s what backpropagation uses.'
+      done: false
+      comments: []
+    - text: 'Verify shapes: W is (m,n), x is (n,1), z is (m,1). ∂L/∂z is (m,1). Then
+        ∂L/∂W = (m,1)·(1,n) = (m,n) ✓ — same shape as W. And ∂L/∂x = (n,m)·(m,1) =
+        (n,1) ✓ — same shape as x. Write these shape checks out every time you do
+        backprop. Shape errors are the #1 bug.'
+      done: false
+      comments: []
+- title: 'Day 15: Activation Functions — Where Nonlinearity Lives'
+  subtitle: Without nonlinear activations, any deep network collapses into a single
+    linear transform. These are the functions that make depth meaningful.
+  label: Activations
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: Watch 3B1B Neural Networks Ch.1 — 'But what is a neural network?' (~19
+        min). Focus specifically on where the sigmoid function is introduced. σ(x)
+        = 1/(1+e^(-x)) — it squashes any real number into (0,1). It looks exactly
+        like a smooth step function.
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Neural Networks Ch.1 — But what is a neural network?'
+        url: https://www.youtube.com/watch?v=aircAruvnKk
+    - text: Watch StatQuest 'ReLU Neural Networks' (~15 min). ReLU(x) = max(0,x) —
+        arguably the most used activation today. It's piecewise linear (derivative
+        is 0 for x<0, and 1 for x>0). The simplicity of its derivative is why training
+        is fast.
+      done: false
+      comments: []
+      resources:
+      - label: 'StatQuest: Neural Networks Pt. 3 — ReLU In Action'
+        url: https://www.youtube.com/watch?v=68BZ5f7P94E
+      - label: 'StatQuest: The Essential Main Ideas of Neural Networks'
+        url: https://www.youtube.com/watch?v=CqOfi41LfDw
+  - title: Paper Exercises — Compute & Plot
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Compute sigmoid σ(x) for x ∈ {-3, -1, 0, 1, 3}: σ(x) = 1/(1+e^(-x)).
+        Use a calculator for e. Plot these 5 points on paper. You should see the S-curve.
+        Now compute the DERIVATIVE: σ''(x) = σ(x)·(1-σ(x)). Compute σ''(0) = 0.25,
+        σ''(3) ≈ 0.045. Notice: the gradient of sigmoid near its extremes is near
+        zero — this causes the vanishing gradient problem.'
+      done: false
+      comments: []
+    - text: 'Connect to your trig knowledge: The tanh function tanh(x) = (e^x - e^(-x))/(e^x
+        + e^(-x)) has the same S-curve shape as sigmoid but outputs (-1, 1) instead
+        of (0, 1). Its derivative: tanh''(x) = 1 - tanh²(x). Compute tanh(0) = 0,
+        tanh(1) ≈ 0.76. The tanh is a RESCALED sigmoid — literally tanh(x) = 2σ(2x)
+        - 1.'
+      done: false
+      comments: []
+  - title: Bridge — Why Does This Connect to Waves?
+    badge: evening
+    icon: 🔗
+    tasks:
+    - text: 'You mentioned being fascinated by how sin/cos go beyond trig ratios to
+        cycles and waves. Here''s the deep connection: tanh, sigmoid, and even ReLU
+        are all ''squashing'' functions that bound outputs. In a neural net, sine
+        waves appear in positional encodings (Transformers), Fourier features, and
+        SIREN networks (which use sin as activation). The math of waves and the math
+        of neural nets share the same root: periodic functions represented as combinations
+        of sin/cos.'
+      done: false
+      comments: []
+- title: 'Day 16: The Forward Pass — Matrix Math Through Layers'
+  subtitle: A forward pass is just repeated matrix multiplications with nonlinearities.
+    We trace a signal from input to output.
+  label: Forward Pass
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B Neural Networks Ch.1 — rewatch the second half (~10 min, from
+        the matrix formulation). Pay close attention when he writes the entire layer''s
+        computation as: a⁽²⁾ = σ(W⁽¹⁾·a⁽¹⁾ + b⁽¹⁾). Every symbol here you now know:
+        W is the weight matrix, a is the activation vector, b is bias, σ is the activation
+        function.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Neural Networks Ch.1 — But what is a neural network?'
+        url: https://www.youtube.com/watch?v=aircAruvnKk
+      - label: 'StatQuest: The Essential Main Ideas of Neural Networks'
+        url: https://www.youtube.com/watch?v=CqOfi41LfDw
+  - title: Hand-Compute a Full Forward Pass
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Network setup — write this on paper: Input x=[1.0, 0.5]. Layer 1 weights
+        W1=[[0.1, 0.4],[0.2, -0.3]], bias b1=[0.0, 0.0]. Layer 2 weights W2=[[0.5,
+        -0.2]], bias b2=[0.0]. Activation: ReLU. Target y=1.0.'
+      done: false
+      comments: []
+    - text: 'Step 1 — Layer 1 pre-activation: z1 = W1·x + b1. Compute: z1[0] = 0.1·1.0
+        + 0.4·0.5 = 0.3. z1[1] = 0.2·1.0 + (-0.3)·0.5 = 0.05. So z1 = [0.3, 0.05].
+        Step 2 — Apply ReLU: a1 = ReLU(z1) = [max(0,0.3), max(0,0.05)] = [0.3, 0.05].'
+      done: false
+      comments: []
+    - text: 'Step 3 — Layer 2 pre-activation: z2 = W2·a1 + b2 = 0.5·0.3 + (-0.2)·0.05
+        = 0.15 - 0.01 = 0.14. Output = 0.14. Step 4 — Loss: L = (output - target)²
+        = (0.14 - 1.0)² = (-0.86)² = 0.7396. Write every intermediate value — you''ll
+        need them all for backpropagation.'
+      done: false
+      comments: []
+- title: 'Day 17: Loss Functions — What Are We Minimizing?'
+  subtitle: The loss function defines what 'wrong' means. Different tasks use different
+    losses — and each implies a different gradient.
+  label: Loss Functions
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch StatQuest ''Mean Squared Error (MSE)'' (~12 min). MSE = (1/n)·Σ(ŷᵢ
+        - yᵢ)². Used for regression. Its gradient with respect to prediction is simple:
+        2(ŷ - y)/n. This is why MSE is so common — simple loss, simple gradient.'
+      done: false
+      comments: []
+      resources:
+      - label: 'StatQuest: Mean Squared Error (MSE)'
+        url: https://www.youtube.com/watch?v=g24i0LqMbD4
+    - text: 'Watch StatQuest ''Cross Entropy'' (~15 min). Used for classification.
+        Cross entropy loss = -Σ yᵢ·log(ŷᵢ). It measures the ''surprise'' of your predictions.
+        Combined with softmax, it has an elegant gradient: ŷ - y (predicted probability
+        minus true label). Beautiful math.'
+      done: false
+      comments: []
+      resources:
+      - label: 'StatQuest: Cross-Entropy for classification'
+        url: https://www.youtube.com/watch?v=6ArSys5qHAU
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Compute MSE for 3 examples: predictions=[2.5, 0.0, 2.0], targets=[3.0,
+        -0.5, 2.0]. MSE = ((2.5-3.0)² + (0.0-(-0.5))² + (2.0-2.0)²) / 3 = (0.25 +
+        0.25 + 0) / 3 = 0.167.'
+      done: false
+      comments: []
+    - text: 'Compute gradient of MSE with respect to each prediction. dL/dŷ₁ = 2(2.5-3.0)/3
+        = -0.333. Compute dL/dŷ₂ and dL/dŷ₃. These gradients tell us: for each prediction,
+        should we push it higher or lower to reduce loss?'
+      done: false
+      comments: []
+- title: 'Day 18: Backpropagation — The Chain Rule Applied to Your Network'
+  subtitle: Backprop is just the chain rule applied layer-by-layer, in reverse. We
+    trace how each weight contributed to the final error.
+  label: Backpropagation
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch — The Most Important Videos of This Syllabus
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch 3B1B Neural Networks Ch.3 — ''What is backpropagation really doing?''
+        (~14 min). Watch it twice. 3B1B shows how the gradient of the loss with respect
+        to every single weight is computed by flowing the error BACKWARDS through
+        the network, multiplying by local derivatives at each step. The key: ∂L/∂w
+        = ∂L/∂output · ∂output/∂w.'
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Neural Networks Ch.3 — What is backpropagation really doing?'
+        url: https://www.youtube.com/watch?v=Ilg3gGewQ5U
+    - text: Watch 3B1B Neural Networks Ch.4 — 'Backpropagation calculus' (~10 min).
+        This is the algebraic version of Ch.3. He writes out the chain rule explicitly.
+        After watching, you should be able to write ∂L/∂W for any layer.
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Neural Networks Ch.4 — Backpropagation calculus'
+        url: https://www.youtube.com/watch?v=tIeHLnjs5U8
+  - title: Hand-Compute Full Backpropagation
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Continue from Day 16''s forward pass. We have: output=0.14, target=1.0,
+        loss L=0.7396. Step 1 — gradient at output: ∂L/∂output = 2(output - target)
+        = 2(0.14-1.0) = -1.72.'
+      done: false
+      comments: []
+    - text: 'Step 2 — gradient at Layer 2 weights: ∂L/∂W2 = ∂L/∂output · a1ᵀ = -1.72
+        · [0.3, 0.05] = [-0.516, -0.086]. These are the gradients for W2[0,0] and
+        W2[0,1] respectively. The gradient of the bias b2 = ∂L/∂output = -1.72.'
+      done: false
+      comments: []
+    - text: 'Step 3 — gradient flowing back through Layer 2 to a1: ∂L/∂a1 = W2ᵀ ·
+        ∂L/∂output = [[0.5],[-0.2]] · (-1.72) = [-0.86, 0.344]. Step 4 — gradient
+        through ReLU: since z1=[0.3, 0.05] both >0, ReLU''=1 for both. So ∂L/∂z1 =
+        ∂L/∂a1 · ReLU''(z1) = [-0.86, 0.344] element-wise.'
+      done: false
+      comments: []
+    - text: 'Step 5 — gradient at Layer 1 weights: ∂L/∂W1 = ∂L/∂z1 · xᵀ = [[-0.86],[
+        0.344]] · [[1.0, 0.5]] = [[-0.86, -0.43],[0.344, 0.172]]. This (2,2) matrix
+        has the SAME SHAPE as W1. Each entry tells you: ''if you increase this weight,
+        by how much does the loss change?'''
+      done: false
+      comments: []
+- title: 'Day 19: Weight Update — The Moment You Edit the Weights'
+  subtitle: With gradients in hand, we apply gradient descent. This is the moment
+    the network 'learns' — and the moment you can do it by hand.
+  label: Weight Update
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Hand-Compute the Weight Update
+    badge: morning
+    icon: ✏️
+    tasks:
+    - text: 'Using the gradients from Day 18, update all weights with learning rate
+        α=0.1. W1_new = W1 - α·∂L/∂W1. Original W1=[[0.1, 0.4],[0.2, -0.3]]. Gradient
+        ∂L/∂W1=[[-0.86,-0.43],[0.344,0.172]]. Update: W1_new = [[0.1-0.1·(-0.86),
+        0.4-0.1·(-0.43)],[0.2-0.1·0.344, -0.3-0.1·0.172]] = [[0.186, 0.443],[0.1656,
+        -0.3172]].'
+      done: false
+      comments: []
+    - text: 'Update W2: W2_new = W2 - α·∂L/∂W2 = [0.5-0.1·(-0.516), -0.2-0.1·(-0.086)]
+        = [0.5516, -0.1914]. Now run a NEW forward pass with the updated weights W1_new
+        and W2_new, same input x=[1.0, 0.5], target y=1.0. Compute the new loss. It
+        should be SMALLER than 0.7396. If it is, congratulations — you just manually
+        trained a neural network.'
+      done: false
+      comments: []
+  - title: Watch & Reflect
+    badge: afternoon
+    icon: 📺
+    tasks:
+    - text: 'Watch Andrej Karpathy ''The spelled-out intro to neural networks and
+        backpropagation: building micrograd'' (first 30 min). After doing the hand
+        computation, this video will feel very familiar. Karpathy walks through EXACTLY
+        the same math, then implements it in ~100 lines of Python.'
+      done: false
+      comments: []
+      resources:
+      - label: 'Karpathy: micrograd — building backprop from scratch'
+        url: https://www.youtube.com/watch?v=VMj-3S1tku0
+      - label: micrograd GitHub
+        url: https://github.com/karpathy/micrograd
+  - title: Journal
+    badge: evening
+    icon: 📓
+    tasks:
+    - text: 'Journal: What did it feel like to manually edit the weights and see the
+        loss decrease? What parts of the math are still fuzzy? Which step in the backward
+        pass felt most confusing? Write at least a paragraph. The act of articulating
+        confusion clarifies it.'
+      done: false
+      comments: []
+- title: 'Day 20: Karpathy''s Micrograd — Watch the Full Video'
+  subtitle: Watch the full 2.5h micrograd lecture. After Days 1–19, every line of
+    his code should make mathematical sense.
+  label: Micrograd
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch Karpathy ''micrograd'' full video (~2.5 hours). Take notes. Every
+        time he writes a backward pass for an operation, pause and verify it matches
+        the chain rule as you computed it by hand. The key operations: addition (gradient
+        passes through unchanged), multiplication (gradient is the other operand),
+        tanh (gradient is 1 - tanh²).'
+      done: false
+      comments: []
+      resources:
+      - label: 'Karpathy: micrograd full video (2.5h)'
+        url: https://www.youtube.com/watch?v=VMj-3S1tku0
+  - title: Code Along
+    badge: afternoon
+    icon: 💻
+    tasks:
+    - text: 'Clone the micrograd repo and read the core engine: micrograd/engine.py.
+        It''s ~100 lines. The Value class wraps a number, tracks gradients, and builds
+        a computation graph. The backward() method runs backpropagation. Read every
+        line and annotate it with comments in your own words.'
+      done: false
+      comments: []
+      resources:
+      - label: micrograd repo
+        url: https://github.com/karpathy/micrograd
+    - text: 'Run the micrograd demo notebook or create a simple script: build a tiny
+        2-layer net using micrograd''s nn.py. Train it on a few examples. After training,
+        inspect the weights: net.layers[0].w[0][0].data — this is the value of one
+        weight. net.layers[0].w[0][0].grad — this is the gradient of that weight.
+        These are the numbers you computed by hand on Day 18.'
+      done: false
+      comments: []
+- title: 'Day 21: Edit Weights Manually — The Goal, Achieved'
+  subtitle: Intervene directly in a trained network's weights. Understand what each
+    weight does by changing it and observing the effect.
+  label: Edit Weights
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Experiment
+    badge: morning
+    icon: 🔬
+    tasks:
+    - text: 'Train a small micrograd network on a simple task (e.g., learning AND/OR/XOR
+        logic). Once trained, print ALL weights and their gradients. Then: manually
+        set one weight to 0. Re-run a forward pass. How does the output change? The
+        gradient of that weight tells you exactly the direction and magnitude of the
+        change you just made.'
+      done: false
+      comments: []
+    - text: Pick the weight with the LARGEST gradient magnitude in the trained network.
+        That weight has the most influence on the loss. Set it to its current value
+        PLUS a large nudge (e.g., +1.0). Re-compute the loss manually. Then set it
+        to current value MINUS 1.0 and recompute. The gradient predicts which direction
+        makes the loss smaller — verify that the gradient's sign matches what you
+        observe.
+      done: false
+      comments: []
+  - title: Reflect
+    badge: afternoon
+    icon: 📓
+    tasks:
+    - text: 'Journal: You''ve now edited neural network weights by hand and observed
+        the effects. What does a weight represent in terms of the input-output relationship?
+        What would it mean to zero out an entire row of a weight matrix? (Hint: it
+        disconnects that neuron''s output from the next layer.) These are the intuitions
+        behind pruning, fine-tuning, and LoRA.'
+      done: false
+      comments: []
+  - title: Bonus Deep-Dives
+    badge: evening
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: Watch Karpathy's 'makemore' video series to see how these exact same principles
+        scale up to character-level language models. The math is identical — just
+        bigger matrices.
+      done: false
+      comments: []
+      resources:
+      - label: 'Karpathy: makemore Pt.1 — bigram language model'
+        url: https://www.youtube.com/watch?v=PaCmpygFfXo
+      - label: 'Karpathy: Neural Networks: Zero to Hero (full playlist)'
+        url: https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ
+    - text: 'Read about LoRA (Low-Rank Adaptation): it freezes a pretrained model''s
+        weight matrices W and instead learns two small matrices A and B such that
+        the update ΔW = A·B. Because rank(A·B) ≤ min(rank(A), rank(B)), this is a
+        low-rank update — using exactly the linear algebra from Days 6–7. The math
+        of fine-tuning billion-parameter models is the math you just learned.'
+      done: false
+      comments: []
+      resources:
+      - label: LoRA paper (accessible)
+        url: https://arxiv.org/abs/2106.09685
+- title: 'Day 22: Softmax, Probabilities, and Classification Math'
+  subtitle: Turning raw scores into probabilities — and understanding why the cross-entropy
+    gradient is so clean
+  label: Softmax
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: Watch StatQuest 'Softmax Details' (~12 min). Softmax(z)ᵢ = e^(zᵢ) / Σⱼ
+        e^(zⱼ). It converts a vector of raw scores (logits) into a probability distribution
+        (all positive, sum to 1). It uses the exponential function — your earlier
+        note that d/dx[eˣ]=eˣ makes the gradient computation elegant.
+      done: false
+      comments: []
+      resources:
+      - label: 'StatQuest: Neural Networks Pt. 5 — ArgMax and SoftMax'
+        url: https://www.youtube.com/watch?v=KpKog-L9veg
+    - text: 'Watch StatQuest ''Cross-Entropy for classification'' (~15 min). The gradient
+        of (softmax + cross-entropy) together is simply: ŷ - y, where ŷ is the softmax
+        output and y is the one-hot true label. This is why the two are almost always
+        used together — the math simplifies beautifully.'
+      done: false
+      comments: []
+      resources:
+      - label: 'StatQuest: The SoftMax Derivative, Step-by-Step'
+        url: https://www.youtube.com/watch?v=IHZwWFHWa-w
+      - label: 'StatQuest: Cross-Entropy for classification'
+        url: https://www.youtube.com/watch?v=6ArSys5qHAU
+  - title: Paper Exercises
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Compute softmax of z=[2.0, 1.0, 0.1]: e^2.0=7.389, e^1.0=2.718, e^0.1=1.105.
+        Sum=11.212. Softmax = [0.659, 0.242, 0.099]. Verify they sum to 1. If the
+        true class is 0 (one-hot y=[1,0,0]), cross-entropy loss = -log(0.659) = 0.417.
+        Gradient = ŷ-y = [-0.341, 0.242, 0.099].'
+      done: false
+      comments: []
+- title: 'Day 23: Numerical Stability and Floating Point Reality'
+  subtitle: Real implementations differ from math class. Overflow, underflow, and
+    log-sum-exp are practical concerns.
+  label: Numerical Methods
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch & Read
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: 'Watch ''Numerical Stability of Neural Networks'' (search YouTube for
+        a ~15 min explainer). Key issue: e^1000 overflows to infinity in floating
+        point. Solution: the log-sum-exp trick. log(Σ e^(zᵢ)) = c + log(Σ e^(zᵢ-c))
+        where c = max(z). Subtracting the max makes all values ≤0 before exponentiating
+        — no overflow.'
+      done: false
+      comments: []
+      resources:
+      - label: 'Karpathy: Building micrograd (covers numerical stability in backprop)'
+        url: https://www.youtube.com/watch?v=VMj-3S1tku0
+      - label: 'CS231n: Neural Net Notes — Numerical Issues'
+        url: https://cs231n.github.io/neural-networks-3/
+    - text: 'Watch ''Numerical gradient checking'' — search for Karpathy or CS231n
+        explanation (~10 min). To verify backprop is correct: for each weight w, compute
+        (L(w+h) - L(w-h)) / (2h) numerically. Compare to the analytical gradient.
+        If they match to ~6 decimal places, your backprop is likely correct. This
+        is called a gradient check.'
+      done: false
+      comments: []
+      resources:
+      - label: 'CS231n: Gradient Checks (notes + code)'
+        url: https://cs231n.github.io/neural-networks-3/#gradcheck
+      - label: 'Karpathy: micrograd — gradient checking walkthrough'
+        url: https://www.youtube.com/watch?v=VMj-3S1tku0&t=3900s
+  - title: Paper Exercise
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Gradient check on Day 16''s network: take weight W1[0,0] = 0.1. With
+        h=0.001: forward pass with W1[0,0]=0.101, get loss L₊. Forward pass with W1[0,0]=0.099,
+        get loss L₋. Numerical gradient = (L₊-L₋)/(2·0.001). Compare to Day 18''s
+        analytical gradient for W1[0,0] = -0.86. They should roughly match.'
+      done: false
+      comments: []
+- title: 'Day 24: Optimization Beyond Gradient Descent — Momentum, Adam'
+  subtitle: Raw gradient descent is slow. Modern optimizers add memory and adaptive
+    learning rates. The math is a natural extension.
+  label: Optimizers
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Watch
+    badge: morning
+    icon: 📺
+    tasks:
+    - text: Watch 3B1B Essence of Calculus Ch.11 — Taylor series (~22 min). Understanding
+        higher-order derivatives (second derivatives, curvature) is the mathematical
+        basis for why momentum and Adam work better than vanilla gradient descent.
+      done: false
+      comments: []
+      resources:
+      - label: '3B1B: Ch.11 — Taylor series'
+        url: https://www.youtube.com/watch?v=3d6DsjIBzJ4
+    - text: 'Watch ''Adam Optimizer Explained'' by Weights & Biases or similar (~15
+        min). Adam combines momentum (exponential moving average of gradients) with
+        adaptive learning rates (per-parameter, based on squared gradients). The update
+        rule: m = β₁·m + (1-β₁)·g, v = β₂·v + (1-β₂)·g², w_new = w - α·m̂/√(v̂+ε).
+        Every symbol here is now understandable with your foundation.'
+      done: false
+      comments: []
+      resources:
+      - label: 'StatQuest: Stochastic Gradient Descent, Clearly Explained'
+        url: https://www.youtube.com/watch?v=vMh0zASTGJc
+      - label: 'Karpathy: AdamW in his GPT code (practical)'
+        url: https://www.youtube.com/watch?v=kCc8FmEb1nY&t=4000s
+      - label: Weights & Biases YouTube channel
+        url: https://www.youtube.com/@wandb
+  - title: Paper Exercise
+    badge: afternoon
+    icon: ✏️
+    tasks:
+    - text: 'Hand-simulate one step of SGD with momentum: gradient g=-0.86 (from Day
+        18), momentum m=0, β=0.9, learning rate α=0.1. Step 1: m_new = 0.9·0 + 0.1·(-0.86)
+        = -0.086. Step 2: w_new = w - α·m_new = 0.1 - 0.1·(-0.086) = 0.1086. Compare
+        to vanilla GD: w_new = 0.1 - 0.1·(-0.86) = 0.186. Momentum takes a smaller
+        step — it builds up gradually.'
+      done: false
+      comments: []
+- title: 'Day 25: What Comes Next — The Map Forward'
+  subtitle: You've built the mathematical foundation. Here's what it unlocks and where
+    to go from here.
+  label: What's Next
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Connect the Dots
+    badge: morning
+    icon: 🗺️
+    tasks:
+    - text: 'Watch Karpathy''s lecture ''Let''s build GPT from scratch'' (first 45
+        min). After this syllabus, you''ll recognize every piece of math: matrix multiplications
+        (attention = QKᵀ/√d · V), softmax, layer norm, backprop. The math of GPT is
+        the math you now know.'
+      done: false
+      comments: []
+      resources:
+      - label: 'Karpathy: Let''s build GPT from scratch'
+        url: https://www.youtube.com/watch?v=kCc8FmEb1nY
+  - title: Advanced Paths — Choose Your Direction
+    badge: afternoon
+    icon: ⭐
+    is_bonus: true
+    tasks:
+    - text: 'Path A — Go deeper on LA: MIT 18.06 Linear Algebra by Gilbert Strang
+        (full OCW course, free). Covers SVD, PCA, least squares — all critical for
+        understanding ML architectures. Best textbook accompanying it: ''Introduction
+        to Linear Algebra'' by Strang.'
+      done: false
+      comments: []
+      resources:
+      - label: MIT 18.06 Linear Algebra (Gilbert Strang)
+        url: https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/
+      - label: Gilbert Strang MIT Lectures (YouTube playlist)
+        url: https://www.youtube.com/playlist?list=PL49CF3715CB9EF31D
+    - text: 'Path B — Go deeper on calculus: 3B1B Essence of Calculus Ch.5–12 (the
+        remaining videos). Then: ''The Matrix Calculus You Need for Deep Learning''
+        full paper by Parr & Howard.'
+      done: false
+      comments: []
+      resources:
+      - label: Matrix Calculus for DL (Parr & Howard)
+        url: https://explained.ai/matrix-calculus/
+    - text: Path C — Build a full neural net from scratch in NumPy (no PyTorch). Follow
+        CS231n Assignment 1 (Stanford, free online). You'll implement forward and
+        backward passes for every layer type, using exactly the matrix calculus from
+        Day 14.
+      done: false
+      comments: []
+      resources:
+      - label: 'CS231n: Convolutional Neural Networks (Stanford, free)'
+        url: https://cs231n.github.io/
+    - text: 'Path D — Transformers from scratch: Read ''The Annotated Transformer''
+        by Harvard NLP — a line-by-line Python implementation of the original Attention
+        Is All You Need paper with mathematical annotations. Prerequisite: everything
+        in this syllabus.'
+      done: false
+      comments: []
+      resources:
+      - label: The Annotated Transformer
+        url: https://nlp.seas.harvard.edu/2018/04/03/attention.html
+  - title: Final Reflection
+    badge: evening
+    icon: 📓
+    tasks:
+    - text: 'Journal: When you started this syllabus, ''editing neural network weights''
+        was a black box. Write out in your own words: (1) what a weight matrix is,
+        (2) what gradient descent does to weights, (3) how backpropagation computes
+        which weights to change, (4) what the gradient at a weight tells you. If you
+        can answer all four confidently, you have the foundation for everything in
+        modern ML.'
+      done: false
+      comments: []

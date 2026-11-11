@@ -1,0 +1,3806 @@
+meta:
+  title: AI Engineering from Scratch
+  subtitle: 542 lessons across 20 phases — from linear algebra to autonomous agents
+state:
+  theme: dark
+  active_day: day-1
+  journal_day: day-1
+days:
+- title: 'Phase 00: Setup & Tooling'
+  subtitle: ''
+  label: Setup
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 00.01–00.07
+    badge: setup
+    icon: 🔧
+    tasks:
+    - text: '[Build] [Python] Dev Environment'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/01-dev-environment
+    - text: '[Learn] [—] Git & Collaboration'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/02-git-and-collaboration
+    - text: '[Build] [Python] GPU Setup & Cloud'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/03-gpu-setup-and-cloud
+    - text: '[Build] [Python] APIs & Keys'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/04-apis-and-keys
+    - text: '[Build] [Python] Jupyter Notebooks'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/05-jupyter-notebooks
+    - text: '[Build] [Shell] Python Environments'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/06-python-environments
+    - text: '[Build] [Docker] Docker for AI'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/07-docker-for-ai
+  - title: Lessons 00.08–00.13
+    badge: setup
+    icon: 🔧
+    tasks:
+    - text: '[Build] [—] Editor Setup'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/08-editor-setup
+    - text: '[Build] [Python] Data Management'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/09-data-management
+    - text: '[Learn] [—] Terminal & Shell'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/10-terminal-and-shell
+    - text: '[Learn] [—] Linux for AI'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/11-linux-for-ai
+    - text: '[Build] [Python] Debugging and Profiling'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/12-debugging-and-profiling
+    - text: '[Build] [Python] Python for AI Engineering'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 00.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/00-setup-and-tooling/13-python-for-ai-engineering
+- title: 'Phase 01: Math Foundations'
+  subtitle: ''
+  label: Math
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 01.01–01.07
+    badge: math
+    icon: 🧮
+    tasks:
+    - text: '[Learn] [Python, Julia] Linear Algebra Intuition'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/01-linear-algebra-intuition
+    - text: '[Build] [Python, Julia] Vectors, Matrices & Operations'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/02-vectors-matrices-operations
+    - text: '[Build] [Python, Julia] Matrix Transformations'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/03-matrix-transformations
+    - text: '[Learn] [Python] Calculus for Machine Learning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/04-calculus-for-ml
+    - text: '[Build] [Python] Chain Rule & Automatic Differentiation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/05-chain-rule-and-autodiff
+    - text: '[Learn] [Python] Probability and Distributions'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/06-probability-and-distributions
+    - text: '[Build] [Python] Bayes'' Theorem'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/07-bayes-theorem
+  - title: Lessons 01.08–01.14
+    badge: math
+    icon: 🧮
+    tasks:
+    - text: '[Build] [Python] Optimization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/08-optimization
+    - text: '[Learn] [Python] Information Theory'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/09-information-theory
+    - text: '[Build] [Python] Dimensionality Reduction'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/10-dimensionality-reduction
+    - text: '[Build] [Python, Julia] Singular Value Decomposition'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/11-singular-value-decomposition
+    - text: '[Build] [Python] Tensor Operations'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/12-tensor-operations
+    - text: '[Build] [Python] Numerical Stability'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/13-numerical-stability
+    - text: '[Build] [Python] Norms and Distances'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/14-norms-and-distances
+  - title: Lessons 01.15–01.21
+    badge: math
+    icon: 🧮
+    tasks:
+    - text: '[Build] [Python] Statistics for Machine Learning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/15-statistics-for-ml
+    - text: '[Build] [Python] Sampling Methods'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/16-sampling-methods
+    - text: '[Build] [Python] Linear Systems'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/17-linear-systems
+    - text: '[Build] [Python] Convex Optimization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/18-convex-optimization
+    - text: '[Learn] [Python] Complex Numbers for AI'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/19-complex-numbers
+    - text: '[Build] [Python] The Fourier Transform'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/20-fourier-transform
+    - text: '[Build] [Python] Graph Theory for Machine Learning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/21-graph-theory
+  - title: Lessons 01.22–01.22
+    badge: math
+    icon: 🧮
+    tasks:
+    - text: '[Learn] [Python] Stochastic Processes'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 01.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/01-math-foundations/22-stochastic-processes
+- title: 'Phase 02: ML Fundamentals'
+  subtitle: ''
+  label: ML
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 02.01–02.07
+    badge: ml
+    icon: 🤖
+    tasks:
+    - text: '[Learn] [Python] What Is Machine Learning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/01-what-is-machine-learning
+    - text: '[Build] [Python] Linear Regression'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/02-linear-regression
+    - text: '[Build] [Python] Logistic Regression'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/03-logistic-regression
+    - text: '[Build] [Python] Decision Trees and Random Forests'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/04-decision-trees
+    - text: '[Build] [Python] Support Vector Machines'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/05-support-vector-machines
+    - text: '[Build] [Python] K-Nearest Neighbors and Distances'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/06-knn-and-distances
+    - text: '[Build] [Python] Unsupervised Learning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/07-unsupervised-learning
+  - title: Lessons 02.08–02.14
+    badge: ml
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] Feature Engineering & Selection'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/08-feature-engineering
+    - text: '[Build] [Python] Model Evaluation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/09-model-evaluation
+    - text: '[Learn] [Python] Bias-Variance Tradeoff'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/10-bias-variance
+    - text: '[Build] [Python] Ensemble Methods'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/11-ensemble-methods
+    - text: '[Build] [Python] Hyperparameter Tuning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/12-hyperparameter-tuning
+    - text: '[Build] [Python] ML Pipelines'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/13-ml-pipelines
+    - text: '[Build] [Python] Naive Bayes'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/14-naive-bayes
+  - title: Lessons 02.15–02.21
+    badge: ml
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] Time Series Fundamentals'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/15-time-series
+    - text: '[Build] [Python] Anomaly Detection'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/16-anomaly-detection
+    - text: '[Build] [Python] Handling Imbalanced Data'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/17-imbalanced-data
+    - text: '[Build] [Python] Feature Selection'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/18-feature-selection
+    - text: '[Build] [Python] ML System Design — From Problem to Deployed Model'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/19-ml-system-design
+    - text: '[Build] [Python] Monitoring Models in Production — Data Drift and Concept
+        Drift'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/20-model-monitoring-and-drift
+    - text: '[Build] [Python] Feature Stores and Training-Serving Skew'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 02.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/02-ml-fundamentals/21-feature-stores-and-training-serving-skew
+- title: 'Phase 03: Deep Learning Core'
+  subtitle: ''
+  label: Deep Learning
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 03.01–03.07
+    badge: dl
+    icon: 🧠
+    tasks:
+    - text: '[Build] [Python] The Perceptron'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/01-the-perceptron
+    - text: '[Build] [Python] Multi-Layer Networks and Forward Pass'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/02-multi-layer-networks
+    - text: '[Build] [Python] Backpropagation from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/03-backpropagation
+    - text: '[Build] [Python] Activation Functions'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/04-activation-functions
+    - text: '[Build] [Python] Loss Functions'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/05-loss-functions
+    - text: '[Build] [Python] Optimizers'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/06-optimizers
+    - text: '[Build] [Python] Regularization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/07-regularization
+  - title: Lessons 03.08–03.13
+    badge: dl
+    icon: 🧠
+    tasks:
+    - text: '[Build] [Python] Weight Initialization and Training Stability'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/08-weight-initialization
+    - text: '[Build] [Python] Learning Rate Schedules and Warmup'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/09-learning-rate-schedules
+    - text: '[Build] [Python] Build Your Own Mini Framework'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/10-mini-framework
+    - text: '[Build] [Python] Introduction to PyTorch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/11-intro-to-pytorch
+    - text: '[Build] [Python] Introduction to JAX'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/12-intro-to-jax
+    - text: '[Build] [Python] Debugging Neural Networks'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 03.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/03-deep-learning-core/13-debugging-neural-networks
+- title: 'Phase 04: Computer Vision'
+  subtitle: ''
+  label: CV
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 04.01–04.07
+    badge: cv
+    icon: 👁️
+    tasks:
+    - text: '[Learn] [Python] Image Fundamentals — Pixels, Channels, Color Spaces'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/01-image-fundamentals
+    - text: '[Build] [Python] Convolutions from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/02-convolutions-from-scratch
+    - text: '[Build] [Python] CNNs — LeNet to ResNet'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/03-cnns-lenet-to-resnet
+    - text: '[Build] [Python] Image Classification'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/04-image-classification
+    - text: '[Build] [Python] Transfer Learning & Fine-Tuning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/05-transfer-learning
+    - text: '[Build] [Python] Object Detection — YOLO from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/06-object-detection-yolo
+    - text: '[Build] [Python] Semantic Segmentation — U-Net'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/07-semantic-segmentation-unet
+  - title: Lessons 04.08–04.14
+    badge: cv
+    icon: 👁️
+    tasks:
+    - text: '[Build] [Python] Instance Segmentation — Mask R-CNN'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/08-instance-segmentation-mask-rcnn
+    - text: '[Build] [Python] Image Generation — GANs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/09-image-generation-gans
+    - text: '[Build] [Python] Image Generation — Diffusion Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/10-image-generation-diffusion
+    - text: '[Build] [Python] Stable Diffusion — Architecture & Fine-Tuning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/11-stable-diffusion
+    - text: '[Build] [Python] Video Understanding — Temporal Modeling'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/12-video-understanding
+    - text: '[Build] [Python] 3D Vision — Point Clouds & NeRFs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/13-3d-vision-nerf
+    - text: '[Build] [Python] Vision Transformers (ViT)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/14-vision-transformers
+  - title: Lessons 04.15–04.21
+    badge: cv
+    icon: 👁️
+    tasks:
+    - text: '[Build] [Python] Real-Time Vision — Edge Deployment'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/15-real-time-edge
+    - text: '[Build] [Python] Build a Complete Vision Pipeline — Capstone'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/16-vision-pipeline-capstone
+    - text: '[Build] [Python] Self-Supervised Vision — SimCLR, DINO, MAE'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/17-self-supervised-vision
+    - text: '[Build] [Python] Open-Vocabulary Vision — CLIP'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/18-open-vocab-clip
+    - text: '[Build] [Python] OCR & Document Understanding'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/19-ocr-document-understanding
+    - text: '[Build] [Python] Image Retrieval & Metric Learning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/20-image-retrieval-metric
+    - text: '[Build] [Python] Keypoint Detection & Pose Estimation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/21-keypoint-pose
+  - title: Lessons 04.22–04.28
+    badge: cv
+    icon: 👁️
+    tasks:
+    - text: '[Build] [Python] 3D Gaussian Splatting from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/22-3d-gaussian-splatting
+    - text: '[Build] [Python] Diffusion Transformers & Rectified Flow'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/23-diffusion-transformers-rectified-flow
+    - text: '[Build] [Python] SAM 3 & Open-Vocabulary Segmentation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/24-sam3-open-vocab-segmentation
+    - text: '[Build] [Python] Vision-Language Models — The ViT-MLP-LLM Pattern'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/25-vision-language-models
+    - text: '[Build] [Python] Monocular Depth & Geometry Estimation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.26
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/26-monocular-depth
+    - text: '[Build] [Python] Multi-Object Tracking & Video Memory'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.27
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/27-multi-object-tracking
+    - text: '[Build] [Python] World Models & Video Diffusion'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 04.28
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/04-computer-vision/28-world-models-video-diffusion
+- title: 'Phase 05: NLP: Foundations to Advanced'
+  subtitle: ''
+  label: NLP
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 05.01–05.07
+    badge: nlp
+    icon: 📝
+    tasks:
+    - text: '[Build] [Python] Text Processing — Tokenization, Stemming, Lemmatization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/01-text-processing
+    - text: '[Build] [Python] Bag of Words, TF-IDF, and Text Representation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/02-bag-of-words-tfidf
+    - text: '[Build] [Python] Word Embeddings — Word2Vec from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/03-word-embeddings-word2vec
+    - text: '[Build] [Python] GloVe, FastText, and Subword Embeddings'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/04-glove-fasttext-subword
+    - text: '[Build] [Python] Sentiment Analysis'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/05-sentiment-analysis
+    - text: '[Build] [Python] Named Entity Recognition'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/06-named-entity-recognition
+    - text: '[Build] [Python] POS Tagging and Syntactic Parsing'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/07-pos-tagging-parsing
+  - title: Lessons 05.08–05.14
+    badge: nlp
+    icon: 📝
+    tasks:
+    - text: '[Build] [Python] CNNs and RNNs for Text'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/08-cnns-rnns-for-text
+    - text: '[Build] [Python] Sequence-to-Sequence Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/09-sequence-to-sequence
+    - text: '[Build] [Python] Attention Mechanism — The Breakthrough'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/10-attention-mechanism
+    - text: '[Build] [Python] Machine Translation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/11-machine-translation
+    - text: '[Build] [Python] Text Summarization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/12-text-summarization
+    - text: '[Build] [Python] Question Answering Systems'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/13-question-answering
+    - text: '[Build] [Python] Information Retrieval and Search'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/14-information-retrieval-search
+  - title: Lessons 05.15–05.21
+    badge: nlp
+    icon: 📝
+    tasks:
+    - text: '[Build] [Python] Topic Modeling — LDA and BERTopic'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/15-topic-modeling
+    - text: '[Build] [Python] Text Generation Before Transformers — N-gram Language
+        Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/16-text-generation-pre-transformer
+    - text: '[Build] [Python] Chatbots — Rule-Based to Neural to LLM Agents'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/17-chatbots-rule-to-neural
+    - text: '[Build] [Python] Multilingual NLP'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/18-multilingual-nlp
+    - text: '[Learn] [Python] Subword Tokenization — BPE, WordPiece, Unigram, SentencePiece'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/19-subword-tokenization
+    - text: '[Build] [Python] Structured Outputs & Constrained Decoding'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/20-structured-outputs-constrained-decoding
+    - text: '[Learn] [Python] Natural Language Inference — Textual Entailment'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/21-nli-textual-entailment
+  - title: Lessons 05.22–05.28
+    badge: nlp
+    icon: 📝
+    tasks:
+    - text: '[Learn] [Python] Embedding Models — The 2026 Deep Dive'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/22-embedding-models-deep-dive
+    - text: '[Build] [Python] Chunking Strategies for RAG'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/23-chunking-strategies-rag
+    - text: '[Learn] [Python] Coreference Resolution'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/24-coreference-resolution
+    - text: '[Build] [Python] Entity Linking & Disambiguation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/25-entity-linking
+    - text: '[Build] [Python] Relation Extraction & Knowledge Graph Construction'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.26
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/26-relation-extraction-kg
+    - text: '[Build] [Python] LLM Evaluation — RAGAS, DeepEval, G-Eval'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.27
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/27-llm-evaluation-frameworks
+    - text: '[Learn] [Python] Long-Context Evaluation — NIAH, RULER, LongBench, MRCR'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.28
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/28-long-context-evaluation
+  - title: Lessons 05.29–05.29
+    badge: nlp
+    icon: 📝
+    tasks:
+    - text: '[Build] [Python] Dialogue State Tracking'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 05.29
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/05-nlp-foundations-to-advanced/29-dialogue-state-tracking
+- title: 'Phase 06: Speech & Audio'
+  subtitle: ''
+  label: Audio
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 06.01–06.07
+    badge: audio
+    icon: 🎙️
+    tasks:
+    - text: '[Learn] [Python] Audio Fundamentals — Waveforms, Sampling, Fourier Transform'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/01-audio-fundamentals
+    - text: '[Build] [Python] Spectrograms, Mel Scale & Audio Features'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/02-spectrograms-mel-features
+    - text: '[Build] [Python] Audio Classification — From k-NN on MFCCs to AST and
+        BEATs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/03-audio-classification
+    - text: '[Build] [Python] Speech Recognition (ASR) — CTC, RNN-T, Attention'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/04-speech-recognition-asr
+    - text: '[Build] [Python] Whisper — Architecture & Fine-Tuning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/05-whisper-architecture-finetuning
+    - text: '[Build] [Python] Speaker Recognition & Verification'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/06-speaker-recognition-verification
+    - text: '[Build] [Python] Text-to-Speech (TTS) — From Tacotron to F5 and Kokoro'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/07-text-to-speech
+  - title: Lessons 06.08–06.14
+    badge: audio
+    icon: 🎙️
+    tasks:
+    - text: '[Build] [Python] Voice Cloning & Voice Conversion'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/08-voice-cloning-conversion
+    - text: '[Build] [Python] Music Generation — MusicGen, Stable Audio, Suno, and
+        the Licensing Earthquake'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/09-music-generation
+    - text: '[Build] [Python] Audio-Language Models — Qwen2.5-Omni, Audio Flamingo,
+        GPT-4o Audio'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/10-audio-language-models
+    - text: '[Build] [Python] Real-Time Audio Processing'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/11-real-time-audio-processing
+    - text: '[Build] [Python] Build a Voice Assistant Pipeline — The Phase 6 Capstone'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/12-voice-assistant-pipeline
+    - text: '[Learn] [Python] Neural Audio Codecs — EnCodec, SNAC, Mimi, DAC and the
+        Semantic-Acoustic Split'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/13-neural-audio-codecs
+    - text: '[Build] [Python] Voice Activity Detection & Turn-Taking — Silero, Cobra,
+        and the Flush Trick'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/14-voice-activity-detection-turn-taking
+  - title: Lessons 06.15–06.17
+    badge: audio
+    icon: 🎙️
+    tasks:
+    - text: '[Learn] [Python] Streaming Speech-to-Speech — Moshi, Hibiki, and Full-Duplex
+        Dialogue'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/15-streaming-speech-to-speech-moshi-hibiki
+    - text: '[Build] [Python] Voice Anti-Spoofing & Audio Watermarking — ASVspoof
+        5, AudioSeal, WaveVerify'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/16-anti-spoofing-audio-watermarking
+    - text: '[Learn] [Python] Audio Evaluation — WER, MOS, UTMOS, MMAU, FAD, and the
+        Open Leaderboards'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 06.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/06-speech-and-audio/17-audio-evaluation-metrics
+- title: 'Phase 07: Transformers Deep Dive'
+  subtitle: ''
+  label: Transformers
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 07.01–07.07
+    badge: transformers
+    icon: ⚡
+    tasks:
+    - text: '[Learn] [Python] Why Transformers — The Problems with RNNs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/01-why-transformers
+    - text: '[Build] [Python] Self-Attention from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/02-self-attention-from-scratch
+    - text: '[Build] [Python] Multi-Head Attention'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/03-multi-head-attention
+    - text: '[Build] [Python] Positional Encoding — Sinusoidal, RoPE, ALiBi'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/04-positional-encoding
+    - text: '[Build] [Python] The Full Transformer — Encoder + Decoder'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/05-full-transformer
+    - text: '[Build] [Python] BERT — Masked Language Modeling'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/06-bert-masked-language-modeling
+    - text: '[Build] [Python] GPT — Causal Language Modeling'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/07-gpt-causal-language-modeling
+  - title: Lessons 07.08–07.14
+    badge: transformers
+    icon: ⚡
+    tasks:
+    - text: '[Learn] [Python] T5, BART — Encoder-Decoder Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/08-t5-bart-encoder-decoder
+    - text: '[Build] [Python] Vision Transformers (ViT)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/09-vision-transformers
+    - text: '[Learn] [Python] Audio Transformers — Whisper Architecture'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/10-audio-transformers-whisper
+    - text: '[Build] [Python] Mixture of Experts (MoE)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/11-mixture-of-experts
+    - text: '[Build] [Python] KV Cache, Flash Attention & Inference Optimization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/12-kv-cache-flash-attention
+    - text: '[Learn] [Python] Scaling Laws'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/13-scaling-laws
+    - text: '[Build] [Python] Build a Transformer from Scratch — The Capstone'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/14-build-a-transformer-capstone
+  - title: Lessons 07.15–07.16
+    badge: transformers
+    icon: ⚡
+    tasks:
+    - text: '[Build] [Python] Attention Variants — Sliding Window, Sparse, Differential'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/15-attention-variants
+    - text: '[Build] [Python] Speculative Decoding — Draft, Verify, Repeat'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 07.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/07-transformers-deep-dive/16-speculative-decoding
+- title: 'Phase 08: Generative AI'
+  subtitle: ''
+  label: GenAI
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 08.01–08.07
+    badge: genai
+    icon: 🎨
+    tasks:
+    - text: '[Learn] [Python] Generative Models — Taxonomy & History'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/01-generative-models-taxonomy-history
+    - text: '[Build] [Python] Autoencoders & Variational Autoencoders (VAE)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/02-autoencoders-vae
+    - text: '[Build] [Python] GANs — Generator vs Discriminator'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/03-gans-generator-discriminator
+    - text: '[Build] [Python] Conditional GANs & Pix2Pix'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/04-conditional-gans-pix2pix
+    - text: '[Build] [Python] StyleGAN'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/05-stylegan
+    - text: '[Build] [Python] Diffusion Models — DDPM from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/06-diffusion-ddpm-from-scratch
+    - text: '[Build] [Python] Latent Diffusion & Stable Diffusion'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/07-latent-diffusion-stable-diffusion
+  - title: Lessons 08.08–08.14
+    badge: genai
+    icon: 🎨
+    tasks:
+    - text: '[Build] [Python] ControlNet, LoRA & Conditioning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/08-controlnet-lora-conditioning
+    - text: '[Build] [Python] Inpainting, Outpainting & Image Editing'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/09-inpainting-outpainting-editing
+    - text: '[Build] [Python] Video Generation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/10-video-generation
+    - text: '[Build] [Python] Audio Generation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/11-audio-generation
+    - text: '[Build] [Python] 3D Generation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/12-3d-generation
+    - text: '[Build] [Python] Flow Matching & Rectified Flows'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/13-flow-matching-rectified-flows
+    - text: '[Build] [Python] Evaluation — FID, CLIP Score, Human Preference'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/14-evaluation-fid-clip-score
+  - title: Lessons 08.19–08.19
+    badge: genai
+    icon: 🎨
+    tasks:
+    - text: '[Build] [Python] Visual Autoregressive Modeling (VAR): Next-Scale Prediction'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 08.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/08-generative-ai/19-visual-autoregressive-var
+- title: 'Phase 09: Reinforcement Learning'
+  subtitle: ''
+  label: RL
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 09.01–09.07
+    badge: rl
+    icon: 🎮
+    tasks:
+    - text: '[Learn] [Python] MDPs, States, Actions & Rewards'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/01-mdps-states-actions-rewards
+    - text: '[Build] [Python] Dynamic Programming — Policy Iteration & Value Iteration'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/02-dynamic-programming
+    - text: '[Build] [Python] Monte Carlo Methods — Learning from Complete Episodes'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/03-monte-carlo-methods
+    - text: '[Build] [Python] Temporal Difference — Q-Learning & SARSA'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/04-q-learning-sarsa
+    - text: '[Build] [Python] Deep Q-Networks (DQN)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/05-dqn
+    - text: '[Build] [Python] Policy Gradient — REINFORCE from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/06-policy-gradients-reinforce
+    - text: '[Build] [Python] Actor-Critic — A2C and A3C'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/07-actor-critic-a2c-a3c
+  - title: Lessons 09.08–09.12
+    badge: rl
+    icon: 🎮
+    tasks:
+    - text: '[Build] [Python] Proximal Policy Optimization (PPO)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/08-ppo
+    - text: '[Build] [Python] Reward Modeling & RLHF'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/09-reward-modeling-rlhf
+    - text: '[Build] [Python] Multi-Agent RL'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/10-multi-agent-rl
+    - text: '[Build] [Python] Sim-to-Real Transfer'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/11-sim-to-real-transfer
+    - text: '[Build] [Python] RL for Games — AlphaZero, MuZero, and the LLM-Reasoning
+        Era'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 09.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/09-reinforcement-learning/12-rl-for-games
+- title: 'Phase 10: LLMs from Scratch'
+  subtitle: ''
+  label: LLMs
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 10.01–10.07
+    badge: llm
+    icon: 📚
+    tasks:
+    - text: '[Build] [Python, Rust] Tokenizers: BPE, WordPiece, SentencePiece'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/01-tokenizers
+    - text: '[Build] [Python] Building a Tokenizer from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/02-building-a-tokenizer
+    - text: '[Build] [Python] Data Pipelines for Pre-Training'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/03-data-pipelines
+    - text: '[Build] [Python] Pre-Training a Mini GPT (124M Parameters)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/04-pre-training-mini-gpt
+    - text: '[Build] [Python] Scaling: Distributed Training, FSDP, DeepSpeed'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/05-scaling-distributed
+    - text: '[Build] [Python] Instruction Tuning (SFT)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/06-instruction-tuning-sft
+    - text: '[Build] [Python] RLHF: Reward Model + PPO'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/07-rlhf
+  - title: Lessons 10.08–10.14
+    badge: llm
+    icon: 📚
+    tasks:
+    - text: '[Build] [Python] DPO: Direct Preference Optimization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/08-dpo
+    - text: '[Build] [Python] Constitutional AI and Self-Improvement'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/09-constitutional-ai-self-improvement
+    - text: '[Build] [Python] Evaluation: Benchmarks, Evals, LM Harness'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/10-evaluation
+    - text: '[Build] [Python] Quantization: Making Models Fit'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/11-quantization
+    - text: '[Build] [Python] Inference Optimization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/12-inference-optimization
+    - text: '[Build] [Python] Building a Complete LLM Pipeline'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/13-building-complete-llm-pipeline
+    - text: '[Learn] [Python] Open Models: Architecture Walkthroughs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/14-open-models-architecture-walkthroughs
+  - title: Lessons 10.15–10.21
+    badge: llm
+    icon: 📚
+    tasks:
+    - text: '[Build] [Python] Speculative Decoding and EAGLE-3'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/15-speculative-decoding-eagle3
+    - text: '[Build] [Python] Differential Attention (V2)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/16-differential-attention-v2
+    - text: '[Build] [Python] Native Sparse Attention (DeepSeek NSA)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/17-native-sparse-attention
+    - text: '[Build] [Python] Multi-Token Prediction (MTP)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/18-multi-token-prediction
+    - text: '[Learn] [Python] DualPipe Parallelism'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/19-dualpipe-parallelism
+    - text: '[Learn] [Python] DeepSeek-V3 Architecture Walkthrough'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/20-deepseek-v3-walkthrough
+    - text: '[Learn] [Python] Jamba — Hybrid SSM-Transformer'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/21-jamba-hybrid-ssm-transformer
+  - title: Lessons 10.22–10.34
+    badge: llm
+    icon: 📚
+    tasks:
+    - text: '[Build] [Python] Async and Hogwild! Inference'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/22-async-hogwild-inference
+    - text: '[Build] [Python] Speculative Decoding and EAGLE'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/25-speculative-decoding
+    - text: '[Build] [Python] Gradient Checkpointing and Activation Recomputation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 10.34
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/10-llms-from-scratch/34-gradient-checkpointing
+- title: 'Phase 11: LLM Engineering'
+  subtitle: ''
+  label: LLM Eng
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 11.01–11.07
+    badge: llm-eng
+    icon: 🏗️
+    tasks:
+    - text: '[Build] [Python] Prompt Engineering: Techniques & Patterns'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/01-prompt-engineering
+    - text: '[Build] [Python] Few-Shot, Chain-of-Thought, Tree-of-Thought'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/02-few-shot-cot
+    - text: '[Build] [Python] Structured Outputs: JSON, Schema Validation, Constrained
+        Decoding'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/03-structured-outputs
+    - text: '[Build] [Python] Embeddings & Vector Representations'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/04-embeddings
+    - text: '[Build] [Python] Context Engineering: Windows, Budgets, Memory, and Retrieval'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/05-context-engineering
+    - text: '[Build] [Python] RAG (Retrieval-Augmented Generation)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/06-rag
+    - text: '[Build] [Python] Advanced RAG (Chunking, Reranking, Hybrid Search)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/07-advanced-rag
+  - title: Lessons 11.08–11.14
+    badge: llm-eng
+    icon: 🏗️
+    tasks:
+    - text: '[Build] [Python] Fine-Tuning with LoRA & QLoRA'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/08-fine-tuning-lora
+    - text: '[Build] [Python] Function Calling & Tool Use'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/09-function-calling
+    - text: '[Build] [Python] Evaluation & Testing LLM Applications'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/10-evaluation
+    - text: '[Build] [Python] Caching, Rate Limiting & Cost Optimization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/11-caching-cost
+    - text: '[Build] [Python] Guardrails, Safety & Content Filtering'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/12-guardrails
+    - text: '[Build] [Python] Building a Production LLM Application'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/13-production-app
+    - text: '[Build] [Python] Model Context Protocol (MCP)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/14-model-context-protocol
+  - title: Lessons 11.15–11.17
+    badge: llm-eng
+    icon: 🏗️
+    tasks:
+    - text: '[Build] [Python] Prompt Caching and Context Caching'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/15-prompt-caching
+    - text: '[Build] [Python] Agent State Machines — Graphs, Nodes, Checkpoints'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/16-langgraph-state-machines
+    - text: '[Learn] [Python] Agent Framework Tradeoffs — Graph, Role, and Actor Orchestration'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 11.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/11-llm-engineering/17-agent-framework-tradeoffs
+- title: 'Phase 12: Multimodal AI'
+  subtitle: ''
+  label: Multimodal
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 12.01–12.07
+    badge: multimodal
+    icon: 🌐
+    tasks:
+    - text: '[Learn] [Python] Vision Transformers and the Patch-Token Primitive'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/01-vision-transformer-patch-tokens
+    - text: '[Build] [Python] CLIP and Contrastive Vision-Language Pretraining'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/02-clip-contrastive-pretraining
+    - text: '[Build] [Python] From CLIP to BLIP-2 — Q-Former as Modality Bridge'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/03-blip2-qformer-bridge
+    - text: '[Learn] [Python] Flamingo and Gated Cross-Attention for Few-Shot VLMs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/04-flamingo-gated-cross-attention
+    - text: '[Build] [Python] LLaVA and Visual Instruction Tuning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/05-llava-visual-instruction-tuning
+    - text: '[Build] [Python] Any-Resolution Vision: Patch-n''-Pack and NaFlex'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/06-any-resolution-patch-n-pack
+    - text: '[Learn] [Python] Open-Weight VLM Recipes: What Actually Matters'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/07-open-weight-vlm-recipes
+  - title: Lessons 12.08–12.14
+    badge: multimodal
+    icon: 🌐
+    tasks:
+    - text: '[Build] [Python] LLaVA-OneVision: Single-Image, Multi-Image, Video in
+        One Model'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/08-llava-onevision-single-multi-video
+    - text: '[Learn] [Python] Qwen-VL Family and Dynamic-FPS Video'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/09-qwen-vl-family-dynamic-fps
+    - text: '[Learn] [Python] InternVL3: Native Multimodal Pretraining'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/10-internvl3-native-multimodal
+    - text: '[Build] [Python] Chameleon and Early-Fusion Token-Only Multimodal Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/11-chameleon-early-fusion-tokens
+    - text: '[Learn] [Python] Emu3: Next-Token Prediction for Image and Video Generation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/12-emu3-next-token-for-generation
+    - text: '[Build] [Python] Transfusion: Autoregressive Text + Diffusion Image in
+        One Transformer'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/13-transfusion-autoregressive-diffusion
+    - text: '[Learn] [Python] Show-o and Discrete-Diffusion Unified Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/14-show-o-discrete-diffusion-unified
+  - title: Lessons 12.15–12.21
+    badge: multimodal
+    icon: 🌐
+    tasks:
+    - text: '[Build] [Python] Janus-Pro: Decoupled Encoders for Unified Multimodal
+        Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/15-janus-pro-decoupled-encoders
+    - text: '[Learn] [Python] MIO and Any-to-Any Streaming Multimodal Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/16-mio-any-to-any-streaming
+    - text: '[Build] [Python] Video-Language Models: Temporal Tokens and Grounding'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/17-video-language-temporal-grounding
+    - text: '[Build] [Python] Long-Video Understanding at Million-Token Context'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/18-long-video-million-token
+    - text: '[Build] [Python] Audio-Language Models: the Whisper to Audio Flamingo
+        3 Arc'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/19-audio-language-whisper-to-af3
+    - text: '[Build] [Python] Omni Models: Qwen2.5-Omni and the Thinker-Talker Split'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/20-omni-models-thinker-talker
+    - text: '[Learn] [Python] Embodied VLAs: RT-2, OpenVLA, π0, GR00T'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/21-embodied-vlas-openvla-pi0-groot
+  - title: Lessons 12.22–12.25
+    badge: multimodal
+    icon: 🌐
+    tasks:
+    - text: '[Build] [Python] Document and Diagram Understanding'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/22-document-diagram-understanding
+    - text: '[Build] [Python] ColPali and Vision-Native Document RAG'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/23-colpali-vision-native-rag
+    - text: '[Build] [Python] Multimodal RAG and Cross-Modal Retrieval'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/24-multimodal-rag-cross-modal
+    - text: '[Build] [Python] Multimodal Agents and Computer-Use (Capstone)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 12.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/12-multimodal-ai/25-multimodal-agents-computer-use
+- title: 'Phase 13: Tools & Protocols'
+  subtitle: ''
+  label: Tools
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 13.01–13.07
+    badge: tools
+    icon: 🛠️
+    tasks:
+    - text: '[Learn] [Python] The Tool Interface — Why Agents Need Structured I/O'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/01-the-tool-interface
+    - text: '[Build] [Python] Function Calling Deep Dive — OpenAI, Anthropic, Gemini'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/02-function-calling-deep-dive
+    - text: '[Build] [Python] Parallel Tool Calls and Streaming with Tools'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/03-parallel-and-streaming-tool-calls
+    - text: '[Build] [Python] Structured Output — JSON Schema, Pydantic, Zod, Constrained
+        Decoding'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/04-structured-output
+    - text: '[Learn] [Python] Tool Schema Design — Naming, Descriptions, Parameter
+        Constraints'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/05-tool-schema-design
+    - text: '[Learn] [Python] MCP Fundamentals: Stateless Requests and JSON-RPC'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/06-mcp-fundamentals
+    - text: '[Build] [Python, TypeScript] Building an MCP Server: Stateless Python
+        and TypeScript'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/07-building-an-mcp-server
+  - title: Lessons 13.08–13.14
+    badge: tools
+    icon: 🛠️
+    tasks:
+    - text: '[Build] [Python] Building an MCP Client: Discovery, Routing, and Dual-Era
+        Fallback'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/08-building-an-mcp-client
+    - text: '[Learn] [Python] MCP Transports: stdio and Stateless Streamable HTTP'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/09-mcp-transports
+    - text: '[Build] [Python] MCP Resources and Prompts: Addressable Context for Stateless
+        Servers'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/10-mcp-resources-and-prompts
+    - text: '[Build] [Python] MCP Model Input: Sampling Migration and Stateless MRTR'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/11-mcp-sampling
+    - text: '[Build] [Python] Explicit Scope and Stateless Elicitation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/12-mcp-roots-and-elicitation
+    - text: '[Build] [Python] MCP Tasks Extension: Durable Work on a Stateless Core'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/13-mcp-async-tasks
+    - text: '[Build] [Python] MCP Apps on the Stateless Protocol'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/14-mcp-apps
+  - title: Lessons 13.15–13.21
+    badge: tools
+    icon: 🛠️
+    tasks:
+    - text: '[Learn] [Python] MCP Security: Poisoned Metadata, Routing, and MRTR State'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/15-mcp-security-tool-poisoning
+    - text: '[Build] [Python] MCP Authorization: CIMD, Issuer Binding, PKCE, and Step-Up'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/16-mcp-security-oauth-2-1
+    - text: '[Learn] [Python] Stateless MCP Gateways and Registry Admission'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/17-mcp-gateways-and-registries
+    - text: '[Build] [Python] MCP Auth in Production: Issuer-Bound Enrollment and
+        Tokens'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/18-mcp-auth-production
+    - text: '[Build] [Python] A2A — Agent-to-Agent Protocol'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/19-a2a-protocol
+    - text: '[Build] [Python] OpenTelemetry GenAI — Tracing Tool Calls End-to-End'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/20-opentelemetry-genai
+    - text: '[Learn] [Python] LLM Routing Layer — LiteLLM, OpenRouter, Portkey'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/21-llm-routing-layer
+  - title: Lessons 13.22–13.28
+    badge: tools
+    icon: 🛠️
+    tasks:
+    - text: '[Build] [Python] Agent Skills: Portable Contract and Runtime Boundary'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/22-skills-and-agent-sdks
+    - text: '[Build] [Python] Capstone: Stateless Tool Ecosystem'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/23-capstone-tool-ecosystem
+    - text: '[Build] [Python] Skill Discovery and Progressive Disclosure'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/24-skill-discovery-and-progressive-disclosure
+    - text: '[Build] [Python] Skill Invocation and Routing'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/25-skill-invocation-and-routing
+    - text: '[Build] [Python] Skill Permissions, Sandboxes, and Trust'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.26
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/26-skill-permissions-sandboxes-and-trust
+    - text: '[Build] [Python] Skill Evals, Packaging, and Portability'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.27
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/27-skill-evals-packaging-and-portability
+    - text: '[Build] [Python] MCP Tool Contracts and Content'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.28
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/28-mcp-tool-contracts-and-content
+  - title: Lessons 13.29–13.35
+    badge: tools
+    icon: 🛠️
+    tasks:
+    - text: '[Build] [Python] MCP Reliability, Cancellation, and Flow Control'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.29
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/29-mcp-reliability-cancellation-and-flow-control
+    - text: '[Build] [Python] MCP Registry Supply Chain: Admission, Drift, and Rollback'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.30
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/30-mcp-registry-supply-chain-and-drift
+    - text: '[Build] [Python] MCP Conformance Engineering: Versioning, Evidence, and
+        Operations'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.31
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/31-mcp-conformance-versioning-and-operations
+    - text: '[Build] [Python] Program Anatomy: An ELF Reader From Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.32
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/32-program-anatomy-elf-from-scratch
+    - text: '[Build] [Python] Disassembly and Control Flow: From Bytes to a Graph
+        You Can Check'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.33
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/33-disassembly-and-control-flow
+    - text: '[Build] [Python] Lifting to Pseudocode: IR, SSA, and Structuring From
+        Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.34
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/34-lifting-to-pseudocode
+    - text: '[Build] [Python] Evidence, Confidence, and Unknowns in Binary Analysis'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.35
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/35-evidence-confidence-and-unknowns
+  - title: Lessons 13.36–13.42
+    badge: tools
+    icon: 🛠️
+    tasks:
+    - text: '[Build] [Python] Rebuild and Prove Equal: Differential Tests, Byte Comparison,
+        and the Evidence Loop'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.36
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/36-rebuild-and-prove-equal
+    - text: '[Build] [Python] The Reverse Engineering Landscape: History, Tool Families,
+        and How a Decompiler Is Built'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.37
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/37-the-reverse-engineering-landscape
+    - text: '[Build] [Python] Calling Conventions and Stack Frames: System V, Windows
+        x64, and AArch64'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.38
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/38-calling-conventions-and-stack-frames
+    - text: '[Build] [Python] Compiler Idioms: What Optimization Does to Your Code
+        and How to Read It Back'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.39
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/39-compiler-idioms-and-optimization
+    - text: '[Build] [Python] Linking, Loading, and Stripped Binaries: PLT, GOT, Imports,
+        Fixups, and Function Identification'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.40
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/40-linking-loading-and-stripped-binaries
+    - text: '[Build] [Python] Recovering Data and Types: Structs, Arrays, C++ Objects,
+        and DWARF'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.41
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/41-recovering-data-and-types
+    - text: '[Build] [Python] Dynamic Analysis of Your Own Program: Debuggers, Traces,
+        and Confirming Static Claims'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.42
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/42-dynamic-analysis-of-your-own-program
+  - title: Lessons 13.43–13.45
+    badge: tools
+    icon: 🛠️
+    tasks:
+    - text: '[Build] [Python] Beyond Native Code: Python, JVM, .NET, and WebAssembly
+        Bytecode'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.43
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/43-bytecode-and-managed-formats
+    - text: '[Build] [Python] Binary Diffing and Symbolic Execution: Matching Functions
+        and Solving for Inputs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.44
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/44-binary-diffing-and-symbolic-execution
+    - text: '[Build] [Python] AI-Assisted Reverse Engineering: LLM Decompilers, Analysis
+        Agents, and Ground Truth'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 13.45
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/13-tools-and-protocols/45-ai-assisted-reverse-engineering
+- title: 'Phase 14: Agent Engineering'
+  subtitle: ''
+  label: Agents
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 14.01–14.07
+    badge: agents
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] The Agent Loop: Observe, Think, Act'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/01-the-agent-loop
+    - text: '[Build] [Python] ReWOO and Plan-and-Execute: Decoupled Planning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/02-rewoo-plan-and-execute
+    - text: '[Build] [Python] Reflexion: Verbal Reinforcement Learning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/03-reflexion-verbal-rl
+    - text: '[Build] [Python] Tree of Thoughts and LATS: Deliberate Search'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/04-tree-of-thoughts-lats
+    - text: '[Build] [Python] Self-Refine and CRITIC: Iterative Output Improvement'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/05-self-refine-and-critic
+    - text: '[Build] [Python] Tool Use and Function Calling'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/06-tool-use-and-function-calling
+    - text: '[Build] [Python] Agent Memory — Virtual Context and Memory Paging'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/07-memory-virtual-context-memgpt
+  - title: Lessons 14.08–14.14
+    badge: agents
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] Memory Blocks and Sleep-Time Compute'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/08-memory-blocks-sleep-time-compute
+    - text: '[Build] [Python] Hybrid Memory: Vector + Graph + KV'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/09-hybrid-memory-mem0
+    - text: '[Build] [Python] Skill Libraries and Lifelong Learning (Voyager)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/10-skill-libraries-voyager
+    - text: '[Build] [Python] Planning with HTN and Evolutionary Search'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/11-planning-htn-and-evolutionary
+    - text: '[Build] [Python] Anthropic''s Workflow Patterns: Simple Over Complex'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/12-anthropic-workflow-patterns
+    - text: '[Build] [Python] Stateful Graph Orchestration — Durable Execution and
+        Checkpoints'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/13-langgraph-stateful-graphs
+    - text: '[Build] [Python] The Actor Model for Agents — Async Messages and Typed
+        Runtimes'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/14-autogen-actor-model
+  - title: Lessons 14.15–14.21
+    badge: agents
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] Role-Based Agent Teams — Roles, Tasks, Processes'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/15-crewai-role-based-crews
+    - text: '[Build] [Python] OpenAI Agents SDK: Handoffs, Guardrails, Tracing'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/16-openai-agents-sdk
+    - text: '[Build] [Python] The Harness as a Library — Subagents and Session Store'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/17-claude-agent-sdk
+    - text: '[Learn] [Python] Production Agent Runtimes — Fast Instantiation and Typed
+        Workflows'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/18-agno-and-mastra-runtimes
+    - text: '[Learn] [Python] Benchmarks: SWE-bench, GAIA, AgentBench'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/19-benchmarks-swebench-gaia
+    - text: '[Learn] [Python] Benchmarks: WebArena and OSWorld'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/20-benchmarks-webarena-osworld
+    - text: '[Build] [Python] Computer Use: Claude, OpenAI CUA, Gemini'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/21-computer-use-agents
+  - title: Lessons 14.22–14.28
+    badge: agents
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] Voice Agents: Pipecat and LiveKit'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/22-voice-agents-pipecat-livekit
+    - text: '[Build] [Python] OpenTelemetry GenAI Semantic Conventions'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/23-otel-genai-conventions
+    - text: '[Learn] [Python] Agent Observability: Langfuse, Phoenix, Opik'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/24-agent-observability-platforms
+    - text: '[Build] [Python] Multi-Agent Debate and Collaboration'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/25-multi-agent-debate
+    - text: '[Build] [Python] Failure Modes: Why Agents Break'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.26
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/26-failure-modes-agentic
+    - text: '[Build] [Python] Prompt Injection and the PVE Defense'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.27
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/27-prompt-injection-defense
+    - text: '[Build] [Python] Orchestration Patterns: Supervisor, Swarm, Hierarchical'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.28
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/28-orchestration-patterns
+  - title: Lessons 14.29–14.35
+    badge: agents
+    icon: 🤖
+    tasks:
+    - text: '[Learn] [Python] Production Runtimes: Queue, Event, Cron'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.29
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/29-production-runtimes
+    - text: '[Build] [Python] Eval-Driven Agent Development'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.30
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/30-eval-driven-agent-development
+    - text: '[Learn] [Python] Agent Workbench Engineering: Why Capable Models Still
+        Fail'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.31
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/31-agent-workbench-why-models-fail
+    - text: '[Build] [Python] The Minimal Agent Workbench'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.32
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/32-minimal-agent-workbench
+    - text: '[Build] [Python] Agent Instructions as Executable Constraints'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.33
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/33-instructions-as-executable-constraints
+    - text: '[Build] [Python] Repo Memory and Durable State'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.34
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/34-repo-memory-and-state
+    - text: '[Build] [Python] Initialization Scripts for Agents'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.35
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/35-initialization-scripts
+  - title: Lessons 14.36–14.42
+    badge: agents
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] Scope Contracts and Task Boundaries'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.36
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/36-scope-contracts
+    - text: '[Build] [Python] Runtime Feedback Loops'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.37
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/37-runtime-feedback-loops
+    - text: '[Build] [Python] Verification Gates'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.38
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/38-verification-gates
+    - text: '[Build] [Python] Reviewer Agent: Separate Builder from Marker'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.39
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/39-reviewer-agent
+    - text: '[Build] [Python] Multi-Session Handoff'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.40
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/40-multi-session-handoff
+    - text: '[Build] [Python] The Workbench on a Real Repo'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.41
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/41-workbench-for-real-repos
+    - text: '[Build] [Python] Capstone: Ship a Reusable Agent Workbench Pack'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.42
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/42-agent-workbench-capstone
+  - title: Lessons 14.43–14.49
+    badge: agents
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] Frame the Task Before the Agent Writes Code'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.43
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/43-frame-the-task-before-code
+    - text: '[Build] [Python] Build an Evidence-Backed Execution Plan'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.44
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/44-plan-from-evidence
+    - text: '[Build] [Python] Delegate Agent Work with Isolation and Merge Contracts'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.45
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/45-delegate-with-isolation
+    - text: '[Build] [Python] Turn Every Agent Correction into a System Improvement'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.46
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/46-turn-feedback-into-system
+    - text: '[Build] [Python] Define the Outcome Before You Choose the Output'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.47
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/47-outcomes-before-output
+    - text: '[Build] [Python] Discover the Workflow People Actually Perform'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.48
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/48-discover-the-real-workflow
+    - text: '[Build] [Python] Map Assumptions and Resolve the Riskiest One First'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.49
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/49-map-assumptions-and-risk
+  - title: Lessons 14.50–14.54
+    badge: agents
+    icon: 🤖
+    tasks:
+    - text: '[Build] [Python] Choose the Smallest Slice That Can Change the Decision'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.50
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/50-choose-the-smallest-testable-slice
+    - text: '[Build] [Python] Write Specifications That Preserve Judgment'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.51
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/51-write-specifications-that-preserve-judgment
+    - text: '[Build] [Python] Design Success Metrics Before the Result Exists'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.52
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/52-design-success-metrics
+    - text: '[Build] [Python] Choose Prototype, Pilot, or Production Deliberately'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.53
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/53-prototype-pilot-or-production
+    - text: '[Build] [Python] Build a Feedback Ratchet with Ownership and Retirement'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 14.54
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/14-agent-engineering/54-build-the-feedback-ratchet
+- title: 'Phase 15: Autonomous Systems'
+  subtitle: ''
+  label: Autonomous
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 15.01–15.07
+    badge: autonomous
+    icon: 🚀
+    tasks:
+    - text: '[Learn] [Python] The Shift from Chatbots to Long-Horizon Agents'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/01-long-horizon-agents
+    - text: '[Learn] [Python] STaR, V-STaR, Quiet-STaR — Self-Taught Reasoning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/02-star-family-reasoning
+    - text: '[Learn] [Python] AlphaEvolve — Evolutionary Coding Agents'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/03-alphaevolve-evolutionary-coding
+    - text: '[Learn] [Python] Darwin Godel Machine — Open-Ended Self-Modifying Agents'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/04-darwin-godel-machine
+    - text: '[Learn] [Python] AI Scientist v2 — Workshop-Level Autonomous Research'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/05-ai-scientist-v2
+    - text: '[Learn] [Python] Automated Alignment Research (Anthropic AAR)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/06-automated-alignment-research
+    - text: '[Learn] [Python] Recursive Self-Improvement — Capability vs Alignment'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/07-recursive-self-improvement
+  - title: Lessons 15.08–15.14
+    badge: autonomous
+    icon: 🚀
+    tasks:
+    - text: '[Learn] [Python] Bounded Self-Improvement Designs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/08-bounded-self-improvement
+    - text: '[Learn] [Python] The Autonomous Coding Agent Landscape (2026)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/09-coding-agent-landscape
+    - text: '[Learn] [Python] Permission Modes for Autonomous Agents'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/10-claude-code-permission-modes
+    - text: '[Learn] [Python] Browser Agents and Long-Horizon Web Tasks'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/11-browser-agents
+    - text: '[Learn] [Python] Long-Running Background Agents: Durable Execution'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/12-durable-execution
+    - text: '[Learn] [Python] Action Budgets, Iteration Caps, and Cost Governors'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/13-cost-governors
+    - text: '[Learn] [Python] Kill Switches, Circuit Breakers, and Canary Tokens'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/14-kill-switches-canaries
+  - title: Lessons 15.15–15.21
+    badge: autonomous
+    icon: 🚀
+    tasks:
+    - text: '[Learn] [Python] Human-in-the-Loop: Propose-Then-Commit'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/15-propose-then-commit
+    - text: '[Learn] [Python] Checkpoints and Rollback'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/16-checkpoints-rollback
+    - text: '[Learn] [Python] Constitutional AI and Rule Overrides'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/17-constitutional-ai
+    - text: '[Learn] [Python] Llama Guard and Input/Output Classification'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/18-llama-guard
+    - text: '[Learn] [Python] Anthropic Responsible Scaling Policy v3.0'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/19-anthropic-rsp
+    - text: '[Learn] [Python] OpenAI Preparedness Framework and DeepMind Frontier
+        Safety Framework'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/20-openai-preparedness-deepmind-fsf
+    - text: '[Learn] [Python] METR Time Horizons and External Capability Evaluation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/21-metr-external-evaluation
+  - title: Lessons 15.22–15.22
+    badge: autonomous
+    icon: 🚀
+    tasks:
+    - text: '[Learn] [Python] CAIS, CAISI, and Societal-Scale Risk'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 15.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/15-autonomous-systems/22-cais-caisi-societal-risk
+- title: 'Phase 16: Multi-Agent & Swarms'
+  subtitle: ''
+  label: Swarms
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 16.01–16.07
+    badge: swarms
+    icon: 🐝
+    tasks:
+    - text: '[Learn] [TypeScript] Why Multi-Agent?'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/01-why-multi-agent
+    - text: '[Learn] [Python] Heritage of FIPA-ACL and Speech Acts'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/02-fipa-acl-heritage
+    - text: '[Build] [TypeScript] Communication Protocols'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/03-communication-protocols
+    - text: '[Learn] [Python] The Multi-Agent Primitive Model'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/04-primitive-model
+    - text: '[Build] [Python] Supervisor / Orchestrator-Worker Pattern'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/05-supervisor-orchestrator-pattern
+    - text: '[Learn] [Python] Hierarchical Architecture and Its Failure Mode'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/06-hierarchical-architecture
+    - text: '[Build] [Python] Society of Mind and Multi-Agent Debate'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/07-society-of-mind-debate
+  - title: Lessons 16.08–16.14
+    badge: swarms
+    icon: 🐝
+    tasks:
+    - text: '[Build] [Python] Role Specialization — Planner, Critic, Executor, Verifier'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/08-role-specialization
+    - text: '[Build] [Python] Parallel / Swarm / Networked Architectures'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/09-parallel-swarm-networks
+    - text: '[Build] [Python] Group Chat and Speaker Selection'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/10-group-chat-speaker-selection
+    - text: '[Build] [Python] Handoffs and Routines — Stateless Orchestration'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/11-handoffs-and-routines
+    - text: '[Build] [Python] A2A — The Agent-to-Agent Protocol'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/12-a2a-protocol
+    - text: '[Build] [Python] Shared Memory and Blackboard Patterns'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/13-shared-memory-blackboard
+    - text: '[Build] [Python] Consensus and Byzantine Fault Tolerance for Agents'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/14-consensus-and-bft
+  - title: Lessons 16.15–16.21
+    badge: swarms
+    icon: 🐝
+    tasks:
+    - text: '[Build] [Python] Voting, Self-Consistency, and Debate Topology'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/15-voting-debate-topology
+    - text: '[Build] [Python] Negotiation and Bargaining'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/16-negotiation-bargaining
+    - text: '[Build] [Python] Generative Agents and Emergent Simulation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/17-generative-agents-simulation
+    - text: '[Build] [Python] Theory of Mind and Emergent Coordination'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/18-theory-of-mind-coordination
+    - text: '[Build] [Python] Swarm Optimization for LLMs (PSO, ACO)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/19-swarm-optimization-pso-aco
+    - text: '[Learn] [Python] MARL — MADDPG, QMIX, MAPPO'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/20-marl-maddpg-qmix-mappo
+    - text: '[Learn] [Python] Agent Economies, Token Incentives, Reputation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/21-agent-economies
+  - title: Lessons 16.22–16.25
+    badge: swarms
+    icon: 🐝
+    tasks:
+    - text: '[Build] [Python] Production Scaling — Queues, Checkpoints, Durability'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/22-production-scaling-queues-checkpoints
+    - text: '[Learn] [Python] Failure Modes — MAST, Groupthink, Monoculture, Cascading
+        Errors'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/23-failure-modes-mast-groupthink
+    - text: '[Learn] [Python] Evaluation and Coordination Benchmarks'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/24-evaluation-coordination-benchmarks
+    - text: '[Learn] [Python] Case Studies and the 2026 State of the Art'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 16.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/16-multi-agent-and-swarms/25-case-studies-2026-sota
+- title: 'Phase 17: Infrastructure & Production'
+  subtitle: ''
+  label: Infra
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 17.01–17.07
+    badge: infra
+    icon: ☁️
+    tasks:
+    - text: '[Learn] [Python] Managed LLM Platforms — Bedrock, Vertex AI, Azure OpenAI'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/01-managed-llm-platforms
+    - text: '[Learn] [Python] Inference Platform Economics — Fireworks, Together,
+        Baseten, Modal, Replicate, Anyscale'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/02-inference-platform-economics
+    - text: '[Learn] [Python] GPU Autoscaling on Kubernetes — Karpenter, KAI Scheduler,
+        Gang Scheduling'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/03-gpu-autoscaling-kubernetes
+    - text: '[Learn] [Python] Serving Engine Internals — PagedAttention, Continuous
+        Batching, Chunked Prefill'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/04-vllm-serving-internals
+    - text: '[Learn] [Python] EAGLE-3 Speculative Decoding in Production'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/05-eagle3-speculative-decoding
+    - text: '[Learn] [Python] Prefix-Cache Serving — RadixAttention and KV Reuse'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/06-sglang-radixattention
+    - text: '[Learn] [Python] Hardware-Specialized Inference Compilation — FP8 and
+        NVFP4 on Blackwell'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/07-tensorrt-llm-blackwell
+  - title: Lessons 17.08–17.14
+    badge: infra
+    icon: ☁️
+    tasks:
+    - text: '[Learn] [Python] Inference Metrics — TTFT, TPOT, ITL, Goodput, P99'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/08-inference-metrics-goodput
+    - text: '[Learn] [Python] Production Quantization — AWQ, GPTQ, GGUF K-quants,
+        FP8, MXFP4/NVFP4'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/09-production-quantization
+    - text: '[Learn] [Python] Cold Start Mitigation for Serverless LLMs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/10-cold-start-mitigation
+    - text: '[Learn] [Python] Multi-Region LLM Serving and KV Cache Locality'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/11-multi-region-kv-locality
+    - text: '[Learn] [Python] Edge Inference — Apple Neural Engine, Qualcomm Hexagon,
+        WebGPU/WebLLM, Jetson'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/12-edge-inference
+    - text: '[Learn] [Python] LLM Observability Stack Selection'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/13-llm-observability
+    - text: '[Learn] [Python] Prompt Caching and Semantic Caching Economics'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/14-prompt-semantic-caching
+  - title: Lessons 17.15–17.21
+    badge: infra
+    icon: ☁️
+    tasks:
+    - text: '[Learn] [Python] Batch APIs — the 50% Discount as Industry Standard'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/15-batch-apis
+    - text: '[Learn] [Python] Model Routing as a Cost-Reduction Primitive'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/16-model-routing
+    - text: '[Learn] [Python] Disaggregated Prefill/Decode — NVIDIA Dynamo and llm-d'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/17-disaggregated-prefill-decode
+    - text: '[Learn] [Python] Production Serving Stack — KV Offloading and Cache-Aware
+        Routing'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/18-vllm-production-stack-lmcache
+    - text: '[Learn] [Python] AI Gateways — LiteLLM, Portkey, Kong AI Gateway, Bifrost'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/19-ai-gateways
+    - text: '[Learn] [Python] Shadow Traffic, Canary Rollout, and Progressive Deployment
+        for LLMs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/20-shadow-canary-progressive
+    - text: '[Learn] [Python] A/B Testing LLM Features — GrowthBook, Statsig, and
+        the Vibes Problem'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/21-ab-testing-llm-features
+  - title: Lessons 17.22–17.28
+    badge: infra
+    icon: ☁️
+    tasks:
+    - text: '[Build] [Python] Load Testing LLM APIs — Why k6 and Locust Lie'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/22-load-testing-llm-apis
+    - text: '[Learn] [Python] SRE for AI — Multi-Agent Incident Response, Runbooks,
+        Predictive Detection'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/23-sre-for-ai
+    - text: '[Learn] [Python] Chaos Engineering for LLM Production'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/24-chaos-engineering-llm
+    - text: '[Learn] [Python] Security — Secrets, API Key Rotation, Audit Logs, Guardrails'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/25-security-secrets-audit
+    - text: '[Learn] [Python] Compliance — SOC 2, HIPAA, GDPR, PCI-DSS, EU AI Act,
+        ISO 42001'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.26
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/26-compliance-frameworks
+    - text: '[Learn] [Python] FinOps for LLMs — Unit Economics and Multi-Tenant Attribution'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.27
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/27-finops-llms
+    - text: '[Learn] [Python] Self-Hosted Serving Selection — Matching Engine to Hardware
+        and Scale'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.28
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/28-self-hosted-serving-selection
+  - title: Lessons 17.29–17.29
+    badge: infra
+    icon: ☁️
+    tasks:
+    - text: '[Build] [Python] Model Demo Interfaces — From a Function to a Shareable
+        App'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 17.29
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/17-infrastructure-and-production/29-model-demo-interfaces
+- title: 'Phase 18: Ethics, Safety & Alignment'
+  subtitle: ''
+  label: Ethics
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 18.01–18.07
+    badge: ethics
+    icon: ⚖️
+    tasks:
+    - text: '[Learn] [Python] Instruction-Following as Alignment Signal'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/01-instruction-following-alignment-signal
+    - text: '[Learn] [Python] Reward Hacking and Goodhart''s Law'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/02-reward-hacking-goodhart
+    - text: '[Learn] [Python] The Direct Preference Optimization Family'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/03-direct-preference-optimization-family
+    - text: '[Learn] [Python] Sycophancy as RLHF Amplification'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/04-sycophancy-rlhf-amplification
+    - text: '[Learn] [Python] Constitutional AI and RLAIF'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/05-constitutional-ai-rlaif
+    - text: '[Learn] [Python] Mesa-Optimization and Deceptive Alignment'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/06-mesa-optimization-deceptive-alignment
+    - text: '[Learn] [Python] Sleeper Agents — Persistent Deception'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/07-sleeper-agents-persistent-deception
+  - title: Lessons 18.08–18.14
+    badge: ethics
+    icon: ⚖️
+    tasks:
+    - text: '[Learn] [Python] In-Context Scheming in Frontier Models'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/08-in-context-scheming-frontier-models
+    - text: '[Learn] [Python] Alignment Faking'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/09-alignment-faking
+    - text: '[Learn] [Python] AI Control — Safety Despite Subversion'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/10-ai-control-subversion
+    - text: '[Learn] [Python] Scalable Oversight and Weak-to-Strong Generalization'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/11-scalable-oversight-weak-to-strong
+    - text: '[Build] [Python] Red-Teaming: PAIR and Automated Attacks'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/12-red-teaming-pair-automated-attacks
+    - text: '[Learn] [Python] Many-Shot Jailbreaking'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/13-many-shot-jailbreaking
+    - text: '[Build] [Python] ASCII Art and Visual Jailbreaks'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/14-ascii-art-visual-jailbreaks
+  - title: Lessons 18.15–18.21
+    badge: ethics
+    icon: ⚖️
+    tasks:
+    - text: '[Build] [Python] Indirect Prompt Injection — Production Attack Surface'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/15-indirect-prompt-injection
+    - text: '[Build] [Python] Red-Team Tooling — Garak, Llama Guard, PyRIT'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/16-red-team-tooling-garak-llamaguard-pyrit
+    - text: '[Learn] [Python] WMDP and Dual-Use Capability Evaluation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/17-wmdp-dual-use-evaluation
+    - text: '[Learn] [Python] Frontier Safety Frameworks — RSP, PF, FSF'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.18
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/18-frontier-safety-frameworks-rsp-pf-fsf
+    - text: '[Learn] [Python] Anthropic''s Model Welfare Program'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.19
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/19-model-welfare-research
+    - text: '[Build] [Python] Bias and Representational Harm in LLMs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/20-bias-representational-harm
+    - text: '[Learn] [Python] Fairness Criteria — Group, Individual, Counterfactual'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/21-fairness-criteria-group-individual-counterfactual
+  - title: Lessons 18.22–18.28
+    badge: ethics
+    icon: ⚖️
+    tasks:
+    - text: '[Build] [Python] Differential Privacy for LLMs'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/22-differential-privacy-for-llms
+    - text: '[Build] [Python] Watermarking — SynthID, Stable Signature, C2PA'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/23-watermarking-synthid-stable-signature-c2pa
+    - text: '[Learn] [Python] Regulatory Frameworks — EU, US, UK, Korea'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/24-regulatory-frameworks-eu-us-uk-korea
+    - text: '[Learn] [Python] EchoLeak and the Emergence of CVEs for AI'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/25-echoleak-cves-for-ai
+    - text: '[Build] [Python] Model, System, and Dataset Cards'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.26
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/26-model-system-dataset-cards
+    - text: '[Learn] [Python] Data Provenance and Training-Data Governance'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.27
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/27-data-provenance-training-governance
+    - text: '[Learn] [Python] Alignment Research Ecosystem — MATS, Redwood, Apollo,
+        METR'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.28
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/28-alignment-research-ecosystem
+  - title: Lessons 18.29–18.30
+    badge: ethics
+    icon: ⚖️
+    tasks:
+    - text: '[Build] [Python] Moderation Systems — OpenAI, Perspective, Llama Guard'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.29
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/29-moderation-systems-openai-perspective-llamaguard
+    - text: '[Learn] [Python] Dual-Use Risk — Cyber, Bio, Chem, Nuclear Uplift'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 18.30
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/18-ethics-safety-alignment/30-dual-use-risk-cyber-bio-chem-nuclear
+- title: 'Phase 19: Capstone Projects'
+  subtitle: ''
+  label: Capstone
+  journal: ''
+  time_logged: 0
+  blocks:
+  - title: Lessons 19.01–19.07
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Capstone 01 — Terminal-Native Coding Agent'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.01
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/01-terminal-native-coding-agent
+    - text: '[Capstone] [Python] Capstone 02 — RAG over Codebase (Cross-Repo Semantic
+        Search)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.02
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/02-rag-over-codebase
+    - text: '[Capstone] [Python] Capstone 03 — Real-Time Voice Assistant (ASR to LLM
+        to TTS)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.03
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/03-realtime-voice-assistant
+    - text: '[Capstone] [Python] Capstone 04 — Multimodal Document QA (Vision-First
+        PDF, Tables, Charts)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.04
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/04-multimodal-document-qa
+    - text: '[Capstone] [Python] Capstone 05 — Autonomous Research Agent (AI-Scientist
+        Class)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.05
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/05-autonomous-research-agent
+    - text: '[Capstone] [Python] Capstone 06 — DevOps Troubleshooting Agent for Kubernetes'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.06
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/06-devops-troubleshooting-agent
+    - text: '[Capstone] [Python] Capstone 07 — End-to-End Fine-Tuning Pipeline (Data
+        to SFT to DPO to Serve)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.07
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/07-end-to-end-fine-tuning-pipeline
+  - title: Lessons 19.08–19.14
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Capstone 08 — Production RAG Chatbot for a Regulated
+        Vertical'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.08
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/08-production-rag-chatbot
+    - text: '[Capstone] [Python] Capstone 09 — Code Migration Agent (Repo-Level Language
+        / Runtime Upgrade)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.09
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/09-code-migration-agent
+    - text: '[Capstone] [Python] Capstone 10 — Multi-Agent Software Engineering Team'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.10
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/10-multi-agent-software-team
+    - text: '[Capstone] [Python] Capstone 11 — LLM Observability & Eval Dashboard'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.11
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/11-llm-observability-dashboard
+    - text: '[Capstone] [Python] Capstone 12 — Video Understanding Pipeline (Scene,
+        QA, Search)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.12
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/12-video-understanding-pipeline
+    - text: '[Capstone] [Python] Capstone 13: Stateless MCP Server with Registry and
+        Governance'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.13
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/13-mcp-server-with-registry
+    - text: '[Capstone] [Python] Capstone 14 — Speculative-Decoding Inference Server'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.14
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/14-speculative-decoding-server
+  - title: Lessons 19.15–19.23
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Capstone 15 — Constitutional Safety Harness + Red-Team
+        Range'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.15
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/15-constitutional-safety-harness
+    - text: '[Capstone] [Python] Capstone 16 — GitHub Issue-to-PR Autonomous Agent'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.16
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/16-github-issue-to-pr-agent
+    - text: '[Capstone] [Python] Capstone 17 — Personal AI Tutor (Adaptive, Multimodal,
+        with Memory)'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.17
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/17-personal-ai-tutor
+    - text: '[Capstone] [Python] Agent Harness Loop Contract'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.20
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/20-agent-harness-loop-contract
+    - text: '[Capstone] [Python] Tool Registry with Schema Validation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.21
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/21-tool-registry-schema-validation
+    - text: '[Capstone] [Python] JSON-RPC 2.0 Over Newline-Delimited Stdio'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.22
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/22-jsonrpc-stdio-transport
+    - text: '[Capstone] [Python] Function Call Dispatcher'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.23
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/23-function-call-dispatcher
+  - title: Lessons 19.24–19.30
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Plan-Execute Control Flow'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.24
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/24-plan-execute-control-flow
+    - text: '[Capstone] [Python] Capstone Lesson 25: Verification Gates and the Observation
+        Budget'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.25
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/25-verification-gates-observation-budget
+    - text: '[Capstone] [Python] Capstone Lesson 26: Sandbox Runner with Denylist
+        and Path Jail'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.26
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/26-sandbox-runner-denylist
+    - text: '[Capstone] [Python] Capstone Lesson 27: Eval Harness with Fixture Tasks'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.27
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/27-eval-harness-fixture-tasks
+    - text: '[Capstone] [Python] Capstone Lesson 28: Observability with OTel GenAI
+        Spans and Prometheus Metrics'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.28
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/28-observability-otel-traces
+    - text: '[Capstone] [Python] Capstone Lesson 29: End-to-End Coding Agent on the
+        Harness'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.29
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/29-end-to-end-coding-task-demo
+    - text: '[Capstone] [Python] BPE Tokenizer From Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.30
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/30-bpe-tokenizer-from-scratch
+  - title: Lessons 19.31–19.37
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Tokenized Dataset with Sliding Window'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.31
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/31-tokenized-dataset-sliding-window
+    - text: '[Capstone] [Python] Token and Positional Embeddings'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.32
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/32-token-positional-embeddings
+    - text: '[Capstone] [Python] Multi-Head Self-Attention'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.33
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/33-multihead-self-attention
+    - text: '[Capstone] [Python] Transformer Block from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.34
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/34-transformer-block
+    - text: '[Capstone] [Python] GPT Model Assembly'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.35
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/35-gpt-model-assembly
+    - text: '[Capstone] [Python] Training Loop and Evaluation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.36
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/36-training-loop-eval
+    - text: '[Capstone] [Python] Loading Pretrained Weights'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.37
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/37-loading-pretrained-weights
+  - title: Lessons 19.38–19.44
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Capstone Lesson 38: Classifier Fine-Tuning by Head
+        Swap'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.38
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/38-classifier-finetuning
+    - text: '[Capstone] [Python] Capstone Lesson 39: Instruction Tuning by Supervised
+        Fine-Tuning'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.39
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/39-instruction-tuning-sft
+    - text: '[Capstone] [Python] Capstone Lesson 40: Direct Preference Optimization
+        from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.40
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/40-dpo-from-scratch
+    - text: '[Capstone] [Python] Capstone Lesson 41: Full Evaluation Pipeline'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.41
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/41-eval-pipeline
+    - text: '[Capstone] [Python] Large Corpus Downloader'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.42
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/42-large-corpus-downloader
+    - text: '[Capstone] [Python] HDF5 Tokenized Corpus'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.43
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/43-hdf5-tokenized-corpus
+    - text: '[Capstone] [Python] Cosine LR with Linear Warmup'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.44
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/44-cosine-lr-warmup
+  - title: Lessons 19.45–19.51
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Gradient Clipping and Mixed Precision'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.45
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/45-gradient-clipping-amp
+    - text: '[Capstone] [Python] Gradient Accumulation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.46
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/46-gradient-accumulation
+    - text: '[Capstone] [Python] Checkpoint Save and Resume'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.47
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/47-checkpoint-save-resume
+    - text: '[Capstone] [Python] Distributed Data Parallel and FSDP from Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.48
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/48-distributed-fsdp-ddp
+    - text: '[Capstone] [Python] Language Model Evaluation Harness'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.49
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/49-lm-eval-harness
+    - text: '[Capstone] [Python] Hypothesis Generator'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.50
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/50-hypothesis-generator
+    - text: '[Capstone] [Python] Literature Retrieval'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.51
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/51-literature-retrieval
+  - title: Lessons 19.52–19.58
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Experiment Runner'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.52
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/52-experiment-runner
+    - text: '[Capstone] [Python] Result Evaluator'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.53
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/53-result-evaluator
+    - text: '[Capstone] [Python] Paper Writer'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.54
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/54-paper-writer
+    - text: '[Capstone] [Python] Critic Loop'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.55
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/55-critic-loop
+    - text: '[Capstone] [Python] Iteration Scheduler'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.56
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/56-iteration-scheduler
+    - text: '[Capstone] [Python] End-to-End Research Demo'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.57
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/57-end-to-end-research-demo
+    - text: '[Capstone] [Python] Vision Encoder Patches'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.58
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/58-vision-encoder-patches
+  - title: Lessons 19.59–19.65
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Vision Transformer Encoder'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.59
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/59-vit-transformer
+    - text: '[Capstone] [Python] Projection Layer for Modality Alignment'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.60
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/60-projection-layer-modality-align
+    - text: '[Capstone] [Python] Cross-Attention Fusion'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.61
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/61-cross-attention-fusion
+    - text: '[Capstone] [Python] Vision-Language Pretraining'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.62
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/62-vision-language-pretraining
+    - text: '[Capstone] [Python] Multimodal Evaluation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.63
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/63-multimodal-eval
+    - text: '[Capstone] [Python] Chunking Strategies, Compared'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.64
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/64-chunking-strategies-advanced
+    - text: '[Capstone] [Python] Hybrid Retrieval with BM25 and Dense Embeddings'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.65
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/65-hybrid-retrieval-bm25-dense
+  - title: Lessons 19.66–19.72
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Cross-Encoder Reranker'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.66
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/66-reranker-cross-encoder
+    - text: '[Capstone] [Python] Query Rewriting: HyDE, Multi-Query, and Decomposition'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.67
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/67-query-rewriting-hyde
+    - text: '[Capstone] [Python] RAG Evaluation: Precision, Recall, MRR, nDCG, Faithfulness,
+        Answer Relevance'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.68
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/68-rag-eval-precision-recall
+    - text: '[Capstone] [Python] End-to-End RAG System'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.69
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/69-end-to-end-rag-system
+    - text: '[Capstone] [Python] Task Spec Format'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.70
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/70-task-spec-format
+    - text: '[Capstone] [Python] Classical Metrics'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.71
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/71-classical-metrics
+    - text: '[Capstone] [Python] Code Exec Metric'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.72
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/72-code-exec-metric
+  - title: Lessons 19.73–19.79
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Perplexity and Calibration'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.73
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/73-perplexity-calibration
+    - text: '[Capstone] [Python] Leaderboard Aggregation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.74
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/74-leaderboard-aggregation
+    - text: '[Capstone] [Python] End-to-End Eval Runner'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.75
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/75-end-to-end-eval-runner
+    - text: '[Capstone] [Python] Collective Ops From Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.76
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/76-collective-ops-from-scratch
+    - text: '[Capstone] [Python] Data Parallel DDP From Scratch'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.77
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/77-data-parallel-ddp
+    - text: '[Capstone] [Python] ZeRO Optimizer State Sharding'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.78
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/78-zero-parameter-sharding
+    - text: '[Capstone] [Python] Pipeline Parallel and Bubble Analysis'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.79
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/79-pipeline-parallel
+  - title: Lessons 19.80–19.86
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Sharded Checkpoint and Atomic Resume'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.80
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/80-checkpoint-sharded-resume
+    - text: '[Capstone] [Python] End-to-End Distributed Training'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.81
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/81-end-to-end-distributed-train
+    - text: '[Capstone] [Python] Capstone 82 — Jailbreak Taxonomy'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.82
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/82-jailbreak-taxonomy
+    - text: '[Capstone] [Python] Capstone 83 — Prompt Injection Detector'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.83
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/83-prompt-injection-detector
+    - text: '[Capstone] [Python] Capstone 84 — Refusal Evaluation'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.84
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/84-refusal-evaluation
+    - text: '[Capstone] [Python] Capstone 85 — Content Classifier Integration'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.85
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/85-content-classifier-integration
+    - text: '[Capstone] [Python, YAML] Capstone 86 — Constitutional Rules Engine'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.86
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/86-constitutional-rules-engine
+  - title: Lessons 19.87–19.87
+    badge: capstone
+    icon: 🏆
+    tasks:
+    - text: '[Capstone] [Python] Capstone 87 — End-to-End Safety Gate'
+      done: false
+      comments: []
+      resources:
+      - label: Lesson 19.87
+        url: https://aiengineeringfromscratch.com/lesson?path=phases/19-capstone-projects/87-end-to-end-safety-gate
