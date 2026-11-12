@@ -701,68 +701,97 @@ let activeComposeTaskId = null;
 let _allSyllabi = {};
 let _activeSyllabusKey = 'math-for-ml';
 
+let _embeddedSyllabiCache = null;
 function getEmbeddedSyllabi() {
+  if (_embeddedSyllabiCache) return _embeddedSyllabiCache;
   const el = document.getElementById('syllabi-data');
   try {
-    return el ? JSON.parse(el.textContent || '{}') : {};
+    _embeddedSyllabiCache = el ? JSON.parse(el.textContent || '{}') || {} : {};
   } catch (err) {
     console.error('Failed to parse embedded syllabi', err);
-    return {};
+    _embeddedSyllabiCache = {};
   }
+  return _embeddedSyllabiCache;
 }
 
+function slugify(s) {
+  return String(s == null ? '' : s).toLowerCase()
+    .replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Normalise one raw YAML syllabus into in-memory app state.
+ *
+ * Current schema:  sections: [{ id, title, subtitle, requires: [], tasks: [{ text, done, bonus, ... }] }]
+ * Legacy schema:   days: [{ title, label, blocks: [{ is_bonus, tasks: [...] }] }]   (still accepted)
+ *
+ * Internally each section is a "day" with blocks (current schema → exactly one implicit block),
+ * so the rest of the app keeps working on state.days[].blocks[].tasks[].
+ */
 function syllabusToState(raw) {
-  const meta = raw.meta || { title: 'Study Lock-In', subtitle: '' };
+  raw = raw || {};
+  const meta = { ...(raw.meta || {}) };
+  if (!meta.title) meta.title = 'Study Lock-In';
+  if (meta.subtitle == null) meta.subtitle = '';
   const rawState = raw.state || {};
   const days = [];
-  const checked = {};
-  const doneAt = {};
-  const comments = {};
-  const journal = {};
-  const timeLog = {};
-  const customResources = {};
+  const checked = {}, doneAt = {}, comments = {}, journal = {}, timeLog = {}, customResources = {};
 
-  (raw.days || []).forEach((rawDay, di) => {
-    const dayId = `day-${di + 1}`;
-    if (rawDay.journal) journal[dayId] = rawDay.journal;
-    if (rawDay.time_logged) timeLog[dayId] = rawDay.time_logged;
+  const readTask = (rawTask, taskId, forceBonus) => {
+    rawTask = rawTask || {};
+    if (rawTask.done) checked[taskId] = true;
+    if (rawTask.done_at) doneAt[taskId] = rawTask.done_at;
+    if (rawTask.comments && rawTask.comments.length) comments[taskId] = [...rawTask.comments];
+    if (rawTask.custom_resources && rawTask.custom_resources.length) customResources[taskId] = [...rawTask.custom_resources];
+    return {
+      id: taskId,
+      text: rawTask.text || '',
+      resources: rawTask.resources || [],
+      bonus: !!(rawTask.bonus || forceBonus),
+    };
+  };
 
-    const blocks = (rawDay.blocks || []).map((rawBlock, bi) => {
-      const blockId = `${dayId}-blk-${bi + 1}`;
-      const tasks = (rawBlock.tasks || []).map((rawTask, ti) => {
-        const taskId = `${blockId}-task-${ti + 1}`;
-        if (rawTask.done) checked[taskId] = true;
-        if (rawTask.done_at) doneAt[taskId] = rawTask.done_at;
-        if (rawTask.comments && rawTask.comments.length) comments[taskId] = [...rawTask.comments];
-        if (rawTask.custom_resources && rawTask.custom_resources.length) customResources[taskId] = [...rawTask.custom_resources];
-
+  if (Array.isArray(raw.sections)) {
+    const used = new Set();
+    raw.sections.forEach((sec, si) => {
+      sec = sec || {};
+      let id = slugify(sec.id) || slugify(sec.title) || `section-${si + 1}`;
+      if (used.has(id)) { let n = 2; while (used.has(`${id}-${n}`)) n++; id = `${id}-${n}`; }
+      used.add(id);
+      if (sec.journal) journal[id] = sec.journal;
+      if (sec.time_logged) timeLog[id] = sec.time_logged;
+      const title = sec.title || `Section ${si + 1}`;
+      days.push({
+        id,
+        title,
+        subtitle: sec.subtitle || '',
+        label: title,
+        requires: (sec.requires || []).map(r => String(r).trim()).filter(Boolean),
+        blocks: [{ id: `${id}-blk`, title: '', tasks: (sec.tasks || []).map((t, ti) => readTask(t, `${id}-t${ti + 1}`)) }],
+      });
+    });
+  } else {
+    // Legacy day/block schema — ids stay positional (day-N-blk-M-task-K) exactly as before.
+    (raw.days || []).forEach((rawDay, di) => {
+      const dayId = `day-${di + 1}`;
+      if (rawDay.journal) journal[dayId] = rawDay.journal;
+      if (rawDay.time_logged) timeLog[dayId] = rawDay.time_logged;
+      const blocks = (rawDay.blocks || []).map((rawBlock, bi) => {
+        const blockId = `${dayId}-blk-${bi + 1}`;
         return {
-          id: taskId,
-          text: rawTask.text || '',
-          resources: rawTask.resources || [],
+          id: blockId,
+          title: rawBlock.title || '',
+          tasks: (rawBlock.tasks || []).map((rawTask, ti) => readTask(rawTask, `${blockId}-task-${ti + 1}`, rawBlock.is_bonus)),
         };
       });
-
-      return {
-        id: blockId,
-        title: rawBlock.title || '',
-        badge: rawBlock.badge || 'morning',
-        icon: rawBlock.icon || '📌',
-        isBonus: !!rawBlock.is_bonus,
-        tasks: tasks,
-      };
+      const title = rawDay.title || `Section ${di + 1}`;
+      days.push({ id: dayId, title, subtitle: rawDay.subtitle || '', label: rawDay.label || title, requires: [], blocks });
     });
+  }
 
-    days.push({
-      id: dayId,
-      title: rawDay.title || `Day ${di + 1}`,
-      subtitle: rawDay.subtitle || '',
-      label: rawDay.label || `Day ${di + 1}`,
-      blocks: blocks,
-    });
-  });
-
+  const ids = new Set(days.map(d => d.id));
   const firstDay = days.length ? days[0].id : '';
+  const pick = (...c) => c.find(v => v && ids.has(v)) || firstDay;
 
   return {
     meta,
@@ -773,17 +802,59 @@ function syllabusToState(raw) {
     customResources,
     journal,
     timeLog,
-    activeDay: rawState.active_day || firstDay,
-    journalDay: rawState.journal_day || firstDay,
+    activeDay: pick(rawState.active_section, rawState.active_day),
+    journalDay: pick(rawState.journal_section, rawState.journal_day),
     startDate: rawState.start_date || null,
     theme: rawState.theme || 'dark',
   };
 }
 
+// ── Legacy id migration ───────────────────────────────────────────
+// _data/legacy_ids.yml maps old positional ids (day-4, day-4-blk-2-task-1) to the
+// section ids (llama-cpp, llama-cpp-t5) for progress that only lives in localStorage.
+// Safe to delete that file once every device has loaded the app once.
+let _legacyIds = null;
+function getLegacyIdMap(key) {
+  if (_legacyIds === null) {
+    const el = document.getElementById('legacy-ids');
+    try { _legacyIds = (el && JSON.parse(el.textContent || 'null')) || {}; } catch { _legacyIds = {}; }
+  }
+  return _legacyIds[key] || null;
+}
+
+/** Rewrite legacy ids inside a state-like object in place. Returns true if anything changed. */
+function migrateLegacyIds(obj, key) {
+  const map = getLegacyIdMap(key);
+  if (!map || !obj || typeof obj !== 'object') return false;
+  let changed = false;
+  for (const f of ['checked', 'doneAt', 'comments', 'customResources', 'journal', 'timeLog']) {
+    const src = obj[f];
+    if (!src || typeof src !== 'object') continue;
+    for (const k of Object.keys(src)) {
+      if (!map[k]) continue;
+      if (!(map[k] in src)) src[map[k]] = src[k];
+      delete src[k];
+      changed = true;
+    }
+  }
+  for (const f of ['activeDay', 'journalDay']) {
+    if (obj[f] && map[obj[f]]) { obj[f] = map[obj[f]]; changed = true; }
+  }
+  return changed;
+}
+
 function loadLocalOverrides(syllabusKey) {
   try {
-    const raw = localStorage.getItem(`study-lock-in:state:${syllabusKey}`);
-    return raw ? JSON.parse(raw) : null;
+    const storageKey = `study-lock-in:state:${syllabusKey}`;
+    const raw = localStorage.getItem(storageKey);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (migrateLegacyIds(parsed, syllabusKey)) {
+      delete parsed.days; // stale legacy structure; the YAML is the structure source of truth
+      localStorage.setItem(storageKey, JSON.stringify(parsed));
+      console.log('[migrate] legacy ids → section ids for', syllabusKey);
+    }
+    return parsed;
   } catch (e) {
     console.warn('Failed to parse local state', e);
     return null;
@@ -800,33 +871,35 @@ function saveLocalState() {
   }
 }
 
+/** Embedded (Jekyll-built) syllabus + this device's localStorage progress, for ANY syllabus key. */
+function getSyllabusState(key) {
+  const all = getEmbeddedSyllabi();
+  const raw = all[key] || { meta: { title: 'Study Tracker' }, sections: [] };
+  const base = syllabusToState(raw);
+  const o = loadLocalOverrides(key);
+  if (!o) return base;
+  const ids = new Set(base.days.map(d => d.id));
+  return {
+    ...base,
+    checked: { ...base.checked, ...(o.checked || {}) },
+    doneAt: { ...base.doneAt, ...(o.doneAt || {}) },
+    journal: { ...base.journal, ...(o.journal || {}) },
+    timeLog: { ...base.timeLog, ...(o.timeLog || {}) },
+    comments: { ...base.comments, ...(o.comments || {}) },
+    customResources: { ...base.customResources, ...(o.customResources || {}) },
+    activeDay: ids.has(o.activeDay) ? o.activeDay : base.activeDay,
+    journalDay: ids.has(o.journalDay) ? o.journalDay : base.journalDay,
+    startDate: o.startDate || base.startDate,
+    theme: o.theme || base.theme,
+  };
+}
+
 function loadStateForSyllabus(key) {
   _allSyllabi = getEmbeddedSyllabi();
-  const raw = _allSyllabi[key] || Object.values(_allSyllabi)[0] || { meta: { title: 'Study Tracker' }, days: [] };
-  const baseState = syllabusToState(raw);
-  const overrides = loadLocalOverrides(key);
-
-  if (overrides) {
-    // Overlay user progress onto base syllabus structure
-    state = {
-      ...baseState,
-      checked: { ...baseState.checked, ...(overrides.checked || {}) },
-      doneAt: { ...baseState.doneAt, ...(overrides.doneAt || {}) },
-      journal: { ...baseState.journal, ...(overrides.journal || {}) },
-      timeLog: { ...baseState.timeLog, ...(overrides.timeLog || {}) },
-      comments: { ...baseState.comments, ...(overrides.comments || {}) },
-      customResources: { ...baseState.customResources, ...(overrides.customResources || {}) },
-      activeDay: overrides.activeDay || baseState.activeDay,
-      journalDay: overrides.journalDay || baseState.journalDay,
-      startDate: overrides.startDate || baseState.startDate,
-      theme: overrides.theme || baseState.theme,
-    };
-  } else {
-    state = baseState;
-  }
-
-  _activeSyllabusKey = key;
-  localStorage.setItem('study-lock-in:active-syllabus', key);
+  const resolved = _allSyllabi[key] ? key : (Object.keys(_allSyllabi)[0] || key);
+  state = getSyllabusState(resolved);
+  _activeSyllabusKey = resolved;
+  localStorage.setItem('study-lock-in:active-syllabus', resolved);
   loadUIState();
 }
 
@@ -924,6 +997,7 @@ function loadUIState() {
     const raw = localStorage.getItem(_uiStateKey());
     if (!raw) { console.log('[ui-state] no saved UI state for', _uiStateKey()); return; }
     const ui = JSON.parse(raw);
+    migrateLegacyIds(ui, _activeSyllabusKey);
     // Only apply if the day still exists in the loaded syllabus
     const dayIds = new Set((state.days || []).map(d => d.id));
     if (ui.activeDay  && dayIds.has(ui.activeDay))  state.activeDay  = ui.activeDay;
@@ -1009,6 +1083,7 @@ function editDayField(dayId, field, el) {
   const day = findDay(dayId);
   if (!day) return;
   makeEditable(el, day[field] || '', newVal => {
+    if (field === 'title' && day.label === day.title) day.label = newVal; // label mirrors title in the sections schema
     day[field] = newVal;
     postEvent({ op: 'day_edit', id: dayId, [field]: newVal });
     if (field === 'label' || field === 'title') renderDayNav();
@@ -1161,7 +1236,7 @@ function renderApp() {
     <div class="stats-grid" id="statsGrid">
       <div class="stat-card"><div class="stat-card-icon tasks-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="stat-card-info"><span class="stat-card-value" id="completedTasks">0 / 0</span><span class="stat-card-label">Tasks Completed</span></div></div>
       <div class="stat-card"><div class="stat-card-icon bonus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stat-card-info"><span class="stat-card-value" id="bonusDone">0 / 0</span><span class="stat-card-label">Bonus Tasks Done</span></div></div>
-      <div class="stat-card"><div class="stat-card-icon days-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stat-card-info"><span class="stat-card-value" id="daysComplete">0 / 0</span><span class="stat-card-label">Days Completed</span></div></div>
+      <div class="stat-card"><div class="stat-card-icon days-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="stat-card-info"><span class="stat-card-value" id="daysComplete">0 / 0</span><span class="stat-card-label">Sections Done</span></div></div>
     </div>
 
     <div class="activity-heatmap" id="activityHeatmap">
@@ -1187,6 +1262,8 @@ function renderApp() {
       <div class="heatmap-body" id="heatmapBody"></div>
     </div>
 
+    <section class="syllabi-map" id="syllabiMap"></section>
+
     <nav class="day-nav" id="dayNav"></nav>
     <div id="addDayFormArea"></div>
     <main class="day-panels" id="dayPanels"></main>
@@ -1199,6 +1276,9 @@ function renderApp() {
       </button>
       <button class="bottom-nav-item" data-target="activityHeatmap" onclick="bottomNavGo('activityHeatmap')" title="Activity">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Activity</span>
+      </button>
+      <button class="bottom-nav-item" data-target="syllabiMap" onclick="bottomNavGo('syllabiMap')" title="Syllabi map">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h4a4 4 0 0 1 4 4M7 18h4a4 4 0 0 0 4-4M15 12h2"/></svg><span>Map</span>
       </button>
       <button class="bottom-nav-item" data-target="dayPanels" onclick="bottomNavGo('dayPanels')" title="Today's tasks">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span>Tasks</span>
@@ -1288,13 +1368,13 @@ function renderDayNav() {
     </button>`;
   });
   // Add day button
-  html += `<button class="day-pill add-day-pill" onclick="showAddDayForm()" title="Add a new day">
+  html += `<button class="day-pill add-day-pill" onclick="showAddDayForm()" title="Add a new section">
     <span class="day-pill-number">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20">
         <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
       </svg>
     </span>
-    <span class="day-pill-label">ADD DAY</span>
+    <span class="day-pill-label">ADD SECTION</span>
   </button>`;
   nav.innerHTML = html;
 
@@ -1309,84 +1389,59 @@ function renderDayNav() {
 function renderActivePanel() {
   const container = document.getElementById('dayPanels');
   const day = getActiveDay();
-  if (!day) { container.innerHTML = '<p class="empty-state">No days yet. Click <strong>+ ADD DAY</strong> to get started.</p>'; return; }
+  if (!day) { container.innerHTML = '<p class="empty-state">No sections yet. Click <strong>+ ADD SECTION</strong> to get started.</p>'; return; }
 
-  let totalTasks = 0, doneTasks = 0;
-  day.blocks.forEach(b => b.tasks.forEach(t => { totalTasks++; if (state.checked[t.id]) doneTasks++; }));
+  if (!day.blocks || !day.blocks.length) day.blocks = [{ id: `${day.id}-blk`, title: '', tasks: [] }];
+  const tasks = day.blocks.flatMap(b => b.tasks);
+  const addBlockId = day.blocks[day.blocks.length - 1].id;
+  const prog = sectionProgress(day, state.checked);
+
+  // Prerequisites (same-syllabus ids or "other-syllabus/section-id")
+  let reqHtml = '';
+  if ((day.requires || []).length) {
+    const model = buildSyllabiMap();
+    const chips = day.requires.map(ref => {
+      const id = resolveSectionRef(ref, _activeSyllabusKey);
+      const n = model.byId[id];
+      if (!n) return `<span class="req-chip is-ghost" title="Not found — treated as satisfied">✓ ${escapeHtml(ref)}</span>`;
+      const ok = model.satisfied(id);
+      const syl = model.sylByKey[n.key];
+      return `<button class="req-chip ${ok ? 'is-ok' : 'is-blocking'}" style="--c:${syl.color}" onclick="mapGo('${_jsq(n.key)}','${_jsq(n.sid)}')" title="${ok ? 'Done' : 'Not done yet'}">
+        ${ok ? '✓' : '○'} <i>${escapeHtml(syl.short)}</i> ${escapeHtml(n.title)}</button>`;
+    }).join('');
+    reqHtml = `<div class="section-requires"><span class="section-requires-label">Requires</span>${chips}</div>`;
+  }
 
   let html = `<div class="day-panel active">
     <div class="day-header">
       <h2 class="day-title editable" onclick="editDayField('${day.id}', 'title', this)" title="Click to edit title">${escapeHtml(day.title)}</h2>
       <p class="day-subtitle editable" onclick="editDayField('${day.id}', 'subtitle', this)" title="Click to edit subtitle">${escapeHtml(day.subtitle || 'Click to add subtitle…')}</p>
       <div class="day-meta">
-        <span class="day-progress-text">${doneTasks}/${totalTasks} tasks</span>
-        <span class="day-label-tag editable" onclick="editDayField('${day.id}', 'label', this)" title="Click to edit pill label">🏷️ ${escapeHtml(day.label)}</span>
-        ${state.days.length > 1 ? `<button class="meta-action-btn danger" onclick="removeDay('${day.id}')" title="Delete day">🗑️</button>` : ''}
+        <span class="day-progress-text">${prog.done}/${prog.total} tasks${prog.complete ? ' · ✓ section done' : ''}</span>
+        ${state.days.length > 1 ? `<button class="meta-action-btn danger" onclick="removeDay('${day.id}')" title="Delete section">🗑️</button>` : ''}
       </div>
-    </div>`;
-
-  day.blocks.forEach(block => {
-    let blockDone = 0;
-    block.tasks.forEach(t => { if (state.checked[t.id]) blockDone++; });
-    html += `<div class="block-card expanded" data-block="${block.id}">
-      <div class="block-header" onclick="toggleBlock(this)">
-        <div class="block-header-left">
-          <span class="block-icon">${block.icon || '📌'}</span>
-          <span class="block-title editable" onclick="event.stopPropagation(); editBlockTitle('${block.id}', this)" title="Click to edit">${escapeHtml(block.title)}</span>
-          <span class="block-badge badge-${block.badge || 'morning'}">${block.badge === 'bonus' ? '★ BONUS' : (block.badge || 'morning').toUpperCase()}</span>
-        </div>
-        <div class="block-header-right">
-          <span class="block-count">${blockDone}/${block.tasks.length}</span>
-          <button class="block-action-btn danger" onclick="event.stopPropagation(); removeBlock('${block.id}')" title="Remove block">×</button>
-          <span class="block-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M6 9l6 6 6-6"/></svg></span>
-        </div>
-      </div>
+      ${reqHtml}
+    </div>
+    <div class="block-card section-card expanded" data-block="${addBlockId}">
       <div class="block-content"><div class="block-tasks">`;
 
-    block.tasks.forEach(task => {
-      html += renderTask(task, day.id);
-    });
+  tasks.forEach(task => { html += renderTask(task, day.id); });
 
-    // Add task button
-    html += `<div class="add-task-row">
-        <button class="add-item-btn" onclick="showAddTaskForm('${block.id}')" id="add-task-trigger-${block.id}">
+  html += `<div class="add-task-row">
+        <button class="add-item-btn" onclick="showAddTaskForm('${addBlockId}')" id="add-task-trigger-${addBlockId}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Add task
         </button>
-        <div class="add-task-form" id="add-task-form-${block.id}" style="display:none">
-          <textarea placeholder="Task description..." class="add-item-input" id="add-task-input-${block.id}" rows="2" onkeydown="handleAddTaskKey(event, '${block.id}')"></textarea>
+        <div class="add-task-form" id="add-task-form-${addBlockId}" style="display:none">
+          <textarea placeholder="Task description..." class="add-item-input" id="add-task-input-${addBlockId}" rows="2" onkeydown="handleAddTaskKey(event, '${addBlockId}')"></textarea>
           <div class="add-item-actions">
-            <button class="resource-form-btn save" onclick="submitAddTask('${block.id}')">Add</button>
-            <button class="resource-form-btn cancel" onclick="cancelAddTask('${block.id}')">Cancel</button>
+            <button class="resource-form-btn save" onclick="submitAddTask('${addBlockId}')">Add</button>
+            <button class="resource-form-btn cancel" onclick="cancelAddTask('${addBlockId}')">Cancel</button>
           </div>
         </div>
       </div>`;
 
-    html += '</div></div></div>';
-  });
-
-  // Add block button
-  html += `<div class="add-block-area">
-    <button class="add-item-btn add-block-btn" onclick="showAddBlockForm('${day.id}')" id="add-block-trigger-${day.id}">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Add block
-    </button>
-    <div class="add-block-form" id="add-block-form-${day.id}" style="display:none">
-      <input type="text" placeholder="Block title (e.g. Morning — Theory)" class="add-item-input" id="add-block-title-${day.id}" onkeydown="handleAddBlockKey(event, '${day.id}')">
-      <div class="add-block-options">
-        <select class="add-block-select" id="add-block-badge-${day.id}">
-          <option value="morning">☀️ Morning</option><option value="afternoon">🔧 Afternoon</option>
-          <option value="evening">🌙 Evening</option><option value="bonus">⭐ Bonus</option>
-        </select>
-      </div>
-      <div class="add-item-actions">
-        <button class="resource-form-btn save" onclick="submitAddBlock('${day.id}')">Add</button>
-        <button class="resource-form-btn cancel" onclick="cancelAddBlock('${day.id}')">Cancel</button>
-      </div>
-    </div>
-  </div>`;
-
-  html += '</div>';
+  html += '</div></div></div></div>';
   container.innerHTML = html;
 }
 
@@ -1462,7 +1517,7 @@ function renderTask(task, dayId) {
   return `<div class="task-item ${doneClass} ${isComposing ? 'commenting' : ''}" data-task="${task.id}" id="task-${task.id}">
     <input type="checkbox" class="task-checkbox" ${checked} onchange="toggleTask('${task.id}', this)" onclick="event.stopPropagation()">
     <div class="task-info">
-      <span class="task-text editable" onclick="event.stopPropagation(); editTaskInline('${task.id}', this)" title="Click to edit">${escapeHtml(task.text)}</span>
+      ${task.bonus ? '<span class="task-bonus-tag" title="Bonus — optional, does not block section completion">★ bonus</span>' : ''}<span class="task-text editable" onclick="event.stopPropagation(); editTaskInline('${task.id}', this)" title="Click to edit">${escapeHtml(task.text)}</span>
       ${resourceHtml}
     </div>
     <div class="task-actions">
@@ -1484,20 +1539,20 @@ function renderJournal() {
   const section = document.getElementById('journalSection');
   if (!state.days.length) { section.innerHTML = ''; return; }
 
-  let tabsHtml = state.days.map((d, i) => {
+  let tabsHtml = state.days.map(d => {
     const isActive = d.id === state.journalDay;
     const hasContent = state.journal[d.id] && state.journal[d.id].trim();
     return `<button class="journal-tab ${isActive ? 'active' : ''} ${hasContent ? 'has-content' : ''}"
-      data-jday="${d.id}" onclick="switchJournalDay('${d.id}')">Day ${i + 1}</button>`;
+      data-jday="${d.id}" onclick="switchJournalDay('${d.id}')" title="${escapeHtml(d.title)}">${escapeHtml(d.label || d.title)}</button>`;
   }).join('');
 
   const currentText = state.journal[state.journalDay] || '';
 
   section.innerHTML = `
-    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Daily Journal</h2>
+    <h2 class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Section Journal</h2>
     <div class="journal-tabs">${tabsHtml}</div>
     <div class="journal-area">
-      <textarea id="journalText" placeholder="What did you learn today? Key takeaways, aha moments...">${escapeHtml(currentText)}</textarea>
+      <textarea id="journalText" placeholder="What did you learn in this section? Key takeaways, aha moments...">${escapeHtml(currentText)}</textarea>
       <button class="journal-save" id="journalSave">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Note
       </button>
@@ -1518,29 +1573,19 @@ function updateStats() {
   let totalTasks = 0, completedTasks = 0, totalBonus = 0, completedBonus = 0, daysComplete = 0;
 
   state.days.forEach(day => {
-    let dayDone = 0, dayTotal = 0, dayAllDone = 0, dayAllTotal = 0;
     day.blocks.forEach(block => {
       block.tasks.forEach(task => {
-        dayAllTotal++;
-        if (state.checked[task.id]) dayAllDone++;
-        if (block.isBonus) {
-          totalBonus++;
-          if (state.checked[task.id]) completedBonus++;
-        } else {
-          totalTasks++; dayTotal++;
-          if (state.checked[task.id]) { completedTasks++; dayDone++; }
-        }
+        const done = !!state.checked[task.id];
+        if (task.bonus) { totalBonus++; if (done) completedBonus++; }
+        else { totalTasks++; if (done) completedTasks++; }
       });
     });
-    // Update day pill bar
+    const p = sectionProgress(day, state.checked);
     const bar = document.getElementById('dayBar-' + day.id);
-    if (bar) bar.style.width = (dayAllTotal > 0 ? (dayAllDone / dayAllTotal) * 100 : 0) + '%';
-    // Day complete check
+    if (bar) bar.style.width = (p.pct * 100) + '%';
     const pill = document.querySelector(`.day-pill[data-day="${day.id}"]`);
-    if (pill) {
-      if (dayTotal > 0 && dayDone === dayTotal) { pill.classList.add('completed'); daysComplete++; }
-      else pill.classList.remove('completed');
-    }
+    if (pill) pill.classList.toggle('completed', p.complete);
+    if (p.complete) daysComplete++;
   });
 
   const pct = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
@@ -1552,16 +1597,24 @@ function updateStats() {
   el('daysComplete').textContent = `${daysComplete} / ${state.days.length}`;
 
   el('streakCount').textContent = calculateStreak() + ' 🔥';
+  renderSyllabiMap();
+}
+
+/** Progress of one section. Bonus tasks never block completion (unless a section has only bonus tasks). */
+function sectionProgress(day, checked) {
+  let req = 0, reqDone = 0, all = 0, allDone = 0;
+  for (const b of (day.blocks || [])) for (const t of (b.tasks || [])) {
+    const c = !!(checked && checked[t.id]);
+    all++; if (c) allDone++;
+    if (!t.bonus) { req++; if (c) reqDone++; }
+  }
+  const total = req || all, done = req ? reqDone : allDone;
+  return { done, total, pct: total ? done / total : 0, complete: total > 0 && done === total };
 }
 
 function isDayComplete(dayId) {
   const day = findDay(dayId);
-  if (!day) return false;
-  for (const block of day.blocks) {
-    if (block.isBonus) continue;
-    for (const task of block.tasks) { if (!state.checked[task.id]) return false; }
-  }
-  return day.blocks.some(b => !b.isBonus && b.tasks.length > 0);
+  return !!day && sectionProgress(day, state.checked).complete;
 }
 
 function calculateStreak() {
@@ -1580,17 +1633,17 @@ function switchDay(dayId) {
   console.log('[ui-state] activeDay →', dayId);
   document.querySelectorAll('.day-pill').forEach(p => p.classList.toggle('active', p.dataset.day === dayId));
   renderActivePanel();
+  renderSyllabiMap();
 }
 
 function showAddDayForm() {
   const area = document.getElementById('addDayFormArea');
   area.innerHTML = `<div class="add-day-form-panel">
-    <h3>Add New Day</h3>
-    <input type="text" placeholder="Title (e.g. Day 3: Advanced Topics)" class="add-item-input" id="addDayTitle" autofocus>
-    <input type="text" placeholder="Subtitle (e.g. Deep dive into advanced material)" class="add-item-input" id="addDaySubtitle">
-    <input type="text" placeholder="Short label (e.g. Advanced)" class="add-item-input" id="addDayLabel">
+    <h3>Add Section</h3>
+    <input type="text" placeholder="Title (e.g. Attention Mechanisms)" class="add-item-input" id="addDayTitle" autofocus>
+    <input type="text" placeholder="Subtitle (optional)" class="add-item-input" id="addDaySubtitle">
     <div class="add-item-actions">
-      <button class="resource-form-btn save" onclick="submitAddDay()">Add Day</button>
+      <button class="resource-form-btn save" onclick="submitAddDay()">Add Section</button>
       <button class="resource-form-btn cancel" onclick="cancelAddDay()">Cancel</button>
     </div>
   </div>`;
@@ -1607,9 +1660,10 @@ function submitAddDay() {
   const title = document.getElementById('addDayTitle').value.trim();
   if (!title) { showToast('⚠️ Title is required'); return; }
   const subtitle = document.getElementById('addDaySubtitle').value.trim();
-  const label = document.getElementById('addDayLabel').value.trim() || title.split(':').pop().trim();
-  const dayId = uid('day');
-  const day = { id: dayId, title, subtitle, label, blocks: [] };
+  const base = slugify(title) || 'section';
+  let dayId = base, n = 2;
+  while (findDay(dayId)) dayId = `${base}-${n++}`;
+  const day = { id: dayId, title, subtitle, label: title, requires: [], blocks: [{ id: `${dayId}-blk`, title: '', tasks: [] }] };
   state.days.push(day);
   postEvent({ op: 'day_add', day });
   cancelAddDay();
@@ -1617,13 +1671,13 @@ function submitAddDay() {
   renderJournal();
   switchDay(dayId);
   updateStats();
-  showToast('📅 Day added');
+  showToast('📅 Section added — export to keep it');
 }
 
 // editDayField, editBlockTitle, editTaskInline — defined in INLINE EDITING section above
 
 function removeDay(dayId) {
-  if (!confirm('Delete this day and all its tasks? This cannot be undone.')) return;
+  if (!confirm('Delete this section and all its tasks? This cannot be undone.')) return;
   state.days = state.days.filter(d => d.id !== dayId);
   postEvent({ op: 'day_rm', id: dayId });
   if (state.activeDay === dayId) state.activeDay = state.days.length ? state.days[0].id : '';
@@ -1632,7 +1686,7 @@ function removeDay(dayId) {
   renderActivePanel();
   renderJournal();
   updateStats();
-  showToast('🗑️ Day removed');
+  showToast('🗑️ Section removed');
 }
 
 // ===== BLOCK MANAGEMENT =====
@@ -1698,7 +1752,7 @@ function toggleTask(taskId, checkbox) {
     const taskText = item.querySelector('.task-text');
     if (taskText) dropTrophy(taskText.textContent.trim());
     const dayId = findDayForTask(taskId);
-    if (dayId && isDayComplete(dayId)) { fireDayComplete(); showToast('🎉 Day complete!'); }
+    if (dayId && isDayComplete(dayId)) { fireDayComplete(); showToast('🎉 Section complete!'); }
   } else {
     // Remove from trophy pile when unchecked
     const taskText = item.querySelector('.task-text');
@@ -2132,7 +2186,7 @@ function showToast(message) {
 
 // ===== RESET =====
 function resetAll() {
-  if (!confirm('🗑️ Reset ALL progress for this syllabus? Checkboxes, time, journal, and comments will be cleared. Structure (days/tasks) is kept.')) return;
+  if (!confirm('🗑️ Reset ALL progress for this syllabus? Checkboxes, time, journal, and comments will be cleared. Structure (sections/tasks) is kept.')) return;
   state.checked = {};
   state.doneAt = {};
   state.journal = {};
@@ -2178,88 +2232,81 @@ function downloadBlob(blob, filename) {
   setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
 }
 
+function _yq(v) { return JSON.stringify(v == null ? '' : String(v)); }
+
+/** Multiline text as a `|-` block scalar when that round-trips exactly, else a quoted string. */
+function _yamlText(key, text, indent) {
+  const pad = ' '.repeat(indent);
+  const t = String(text);
+  const blockSafe = t.includes('\n') && !t.includes('\r') && !/^[ \t]/.test(t) && !/\n$/.test(t);
+  if (!blockSafe) return [`${pad}${key}: ${_yq(t)}`];
+  return [`${pad}${key}: |-`, ...t.split('\n').map(l => (l ? `${pad}  ${l}` : ''))];
+}
+
+/** Serialise state to the `_data/syllabi/*.yml` schema (see CLAUDE.md). Output is deterministic. */
 function stateToYaml(s) {
   const lines = [];
-  lines.push('# Study Lock-In — Syllabus & State (Single Source of Truth)');
-  lines.push('# Exported: ' + new Date().toISOString());
+  lines.push('# Study Lock-In syllabus — curriculum + progress. Exported by the app; edit freely.');
   lines.push('');
   lines.push('meta:');
-  lines.push(`  title: ${JSON.stringify(s.meta?.title || 'Study Tracker')}`);
-  lines.push(`  subtitle: ${JSON.stringify(s.meta?.subtitle || '')}`);
+  const meta = s.meta || {};
+  lines.push(`  title: ${_yq(meta.title || 'Study Tracker')}`);
+  lines.push(`  subtitle: ${_yq(meta.subtitle || '')}`);
+  for (const [k, v] of Object.entries(meta)) {
+    if (k === 'title' || k === 'subtitle' || v == null || v === '') continue;
+    if (typeof v === 'string') lines.push(`  ${k}: ${_yq(v)}`);
+    else if (typeof v === 'number' || typeof v === 'boolean') lines.push(`  ${k}: ${v}`);
+  }
   lines.push('');
   lines.push('state:');
-  lines.push(`  theme: ${JSON.stringify(s.theme || 'dark')}`);
-  lines.push(`  active_day: ${JSON.stringify(s.activeDay || '')}`);
-  lines.push(`  journal_day: ${JSON.stringify(s.journalDay || '')}`);
-  if (s.startDate) lines.push(`  start_date: ${JSON.stringify(s.startDate)}`);
+  lines.push(`  theme: ${_yq(s.theme || 'dark')}`);
+  lines.push(`  active_section: ${_yq(s.activeDay || '')}`);
+  lines.push(`  journal_section: ${_yq(s.journalDay || '')}`);
+  if (s.startDate) lines.push(`  start_date: ${_yq(s.startDate)}`);
   lines.push('');
-  lines.push('days:');
+  lines.push('sections:');
 
-  for (const day of (s.days || [])) {
-    lines.push(`  - title: ${JSON.stringify(day.title || '')}`);
-    lines.push(`    subtitle: ${JSON.stringify(day.subtitle || '')}`);
-    lines.push(`    label: ${JSON.stringify(day.label || '')}`);
-    
-    const j = s.journal?.[day.id] || '';
-    if (j.includes('\n')) {
-      lines.push('    journal: |');
-      for (const line of j.split('\n')) {
-        lines.push(`      ${line}`);
-      }
-    } else {
-      lines.push(`    journal: ${JSON.stringify(j)}`);
+  for (const sec of (s.days || [])) {
+    lines.push(`  - id: ${_yq(sec.id)}`);
+    lines.push(`    title: ${_yq(sec.title || '')}`);
+    if (sec.subtitle) lines.push(`    subtitle: ${_yq(sec.subtitle)}`);
+    const reqs = sec.requires || [];
+    if (reqs.length) {
+      lines.push('    requires:');
+      for (const r of reqs) lines.push(`      - ${_yq(r)}`);
     }
+    const j = s.journal?.[sec.id] || '';
+    if (j) lines.push(..._yamlText('journal', j, 4));
+    const tl = s.timeLog?.[sec.id] || 0;
+    if (tl) lines.push(`    time_logged: ${tl}`);
 
-    const tl = s.timeLog?.[day.id] || 0;
-    lines.push(`    time_logged: ${tl}`);
-    lines.push('    blocks:');
-
-    for (const block of (day.blocks || [])) {
-      lines.push(`      - title: ${JSON.stringify(block.title || '')}`);
-      lines.push(`        badge: ${JSON.stringify(block.badge || 'morning')}`);
-      lines.push(`        icon: ${JSON.stringify(block.icon || '📌')}`);
-      if (block.isBonus) lines.push('        is_bonus: true');
-      lines.push('        tasks:');
-
-      for (const task of (block.tasks || [])) {
-        lines.push(`          - text: ${JSON.stringify(task.text || '')}`);
-        const isDone = !!s.checked?.[task.id];
-        lines.push(`            done: ${isDone}`);
-        const doneAt = s.doneAt?.[task.id];
-        if (isDone && doneAt) {
-          lines.push(`            done_at: ${JSON.stringify(doneAt)}`);
-        }
-
-        const cmts = s.comments?.[task.id] || [];
-        if (cmts.length) {
-          lines.push('            comments:');
-          for (const c of cmts) lines.push(`              - ${JSON.stringify(c)}`);
-        } else {
-          lines.push('            comments: []');
-        }
-
-        const resList = task.resources || [];
-        if (resList.length) {
-          lines.push('            resources:');
-          for (const r of resList) {
-            lines.push(`              - label: ${JSON.stringify(r.label || '')}`);
-            lines.push(`                url: ${JSON.stringify(r.url || '')}`);
-          }
-        }
-
-        const custRes = s.customResources?.[task.id] || [];
-        if (custRes.length) {
-          lines.push('            custom_resources:');
-          for (const cr of custRes) {
-            lines.push(`              - label: ${JSON.stringify(cr.label || '')}`);
-            lines.push(`                url: ${JSON.stringify(cr.url || '')}`);
-          }
+    const tasks = (sec.blocks || []).flatMap(b => b.tasks || []);
+    if (!tasks.length) { lines.push('    tasks: []'); continue; }
+    lines.push('    tasks:');
+    for (const task of tasks) {
+      lines.push(`      - text: ${_yq(task.text || '')}`);
+      const isDone = !!s.checked?.[task.id];
+      lines.push(`        done: ${isDone}`);
+      if (task.bonus) lines.push('        bonus: true');
+      const doneAt = s.doneAt?.[task.id];
+      if (isDone && doneAt) lines.push(`        done_at: ${_yq(doneAt)}`);
+      const cmts = s.comments?.[task.id] || [];
+      if (cmts.length) {
+        lines.push('        comments:');
+        for (const c of cmts) lines.push(`          - ${_yq(c)}`);
+      }
+      for (const [key, list] of [['resources', task.resources || []], ['custom_resources', s.customResources?.[task.id] || []]]) {
+        if (!list.length) continue;
+        lines.push(`        ${key}:`);
+        for (const r of list) {
+          lines.push(`          - label: ${_yq(r.label || '')}`);
+          lines.push(`            url: ${_yq(r.url || '')}`);
         }
       }
     }
   }
 
-  return lines.join("\n") + "\n";
+  return lines.join('\n') + '\n';
 }
 
 function exportSyllabus() {
@@ -2292,11 +2339,30 @@ function importSyllabusFile() {
       const text = await file.text();
       if (file.name.endsWith('.json')) {
         const imported = JSON.parse(text);
-        if (imported.days) {
-          state = imported;
+        if (Array.isArray(imported.days)) {
+          const legacyMap = getLegacyIdMap(_activeSyllabusKey);
+          const isLegacyBackup = !!legacyMap && imported.days.some(d => legacyMap[d.id]);
+          for (const f of ['checked', 'doneAt', 'journal', 'timeLog', 'comments', 'customResources']) {
+            if (!imported[f] || typeof imported[f] !== 'object') imported[f] = {};
+          }
+          if (isLegacyBackup) {
+            // Backup from before the sections migration: keep today's structure, carry the progress over.
+            migrateLegacyIds(imported, _activeSyllabusKey);
+            for (const f of ['checked', 'doneAt', 'journal', 'timeLog', 'comments', 'customResources']) state[f] = imported[f];
+            if (findDay(imported.activeDay)) state.activeDay = imported.activeDay;
+            if (findDay(imported.journalDay)) state.journalDay = imported.journalDay;
+            if (imported.startDate) state.startDate = imported.startDate;
+          } else {
+            imported.days.forEach(d => { d.blocks = d.blocks || []; d.requires = d.requires || []; d.label = d.label || d.title; });
+            imported.meta = imported.meta || state.meta;
+            state = imported;
+          }
           saveLocalState();
           renderApp();
-          showToast(`📦 Imported ${imported.days.length} days`);
+          renderHeatmap(getActivityLog());
+          showToast(`📦 Imported ${state.days.length} sections${isLegacyBackup ? ' (migrated from old backup)' : ''}`);
+        } else {
+          alert('That JSON is not a Study Lock-In state backup (no "days" array).');
         }
       } else {
         alert('To import YAML, you can replace the file in _data/syllabi/ and push to GitHub, or export as JSON.');
@@ -2306,6 +2372,396 @@ function importSyllabusFile() {
     }
   };
   input.click();
+}
+
+// ===== SYLLABI MAP (aerial overview of every syllabus in _data/syllabi) =====
+// Read-only view over the same data as everything else: embedded syllabi JSON + localStorage progress.
+// Nodes are sections; edges are the section order inside a syllabus plus each section's `requires:`.
+const MAP_COLORS = ['#5B7046', '#B07A2E', '#4F6D8F', '#7A5C8E', '#A0573F', '#3F7A73', '#8E5A74', '#5C6470'];
+const MAP_VIEW_KEY = 'study-lock-in:map-view';           // auto | graph | list
+const MAP_COLLAPSED_KEY = 'study-lock-in:map-collapsed';  // "true" | unset
+
+function _jsq(s) { return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
+function _shortTitle(t) { return String(t || '').split(/[\s/:—-]+/).filter(Boolean)[0] || ''; }
+
+function syllabusColor(key, meta) {
+  if (meta && /^#[0-9a-f]{3,8}$/i.test(String(meta.color || ''))) return meta.color;
+  let h = 0;
+  for (const c of String(key)) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return MAP_COLORS[h % MAP_COLORS.length];
+}
+
+/** "other-syllabus/section-id" or "section-id" (same syllabus) → global node id "key/section-id". */
+function resolveSectionRef(ref, fromKey) {
+  const r = String(ref || '').trim();
+  const i = r.indexOf('/');
+  return i > 0 ? `${r.slice(0, i).trim()}/${slugify(r.slice(i + 1))}` : `${fromKey}/${slugify(r)}`;
+}
+
+function buildSyllabiMap() {
+  const all = getEmbeddedSyllabi();
+  const syllabi = Object.keys(all).map(key => {
+    const st = (key === _activeSyllabusKey && state) ? state : getSyllabusState(key);
+    const meta = st.meta || {};
+    const status = String(meta.status || 'active').toLowerCase();
+    const nodes = (st.days || []).map((d, i) => ({
+      id: `${key}/${d.id}`, key, sid: d.id, index: i,
+      title: d.label || d.title, fullTitle: d.title,
+      requires: d.requires || [],
+      ...sectionProgress(d, st.checked || {}),
+    }));
+    const done = nodes.filter(n => n.complete).length;
+    const taskDone = nodes.reduce((a, n) => a + n.done, 0), taskTotal = nodes.reduce((a, n) => a + n.total, 0);
+    return {
+      key, status, nodes, done,
+      title: meta.title || key,
+      short: meta.short || _shortTitle(meta.title || key),
+      taskPct: taskTotal ? taskDone / taskTotal : 0,
+      color: syllabusColor(key, meta),
+      activeSid: st.activeDay,
+      pct: nodes.length ? done / nodes.length : 0,
+    };
+  });
+
+  const byId = {}, sylByKey = {};
+  syllabi.forEach(s => { sylByKey[s.key] = s; s.nodes.forEach(n => { byId[n.id] = n; }); });
+
+  // A prerequisite is satisfied when it is complete, its syllabus is marked done, or it no longer exists.
+  const satisfied = id => {
+    const n = byId[id];
+    if (!n) return true;
+    return sylByKey[n.key].status === 'done' || n.complete;
+  };
+
+  syllabi.forEach(s => s.nodes.forEach((n, i) => {
+    n.prereqs = [];
+    if (i > 0) n.prereqs.push({ id: s.nodes[i - 1].id, implicit: true });
+    n.requires.forEach(ref => {
+      const id = resolveSectionRef(ref, s.key);
+      if (id !== n.id) n.prereqs.push({ id, implicit: false, ref });
+    });
+  }));
+  syllabi.forEach(s => s.nodes.forEach(n => {
+    n.blockedBy = n.prereqs.filter(p => !satisfied(p.id));
+    n.inProgress = !n.complete && n.done > 0;
+    n.ready = s.status === 'active' && !n.complete && n.blockedBy.length === 0;
+  }));
+
+  return { syllabi, byId, sylByKey, satisfied };
+}
+
+/** Column = longest prerequisite chain among visible nodes, so every arrow points right. */
+function _mapColumns(nodes, byId) {
+  const visible = new Set(nodes.map(n => n.id));
+  const col = {}, visiting = new Set();
+  const depth = n => {
+    if (n.id in col) return col[n.id];
+    if (visiting.has(n.id)) return 0; // cycle guard — a cyclic `requires` just stops pushing right
+    visiting.add(n.id);
+    let d = 0;
+    for (const p of n.prereqs) if (visible.has(p.id)) d = Math.max(d, depth(byId[p.id]) + 1);
+    visiting.delete(n.id);
+    return (col[n.id] = d);
+  };
+  nodes.forEach(depth);
+  return col;
+}
+
+function _nodeState(n) {
+  return n.complete ? 'is-complete' : n.ready ? 'is-ready' : n.inProgress ? 'is-progress' : n.blockedBy.length ? 'is-blocked' : '';
+}
+
+function _nodeTooltip(n, model) {
+  const lines = [`${n.fullTitle}`, `${n.done}/${n.total} tasks${n.complete ? ' — done' : ''}`];
+  const reqs = n.prereqs.filter(p => !p.implicit);
+  if (reqs.length) {
+    lines.push('Requires:');
+    reqs.forEach(p => {
+      const r = model.byId[p.id];
+      lines.push(`  ${model.satisfied(p.id) ? '✓' : '○'} ${r ? `${model.sylByKey[r.key].title} › ${r.title}` : `${p.ref} (missing)`}`);
+    });
+  }
+  return lines.join('\n');
+}
+
+function _renderMapGraph(model, lanes) {
+  const NODE_W = 148, NODE_H = 50, GAP_X = 30, LANE_H = 96, PAD_X = 14, PAD_Y = 18;
+  const nodes = lanes.flatMap(s => s.nodes);
+  const col = _mapColumns(nodes, model.byId);
+  const maxCol = Math.max(0, ...Object.values(col));
+  const width = PAD_X * 2 + (maxCol + 1) * NODE_W + maxCol * GAP_X;
+  const height = Math.max(1, lanes.length) * LANE_H;
+  const pos = {};
+  lanes.forEach((s, li) => s.nodes.forEach(n => {
+    pos[n.id] = { x: PAD_X + col[n.id] * (NODE_W + GAP_X), y: li * LANE_H + PAD_Y + (n.index % 2 ? 10 : 0) };
+  }));
+
+  const curve = (a, b) => {
+    const sx = a.x + NODE_W, sy = a.y + NODE_H / 2, tx = b.x, ty = b.y + NODE_H / 2;
+    const m = Math.max(24, (tx - sx) / 2);
+    return `M${sx},${sy} C${sx + m},${sy} ${tx - m},${ty} ${tx},${ty}`;
+  };
+
+  let bands = '', edges = '', cross = '', boxes = '';
+  lanes.forEach((s, li) => {
+    bands += `<rect class="map-band ${li % 2 ? 'odd' : ''}" x="0" y="${li * LANE_H}" width="${width}" height="${LANE_H}"/>`;
+  });
+  const act = _activeSyllabusKey;
+  const keyOf = id => id.slice(0, id.indexOf('/'));
+  nodes.forEach(n => n.prereqs.forEach(p => {
+    if (!pos[p.id]) return;
+    const other = n.key !== act && keyOf(p.id) !== act ? ' is-other' : '';
+    if (p.implicit) edges += `<path class="map-edge${other}" d="${curve(pos[p.id], pos[n.id])}" marker-end="url(#mapArrow)"/>`;
+    else {
+      const ok = model.satisfied(p.id);
+      cross += `<path class="map-edge-x ${ok ? 'ok' : ''}${other}" d="${curve(pos[p.id], pos[n.id])}" marker-end="url(#${ok ? 'mapArrowOk' : 'mapArrowX'})"><title>${escapeHtml(_nodeTooltip(n, model))}</title></path>`;
+    }
+  }));
+  lanes.forEach(s => s.nodes.forEach(n => {
+    const { x, y } = pos[n.id];
+    const isCurrent = s.key === _activeSyllabusKey && n.sid === state.activeDay;
+    const hiddenReqs = n.prereqs.filter(p => !p.implicit && !pos[p.id]);
+    const icon = n.complete ? '✓' : n.ready ? '★' : n.inProgress ? '▸' : n.blockedBy.length ? '⧗' : '○';
+    let sub = n.complete ? 'done' : `${n.done}/${n.total}`;
+    if (!n.complete && hiddenReqs.some(p => !model.satisfied(p.id))) sub += ' · needs other';
+    const label = n.title.length > 18 ? n.title.slice(0, 17) + '…' : n.title;
+    boxes += `<g class="map-node ${_nodeState(n)} ${s.status === 'paused' ? 'is-paused' : ''} ${isCurrent ? 'is-current' : ''} ${s.key !== act ? 'is-other' : ''}"
+        data-node="${escapeHtml(n.id)}" style="--c:${s.color}" onclick="mapGo('${_jsq(s.key)}','${_jsq(n.sid)}')" tabindex="0" role="button"
+        onkeydown="if(event.key==='Enter')mapGo('${_jsq(s.key)}','${_jsq(n.sid)}')">
+      <title>${escapeHtml(_nodeTooltip(n, model))}</title>
+      <rect class="map-box" x="${x}" y="${y}" width="${NODE_W}" height="${NODE_H}" rx="10"/>
+      ${n.inProgress ? `<rect class="map-fill" x="${x + 2}" y="${y + NODE_H - 6}" width="${Math.max(4, (NODE_W - 4) * n.pct)}" height="4" rx="2"/>` : ''}
+      <text class="map-label" x="${x + 10}" y="${y + 21}">${icon} ${escapeHtml(label)}</text>
+      <text class="map-sub" x="${x + 10}" y="${y + 38}">${escapeHtml(sub)}</text>
+    </g>`;
+  }));
+
+  const labels = lanes.map(s => `<div class="map-lane-label${s.key !== act ? ' is-other' : ''}" style="--c:${s.color};height:${LANE_H}px" title="${escapeHtml(s.title)}">
+      <span class="map-lane-name">${escapeHtml(s.title)}</span>
+      <span class="map-lane-meta">${Math.round(s.taskPct * 100)}% · ${s.done}/${s.nodes.length} done${s.status === 'paused' ? ' · paused' : ''}</span>
+    </div>`).join('');
+
+  return `<div class="map-graph">
+    <div class="map-lane-labels">${labels}</div>
+    <div class="map-graph-scroll">
+      <svg class="map-svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="mapArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="map-arrow" d="M0,0L10,5L0,10z"/></marker>
+          <marker id="mapArrowOk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="map-arrow-ok" d="M0,0L10,5L0,10z"/></marker>
+          <marker id="mapArrowX" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="map-arrow-x" d="M0,0L10,5L0,10z"/></marker>
+        </defs>
+        ${bands}${edges}${cross}${boxes}
+      </svg>
+    </div>
+  </div>`;
+}
+
+function _renderMapList(lanes) {
+  return `<div class="map-list">${lanes.map(s => `
+    <div class="map-lane ${s.status === 'paused' ? 'is-paused' : ''} ${s.key !== _activeSyllabusKey ? 'is-other' : ''}" style="--c:${s.color}">
+      <div class="map-lane-head">
+        <span class="map-lane-dot"></span>
+        <span class="map-lane-name">${escapeHtml(s.title)}</span>
+        <span class="map-lane-meta">${Math.round(s.taskPct * 100)}% · ${s.done}/${s.nodes.length} done${s.status === 'paused' ? ' · paused' : ''}</span>
+      </div>
+      <div class="map-lane-strip">${s.nodes.map(n => {
+        const isCurrent = s.key === _activeSyllabusKey && n.sid === state.activeDay;
+        const icon = n.complete ? '✓' : n.ready ? '★' : n.inProgress ? '▸' : n.blockedBy.length ? '⧗' : '○';
+        return `<button class="map-chip ${_nodeState(n)} ${isCurrent ? 'is-current' : ''}" data-node="${escapeHtml(n.id)}"
+            onclick="mapGo('${_jsq(s.key)}','${_jsq(n.sid)}')" title="${escapeHtml(n.fullTitle)} — ${n.done}/${n.total}">
+          <span class="map-chip-fill" style="width:${n.complete ? 100 : Math.round(n.pct * 100)}%"></span>
+          <span class="map-chip-text">${icon} ${escapeHtml(n.title)}</span></button>`;
+      }).join('')}</div>
+    </div>`).join('')}</div>`;
+}
+
+/** Aerial view: one node per syllabus; an edge A → B when any section of B requires a section of A. */
+function _renderMapAerial(model) {
+  const syl = model.syllabi;
+  if (!syl.length) return '';
+  const edges = {};
+  syl.forEach(s => s.nodes.forEach(n => n.prereqs.forEach(p => {
+    if (p.implicit) return;
+    const from = p.id.slice(0, p.id.indexOf('/'));
+    if (from === s.key || !model.sylByKey[from]) return;
+    const k = `${from}>${s.key}`;
+    (edges[k] = edges[k] || { from, to: s.key, count: 0, open: 0 }).count++;
+    if (!model.satisfied(p.id)) edges[k].open++;
+  })));
+  const list = Object.values(edges);
+
+  // Column = longest chain of syllabus-level prerequisites (cycle-guarded)
+  const col = {}, visiting = new Set();
+  const depth = key => {
+    if (key in col) return col[key];
+    if (visiting.has(key)) return 0;
+    visiting.add(key);
+    let d = 0;
+    list.forEach(e => { if (e.to === key) d = Math.max(d, depth(e.from) + 1); });
+    visiting.delete(key);
+    return (col[key] = d);
+  };
+  syl.forEach(s => depth(s.key));
+  const cols = [];
+  syl.forEach(s => (cols[col[s.key]] = cols[col[s.key]] || []).push(s));
+
+  const vertical = window.innerWidth <= 720;
+  const maxPer = Math.max(...cols.map(c => (c || []).length));
+  const H = 92, GAP_MAIN = vertical ? 46 : 70, GAP_CROSS = vertical ? 10 : 18, PAD = vertical ? 8 : 16;
+  const hostW = Math.min(document.getElementById('syllabiMap')?.clientWidth || 9999, document.documentElement.clientWidth - 24) - 34;
+  const W = vertical ? Math.max(130, Math.min(260, Math.floor((hostW - PAD * 2 - (maxPer - 1) * GAP_CROSS) / maxPer))) : 210;
+  const crossLen = maxPer * (vertical ? W : H) + (maxPer - 1) * GAP_CROSS;
+  const pos = {};
+  cols.forEach((c, ci) => (c || []).forEach((s, i) => {
+    const len = c.length * (vertical ? W : H) + (c.length - 1) * GAP_CROSS;
+    const off = (crossLen - len) / 2 + i * ((vertical ? W : H) + GAP_CROSS);
+    pos[s.key] = vertical
+      ? { x: PAD + off, y: PAD + ci * (H + GAP_MAIN) }
+      : { x: PAD + ci * (W + GAP_MAIN), y: PAD + off };
+  }));
+  const width = vertical ? crossLen + PAD * 2 : PAD * 2 + cols.length * W + (cols.length - 1) * GAP_MAIN;
+  const height = vertical ? PAD * 2 + cols.length * H + (cols.length - 1) * GAP_MAIN : crossLen + PAD * 2;
+
+  const paths = list.map(e => {
+    const a = pos[e.from], b = pos[e.to];
+    let d, mx, my;
+    if (vertical) {
+      const sx = a.x + W / 2, sy = a.y + H, tx = b.x + W / 2, ty = b.y, m = Math.max(20, (ty - sy) / 2);
+      d = `M${sx},${sy} C${sx},${sy + m} ${tx},${ty - m} ${tx},${ty}`; mx = (sx + tx) / 2; my = (sy + ty) / 2;
+    } else {
+      const sx = a.x + W, sy = a.y + H / 2, tx = b.x, ty = b.y + H / 2, m = Math.max(24, (tx - sx) / 2);
+      d = `M${sx},${sy} C${sx + m},${sy} ${tx - m},${ty} ${tx},${ty}`; mx = (sx + tx) / 2; my = (sy + ty) / 2;
+    }
+    const ok = e.open === 0;
+    return `<path class="map-edge-x ${ok ? 'ok' : ''}" d="${d}" marker-end="url(#aerialArrow${ok ? 'Ok' : ''})"/>
+      <text class="aerial-edge-label" x="${mx}" y="${my - 4}" text-anchor="middle">${e.count} link${e.count > 1 ? 's' : ''}${ok ? ' ✓' : ''}</text>`;
+  }).join('');
+
+  const cards = syl.map(s => {
+    const p = pos[s.key], current = s.key === _activeSyllabusKey;
+    const ready = s.nodes.filter(n => n.ready).length;
+    return `<button class="aerial-node ${current ? 'is-current' : ''} status-${escapeHtml(s.status)}" style="--c:${s.color};left:${p.x}px;top:${p.y}px;width:${W}px;height:${H}px"
+        onclick="aerialGo('${_jsq(s.key)}')" title="${escapeHtml(s.title)} — open">
+      <span class="aerial-name">${escapeHtml(s.title)}</span>
+      <span class="aerial-meta">${Math.round(s.taskPct * 100)}% · ${s.done}/${s.nodes.length} sections${s.status !== 'active' ? ` · ${escapeHtml(s.status)}` : ''}${ready ? ` · ★${ready}` : ''}</span>
+      <span class="aerial-bar"><span style="width:${Math.round(s.taskPct * 100)}%"></span></span>
+    </button>`;
+  }).join('');
+
+  return `<div class="map-aerial"><div class="aerial-canvas" style="width:${width}px;height:${height}px">
+    <svg class="aerial-svg" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="aerialArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="map-arrow-x" d="M0,0L10,5L0,10z"/></marker>
+        <marker id="aerialArrowOk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="map-arrow-ok" d="M0,0L10,5L0,10z"/></marker>
+      </defs>${paths}</svg>${cards}</div></div>`;
+}
+
+/** Aerial node click: load that syllabus (stays in aerial view). */
+function aerialGo(key) {
+  if (key !== _activeSyllabusKey) switchSyllabus(key);
+  else renderSyllabiMap();
+  const target = document.getElementById('dayNav');
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderSyllabiMap() {
+  const host = document.getElementById('syllabiMap');
+  if (!host || !state) return;
+  const model = buildSyllabiMap();
+  const lanes = model.syllabi.filter(s => s.status === 'active' || s.status === 'paused')
+    .sort((a, b) => (a.status === 'paused') - (b.status === 'paused'));
+  const others = model.syllabi.filter(s => !lanes.includes(s));
+  const view = localStorage.getItem(MAP_VIEW_KEY) || 'auto';
+  const collapsed = localStorage.getItem(MAP_COLLAPSED_KEY) === 'true';
+
+  // Up next: what you're in the middle of, then what's unblocked — per active syllabus.
+  const upNext = [];
+  lanes.filter(s => s.status === 'active').forEach(s => {
+    const prog = s.nodes.filter(n => n.inProgress);
+    const ready = s.nodes.filter(n => n.ready && !n.inProgress);
+    [...prog, ...ready].slice(0, 2).forEach(n => upNext.push({ s, n }));
+  });
+
+  const prevGraph = host.querySelector('.map-graph-scroll');
+  const keepScroll = prevGraph ? prevGraph.scrollLeft : null;
+  const prevStrips = [...host.querySelectorAll('.map-lane-strip')].map(el => el.scrollLeft);
+
+  const totalSections = lanes.reduce((a, s) => a + s.nodes.length, 0);
+  const doneSections = lanes.reduce((a, s) => a + s.done, 0);
+
+  host.className = `syllabi-map view-${view}${collapsed ? ' collapsed' : ''}`;
+  host.innerHTML = `
+    <div class="map-header">
+      <button class="map-title" onclick="toggleMapCollapsed()" title="Collapse / expand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h4a4 4 0 0 1 4 4v0M7 18h4a4 4 0 0 0 4-4v0M15 12h2"/></svg>
+        Syllabi Map
+        <span class="map-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <span class="map-summary">${lanes.filter(s => s.status === 'active').length} active · ${doneSections}/${totalSections} sections done</span>
+      <div class="map-view-toggle" role="group" aria-label="Map view">
+        <button class="${view === 'graph' ? 'on' : ''}" onclick="setMapView('graph')" title="Dependency graph">Graph</button>
+        <button class="${view === 'list' ? 'on' : ''}" onclick="setMapView('list')" title="Compact lanes">List</button>
+        <button class="${view === 'auto' ? 'on' : ''}" onclick="setMapView('auto')" title="Graph on desktop, list on phone">Auto</button>
+        <button class="${view === 'aerial' ? 'on' : ''}" onclick="setMapView('aerial')" title="One node per syllabus">Aerial</button>
+      </div>
+    </div>
+    <div class="map-body">
+      <div class="map-upnext">
+        <span class="map-upnext-label">Up next</span>
+        ${upNext.length ? upNext.map(({ s, n }) => `<button class="map-next-chip ${n.inProgress ? 'is-progress' : 'is-ready'} ${s.key !== _activeSyllabusKey ? 'is-other' : ''}" style="--c:${s.color}" onclick="mapGo('${_jsq(s.key)}','${_jsq(n.sid)}')">
+            <i>${escapeHtml(s.short)}</i><span>${n.inProgress ? '▸' : '★'} ${escapeHtml(n.title)}</span><b>${n.done}/${n.total}</b></button>`).join('')
+          : '<span class="map-empty">Nothing unblocked — everything is done or waiting on a prerequisite. 🎉</span>'}
+      </div>
+      ${view === 'aerial' ? _renderMapAerial(model) : lanes.length ? _renderMapGraph(model, lanes) + _renderMapList(lanes) : '<p class="map-empty">No active syllabi. Set <code>meta.status: active</code> in a syllabus file.</p>'}
+      ${others.length ? `<div class="map-others">${others.map(s => `<button class="map-other" style="--c:${s.color}" onclick="switchSyllabus('${_jsq(s.key)}')" title="meta.status: ${escapeHtml(s.status)}">
+          <span class="map-lane-dot"></span>${escapeHtml(s.title)} <em>${escapeHtml(s.status)}</em> <b>${Math.round(s.taskPct * 100)}%</b></button>`).join('')}</div>` : ''}
+      <div class="map-legend">
+        <span><b class="lg lg-complete"></b>done</span><span><b class="lg lg-progress"></b>▸ in progress</span>
+        <span><b class="lg lg-ready"></b>★ ready</span><span><b class="lg lg-blocked"></b>⧗ waiting on prereq</span>
+        <span><b class="lg lg-cross"></b>cross-syllabus prereq</span>
+      </div>
+    </div>`;
+
+  // Restore scroll positions, or centre on where you are.
+  const graph = host.querySelector('.map-graph-scroll');
+  const centre = (scroller, el) => {
+    if (!scroller || !el) return;
+    const sr = scroller.getBoundingClientRect(), er = el.getBoundingClientRect();
+    scroller.scrollLeft += (er.left - sr.left) - (sr.width - er.width) / 2;
+  };
+  if (graph) {
+    if (keepScroll != null) graph.scrollLeft = keepScroll;
+    else centre(graph, graph.querySelector('.map-node.is-current') || graph.querySelector('.map-node.is-ready'));
+  }
+  host.querySelectorAll('.map-lane-strip').forEach((strip, i) => {
+    if (prevStrips.length === host.querySelectorAll('.map-lane-strip').length) strip.scrollLeft = prevStrips[i];
+    else centre(strip, strip.querySelector('.map-chip.is-current') || strip.querySelector('.map-chip.is-progress, .map-chip.is-ready'));
+  });
+}
+
+function setMapView(view) {
+  localStorage.setItem(MAP_VIEW_KEY, view);
+  const host = document.getElementById('syllabiMap');
+  if (host) host.innerHTML = ''; // drop remembered scroll so the new view centres itself
+  renderSyllabiMap();
+}
+
+function toggleMapCollapsed() {
+  const collapsed = localStorage.getItem(MAP_COLLAPSED_KEY) === 'true';
+  if (collapsed) localStorage.removeItem(MAP_COLLAPSED_KEY); else localStorage.setItem(MAP_COLLAPSED_KEY, 'true');
+  renderSyllabiMap();
+}
+
+/** Jump from the map to a section (switching syllabus if needed). */
+function mapGo(key, sid) {
+  if (key !== _activeSyllabusKey) switchSyllabus(key);
+  if (findDay(sid)) {
+    switchDay(sid);
+    renderDayNav();
+    updateStats();
+  }
+  const target = document.getElementById('dayNav');
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ===== SYLLABUS SWITCHER =====
@@ -2538,6 +2994,12 @@ function fetchActivity() {
   return Promise.resolve(getActivityLog());
 }
 
+let _heatmapResizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(_heatmapResizeTimer);
+  _heatmapResizeTimer = setTimeout(() => { if (document.getElementById('heatmapBody') && state) renderHeatmap(); }, 150);
+});
+
 function renderHeatmap(activityLog) {
   activityLog = activityLog || getActivityLog();
   if (!Array.isArray(activityLog)) activityLog = [];
@@ -2694,6 +3156,16 @@ function renderHeatmap(activityLog) {
   // Month labels live inside the scrollable body so they scroll with the grid on narrow screens
   html += '<div class="heatmap-months"></div>';
   body.innerHTML = html;
+
+  // Desktop: grow the cells so the year fills the card width (phones keep the fixed small cells + scroll).
+  body.style.removeProperty('--hm-cell');
+  if (window.innerWidth > 768 && weeks.length) {
+    const labelsW = body.querySelector('.heatmap-day-labels').offsetWidth + 4;
+    const gap = 2, monthGap = 4 * monthStartWeeks.size;
+    const avail = body.clientWidth - labelsW - monthGap;
+    const size = Math.max(11, Math.min(20, Math.floor((avail + gap) / weeks.length) - gap));
+    body.style.setProperty('--hm-cell', size + 'px');
+  }
 
   // Position month labels from the rendered week columns, so they stay aligned
   // whatever cell size the current breakpoint uses.

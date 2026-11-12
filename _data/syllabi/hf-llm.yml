@@ -1,841 +1,593 @@
+# Study Lock-In syllabus — curriculum + progress. Exported by the app; edit freely.
+
 meta:
-  title: HuggingFace LLM Course
-  subtitle: 12 chapters — from Transformer fundamentals to building reasoning models
+  title: "HuggingFace LLM Course"
+  subtitle: "12 chapters — from Transformer fundamentals to building reasoning models"
+  status: "active"
+  short: "HF"
+  color: "#4F6D8F"
+
 state:
-  theme: dark
-  active_day: day-1
-  journal_day: day-1
-  start_date: '2026-11-07T10:07:11.762Z'
-days:
-- title: 'Prerequisites & Chapter 0: Setup'
-  subtitle: ''
-  label: Setup
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Prerequsites - Fast.ai DL Course
-    badge: morning
-    icon: 📚
+  theme: "dark"
+  active_section: "setup"
+  journal_section: "setup"
+  start_date: "2026-11-07T10:07:11.762Z"
+
+sections:
+  - id: "setup"
+    title: "Setup"
+    subtitle: "Prerequisites & Setup"
     tasks:
-    - text: 'Lesson 1:  Practical Deep Learning for Coders'
-      done: true
-      done_at: '2026-11-07T19:03:56Z'
-      comments: []
-      custom_resources:
-      - label: Lesson 1
-        url: https://youtu.be/8SF_h3xF3cE?si=GYXLgqvjG4waMlQm
-    - text: 'Lesson 2:  Practical Deep Learning for Coders'
-      done: true
-      done_at: '2026-11-08T17:23:11Z'
-      comments: []
-    - text: 'Lesson 3:  Practical Deep Learning for Coders'
-      done: false
-      comments: []
-    - text: 'Lesson 4:  Practical Deep Learning for Coders'
-      done: false
-      comments: []
-    - text: 'Lesson 5:  Practical Deep Learning for Coders'
-      done: false
-      comments: []
-    - text: 'Lesson 6:  Practical Deep Learning for Coders'
-      done: false
-      comments: []
-    - text: 'Lesson 7:  Practical Deep Learning for Coders'
-      done: false
-      comments: []
-    - text: 'Lesson 8:  Practical Deep Learning for Coders'
-      done: false
-      comments: []
-  - title: HuggingFace Setup
-    badge: afternoon
-    icon: 🔧
+      - text: "Lesson 1:  Practical Deep Learning for Coders"
+        done: true
+        done_at: "2026-11-07T19:03:56Z"
+        custom_resources:
+          - label: "Lesson 1"
+            url: "https://youtu.be/8SF_h3xF3cE?si=GYXLgqvjG4waMlQm"
+      - text: "Lesson 2:  Practical Deep Learning for Coders"
+        done: true
+        done_at: "2026-11-08T17:23:11Z"
+      - text: "Lesson 3:  Practical Deep Learning for Coders"
+        done: false
+      - text: "Lesson 4:  Practical Deep Learning for Coders"
+        done: false
+      - text: "Lesson 5:  Practical Deep Learning for Coders"
+        done: false
+      - text: "Lesson 6:  Practical Deep Learning for Coders"
+        done: false
+      - text: "Lesson 7:  Practical Deep Learning for Coders"
+        done: false
+      - text: "Lesson 8:  Practical Deep Learning for Coders"
+        done: false
+      - text: "Chapter 0 - Setup"
+        done: false
+        custom_resources:
+          - label: "Intro"
+            url: "https://huggingface.co/learn/llm-course/chapter0/1"
+  - id: "transformers"
+    title: "Transformers"
+    subtitle: "Transformer models"
+    requires:
+      - "math-for-ml/dot-product"
     tasks:
-    - text: Chapter 0 - Setup
-      done: false
-      comments: []
-      custom_resources:
-      - label: Intro
-        url: https://huggingface.co/learn/llm-course/chapter0/1
-- title: 'Chapter 1: Transformer models'
-  subtitle: ''
-  label: Transformers
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/1"
+      - text: "Natural Language Processing and Large Language Models"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/2"
+      - text: "Transformers, what can they do?"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/3"
+      - text: "How do Transformers work?"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/4"
+      - text: "How 🤗 Transformers solve tasks"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/5"
+      - text: "Transformer Architectures"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/6"
+      - text: "Quick quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/7"
+      - text: "Inference with LLMs"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/8"
+      - text: "Bias and limitations"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/9"
+      - text: "Summary"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/10"
+      - text: "Certification exam"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter1/11"
+  - id: "pipelines"
+    title: "Pipelines"
+    subtitle: "Using 🤗 Transformers"
     tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/1
-    - text: Natural Language Processing and Large Language Models
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/2
-    - text: Transformers, what can they do?
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/3
-    - text: How do Transformers work?
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/1"
+      - text: "Behind the pipeline"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/2"
+      - text: "Models"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/3"
+      - text: "Tokenizers"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/4"
+      - text: "Handling multiple sequences"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/5"
+      - text: "Putting it all together"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/6"
+      - text: "Basic usage completed!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/7"
+      - text: "Optimized Inference Deployment"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/8"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter2/9"
+  - id: "fine-tuning"
+    title: "Fine-tuning"
+    subtitle: "Fine-tuning a pretrained model"
+    requires:
+      - "math-for-ml/gradient-descent"
     tasks:
-    - text: How 🤗 Transformers solve tasks
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/5
-    - text: Transformer Architectures
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/6
-    - text: Quick quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/7
-    - text: Inference with LLMs
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/8
-  - title: Part 3
-    badge: evening
-    icon: 📚
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter3/1"
+      - text: "Processing the data"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter3/2"
+      - text: "Fine-tuning a model with the Trainer API"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter3/3"
+      - text: "A full training loop"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter3/4"
+      - text: "Understanding Learning Curves"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter3/5"
+      - text: "Fine-tuning, Check!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter3/6"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter3/7"
+  - id: "sharing"
+    title: "Sharing"
+    subtitle: "Sharing models and tokenizers"
     tasks:
-    - text: Bias and limitations
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/9
-    - text: Summary
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/10
-    - text: Certification exam
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter1/11
-- title: 'Chapter 2: Using 🤗 Transformers'
-  subtitle: ''
-  label: Pipelines
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
+      - text: "The Hugging Face Hub"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter4/1"
+      - text: "Using pretrained models"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter4/2"
+      - text: "Sharing pretrained models"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter4/3"
+      - text: "Building a model card"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter4/4"
+      - text: "Part 1 completed!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter4/5"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter4/6"
+  - id: "datasets"
+    title: "Datasets"
+    subtitle: "The 🤗 Datasets library"
     tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/1
-    - text: Behind the pipeline
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/2
-    - text: Models
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/3
-    - text: Tokenizers
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter5/1"
+      - text: "What if my dataset isn't on the Hub?"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter5/2"
+      - text: "Time to slice and dice"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter5/3"
+      - text: "Big data? 🤗 Datasets to the rescue!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter5/4"
+      - text: "Creating your own dataset"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter5/5"
+      - text: "Semantic search with FAISS"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter5/6"
+      - text: "🤗 Datasets, check!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter5/7"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter5/8"
+  - id: "tokenizers"
+    title: "Tokenizers"
+    subtitle: "The 🤗 Tokenizers library"
     tasks:
-    - text: Handling multiple sequences
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/5
-    - text: Putting it all together
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/6
-    - text: Basic usage completed!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/7
-    - text: Optimized Inference Deployment
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/8
-  - title: Part 3
-    badge: evening
-    icon: 📚
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/1"
+      - text: "Training a new tokenizer from an old one"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/2"
+      - text: "Fast tokenizers' special powers"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/3"
+      - text: "Fast tokenizers in the QA pipeline"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/3b"
+      - text: "Normalization and pre-tokenization"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/4"
+      - text: "Byte-Pair Encoding tokenization"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/5"
+      - text: "WordPiece tokenization"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/6"
+      - text: "Unigram tokenization"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/7"
+      - text: "Building a tokenizer, block by block"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/8"
+      - text: "Tokenizers, check!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/9"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter6/10"
+  - id: "nlp-tasks"
+    title: "NLP Tasks"
+    subtitle: "Classical NLP tasks"
     tasks:
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter2/9
-- title: 'Chapter 3: Fine-tuning a pretrained model'
-  subtitle: ''
-  label: Fine-tuning
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/1"
+      - text: "Token classification"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/2"
+      - text: "Fine-tuning a masked language model"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/3"
+      - text: "Translation"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/4"
+      - text: "Summarization"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/5"
+      - text: "Training a causal language model from scratch"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/6"
+      - text: "Question answering"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/7"
+      - text: "Mastering LLMs"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/8"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter7/9"
+  - id: "debugging"
+    title: "Debugging"
+    subtitle: "How to ask for help"
     tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter3/1
-    - text: Processing the data
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter3/2
-    - text: Fine-tuning a model with the Trainer API
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter3/3
-    - text: A full training loop
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter3/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter8/1"
+      - text: "What to do when you get an error"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter8/2"
+      - text: "Asking for help on the forums"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter8/3"
+      - text: "Debugging the training pipeline"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter8/4"
+      - text: "How to write a good issue"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter8/5"
+      - text: "Part 2 completed!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter8/6"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter8/7"
+  - id: "demos"
+    title: "Demos"
+    subtitle: "Building and sharing demos — I trained a model, but how can I show it off?"
     tasks:
-    - text: Understanding Learning Curves
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter3/5
-    - text: Fine-tuning, Check!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter3/6
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter3/7
-- title: 'Chapter 4: Sharing models and tokenizers'
-  subtitle: ''
-  label: Sharing
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
+      - text: "Introduction to Gradio"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/1"
+      - text: "Building your first demo"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/2"
+      - text: "Understanding the Interface class"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/3"
+      - text: "Sharing demos with others"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/4"
+      - text: "Integrations with the Hugging Face Hub"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/5"
+      - text: "Advanced Interface features"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/6"
+      - text: "Introduction to Blocks"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/7"
+      - text: "Gradio, check!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/8"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter9/9"
+  - id: "curation"
+    title: "Curation"
+    subtitle: "Curate high-quality datasets — How to use Argilla to create amazing datasets"
     tasks:
-    - text: The Hugging Face Hub
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter4/1
-    - text: Using pretrained models
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter4/2
-    - text: Sharing pretrained models
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter4/3
-    - text: Building a model card
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter4/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
+      - text: "Introduction to Argilla"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter10/1"
+      - text: "Set up your Argilla instance"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter10/2"
+      - text: "Load your dataset to Argilla"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter10/3"
+      - text: "Annotate your dataset"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter10/4"
+      - text: "Use your annotated dataset"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter10/5"
+      - text: "Argilla, check!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter10/6"
+      - text: "End-of-chapter quiz"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter10/7"
+  - id: "sft-lora"
+    title: "SFT & LoRA"
+    subtitle: "Fine-tune Large Language Models — Use Supervised Fine-tuning and Low-Rank Adaptation to fine-tune a large language model"
     tasks:
-    - text: Part 1 completed!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter4/5
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter4/6
-- title: 'Chapter 5: The 🤗 Datasets library'
-  subtitle: ''
-  label: Datasets
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter11/1"
+      - text: "Chat Templates"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter11/2"
+      - text: "Fine-Tuning with SFTTrainer"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter11/3"
+      - text: "LoRA (Low-Rank Adaptation)"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter11/4"
+      - text: "Evaluation"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter11/5"
+      - text: "Conclusion"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter11/6"
+      - text: "Exam Time!"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter11/7"
+  - id: "reasoning"
+    title: "Reasoning"
+    subtitle: "Build Reasoning Models — Learn how to build reasoning models like DeepSeek R1"
     tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter5/1
-    - text: What if my dataset isn't on the Hub?
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter5/2
-    - text: Time to slice and dice
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter5/3
-    - text: Big data? 🤗 Datasets to the rescue!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter5/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
-    tasks:
-    - text: Creating your own dataset
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter5/5
-    - text: Semantic search with FAISS
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter5/6
-    - text: 🤗 Datasets, check!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter5/7
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter5/8
-- title: 'Chapter 6: The 🤗 Tokenizers library'
-  subtitle: ''
-  label: Tokenizers
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
-    tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/1
-    - text: Training a new tokenizer from an old one
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/2
-    - text: Fast tokenizers' special powers
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/3
-    - text: Fast tokenizers in the QA pipeline
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/3b
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
-    tasks:
-    - text: Normalization and pre-tokenization
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/4
-    - text: Byte-Pair Encoding tokenization
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/5
-    - text: WordPiece tokenization
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/6
-    - text: Unigram tokenization
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/7
-  - title: Part 3
-    badge: evening
-    icon: 📚
-    tasks:
-    - text: Building a tokenizer, block by block
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/8
-    - text: Tokenizers, check!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/9
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter6/10
-- title: 'Chapter 7: Classical NLP tasks'
-  subtitle: ''
-  label: NLP Tasks
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
-    tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/1
-    - text: Token classification
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/2
-    - text: Fine-tuning a masked language model
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/3
-    - text: Translation
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
-    tasks:
-    - text: Summarization
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/5
-    - text: Training a causal language model from scratch
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/6
-    - text: Question answering
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/7
-    - text: Mastering LLMs
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/8
-  - title: Part 3
-    badge: evening
-    icon: 📚
-    tasks:
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter7/9
-- title: 'Chapter 8: How to ask for help'
-  subtitle: ''
-  label: Debugging
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
-    tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter8/1
-    - text: What to do when you get an error
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter8/2
-    - text: Asking for help on the forums
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter8/3
-    - text: Debugging the training pipeline
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter8/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
-    tasks:
-    - text: How to write a good issue
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter8/5
-    - text: Part 2 completed!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter8/6
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter8/7
-- title: 'Chapter 9: Building and sharing demos'
-  subtitle: I trained a model, but how can I show it off?
-  label: Demos
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
-    tasks:
-    - text: Introduction to Gradio
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/1
-    - text: Building your first demo
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/2
-    - text: Understanding the Interface class
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/3
-    - text: Sharing demos with others
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
-    tasks:
-    - text: Integrations with the Hugging Face Hub
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/5
-    - text: Advanced Interface features
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/6
-    - text: Introduction to Blocks
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/7
-    - text: Gradio, check!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/8
-  - title: Part 3
-    badge: evening
-    icon: 📚
-    tasks:
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter9/9
-- title: 'Chapter 10: Curate high-quality datasets'
-  subtitle: How to use Argilla to create amazing datasets
-  label: Curation
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
-    tasks:
-    - text: Introduction to Argilla
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter10/1
-    - text: Set up your Argilla instance
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter10/2
-    - text: Load your dataset to Argilla
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter10/3
-    - text: Annotate your dataset
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter10/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
-    tasks:
-    - text: Use your annotated dataset
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter10/5
-    - text: Argilla, check!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter10/6
-    - text: End-of-chapter quiz
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter10/7
-- title: 'Chapter 11: Fine-tune Large Language Models'
-  subtitle: Use Supervised Fine-tuning and Low-Rank Adaptation to fine-tune a large
-    language model
-  label: SFT & LoRA
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
-    tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter11/1
-    - text: Chat Templates
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter11/2
-    - text: Fine-Tuning with SFTTrainer
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter11/3
-    - text: LoRA (Low-Rank Adaptation)
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter11/4
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
-    tasks:
-    - text: Evaluation
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter11/5
-    - text: Conclusion
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter11/6
-    - text: Exam Time!
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter11/7
-- title: 'Chapter 12: Build Reasoning Models'
-  subtitle: Learn how to build reasoning models like DeepSeek R1
-  label: Reasoning
-  journal: ''
-  time_logged: 0
-  blocks:
-  - title: Part 1
-    badge: morning
-    icon: 📚
-    tasks:
-    - text: Introduction
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter12/1
-    - text: Reinforcement Learning on LLMs
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter12/2
-    - text: The Aha Moment in the DeepSeek R1 Paper
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter12/3
-    - text: Advanced Understanding of GRPO in DeepSeekMath
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter12/3b
-  - title: Part 2
-    badge: afternoon
-    icon: 📚
-    tasks:
-    - text: Implementing GRPO in TRL
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter12/4
-    - text: Practical Exercise to Fine-tune a model with GRPO
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter12/5
-    - text: Practical Exercise with Unsloth
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter12/6
-    - text: Coming soon...
-      done: false
-      comments: []
-      resources:
-      - label: HuggingFace
-        url: https://huggingface.co/learn/llm-course/chapter12/7
+      - text: "Introduction"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter12/1"
+      - text: "Reinforcement Learning on LLMs"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter12/2"
+      - text: "The Aha Moment in the DeepSeek R1 Paper"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter12/3"
+      - text: "Advanced Understanding of GRPO in DeepSeekMath"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter12/3b"
+      - text: "Implementing GRPO in TRL"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter12/4"
+      - text: "Practical Exercise to Fine-tune a model with GRPO"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter12/5"
+      - text: "Practical Exercise with Unsloth"
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter12/6"
+      - text: "Coming soon..."
+        done: false
+        resources:
+          - label: "HuggingFace"
+            url: "https://huggingface.co/learn/llm-course/chapter12/7"
