@@ -1,0 +1,239 @@
+# Study Lock-In syllabus — curriculum + progress. Exported by the app; edit freely.
+
+meta:
+  title: "Practical Deep Learning for Coders"
+  subtitle: "fast.ai Part 1 (2022) by Jeremy Howard — 8 lessons, top-down: build first, theory after"
+  status: "active"
+  short: "fast.ai"
+  color: "#A0573F"
+
+state:
+  theme: "dark"
+  active_section: "getting-started"
+  journal_section: "getting-started"
+
+sections:
+  - id: "getting-started"
+    title: "Getting Started"
+    subtitle: "Lesson 1 — Is it a bird? Train an image classifier from your own data in a few lines"
+    tasks:
+      - text: "Watch Lesson 1: Getting started"
+        done: false
+        resources:
+          - label: "Lesson 1 video"
+            url: "https://www.youtube.com/watch?v=8SF_h3xF3cE"
+          - label: "Lesson 1 page"
+            url: "https://course.fast.ai/Lessons/lesson1.html"
+      - text: "Set up Kaggle and learn the basics of Jupyter notebooks"
+        done: false
+        resources:
+          - label: "Jupyter Notebook 101"
+            url: "https://www.kaggle.com/code/jhoward/jupyter-notebook-101"
+      - text: "Run and then modify 'Is it a bird?' with your own categories"
+        done: false
+        resources:
+          - label: "Is it a bird? (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/is-it-a-bird-creating-a-model-from-your-own-data"
+      - text: "Read fastbook chapter 1 (Intro)"
+        done: false
+        resources:
+          - label: "fastbook 01_intro"
+            url: "https://github.com/fastai/fastbook/blob/master/01_intro.ipynb"
+      - text: "Answer the chapter 1 questionnaire"
+        done: false
+        bonus: true
+  - id: "deployment"
+    title: "Deployment"
+    subtitle: "Lesson 2 — Clean your data with the model, then ship it as a Gradio app on Hugging Face Spaces"
+    tasks:
+      - text: "Watch Lesson 2: Deployment"
+        done: false
+        resources:
+          - label: "Lesson 2 video"
+            url: "https://www.youtube.com/watch?v=F4tvM4Vb3A0"
+          - label: "Lesson 2 page"
+            url: "https://course.fast.ai/Lessons/lesson2.html"
+      - text: "Export your Lesson 1 model and deploy it as a Gradio app on Hugging Face Spaces"
+        done: false
+      - text: "Read fastbook chapter 2 (Production)"
+        done: false
+        resources:
+          - label: "fastbook 02_production"
+            url: "https://github.com/fastai/fastbook/blob/master/02_production.ipynb"
+      - text: "Answer the chapter 2 questionnaire"
+        done: false
+        bonus: true
+  - id: "neural-net-foundations"
+    title: "Neural Net Foundations"
+    subtitle: "Lesson 3 — How a neural net really works: ReLUs, gradient descent and a model in a spreadsheet"
+    tasks:
+      - text: "Watch Lesson 3: Neural net foundations"
+        done: false
+        resources:
+          - label: "Lesson 3 video"
+            url: "https://www.youtube.com/watch?v=hBBOjCiFcuo"
+          - label: "Lesson 3 page"
+            url: "https://course.fast.ai/Lessons/lesson3.html"
+      - text: "Work through 'How does a neural net really work?'"
+        done: false
+        resources:
+          - label: "How does a neural net really work? (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/how-does-a-neural-net-really-work"
+      - text: "Explore 'Which image models are best?' and try a different architecture on your Lesson 1 data"
+        done: false
+        resources:
+          - label: "Which image models are best? (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/which-image-models-are-best"
+      - text: "Read fastbook chapter 4 (MNIST basics)"
+        done: false
+        resources:
+          - label: "fastbook 04_mnist_basics"
+            url: "https://github.com/fastai/fastbook/blob/master/04_mnist_basics.ipynb"
+      - text: "Answer the chapter 4 questionnaire"
+        done: false
+        bonus: true
+  - id: "nlp"
+    title: "Natural Language (NLP)"
+    subtitle: "Lesson 4 — Fine-tune a pretrained transformer with Hugging Face for a Kaggle NLP competition"
+    tasks:
+      - text: "Watch Lesson 4: Natural Language (NLP)"
+        done: false
+        resources:
+          - label: "Lesson 4 video"
+            url: "https://www.youtube.com/watch?v=toUgBQv1BT8"
+          - label: "Lesson 4 page"
+            url: "https://course.fast.ai/Lessons/lesson4.html"
+      - text: "Work through 'Getting started with NLP for absolute beginners'"
+        done: false
+        resources:
+          - label: "NLP for absolute beginners (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/getting-started-with-nlp-for-absolute-beginners"
+      - text: "Read fastbook chapter 10 (NLP)"
+        done: false
+        resources:
+          - label: "fastbook 10_nlp"
+            url: "https://github.com/fastai/fastbook/blob/master/10_nlp.ipynb"
+      - text: "Answer the chapter 10 questionnaire"
+        done: false
+        bonus: true
+  - id: "from-scratch-model"
+    title: "From-Scratch Model"
+    subtitle: "Lesson 5 — Build a linear model and neural net from scratch on Titanic, then see why frameworks help"
+    tasks:
+      - text: "Watch Lesson 5: From-scratch model"
+        done: false
+        resources:
+          - label: "Lesson 5 video"
+            url: "https://www.youtube.com/watch?v=_rXzeWq4C6w"
+          - label: "Lesson 5 page"
+            url: "https://course.fast.ai/Lessons/lesson5.html"
+      - text: "Work through 'Linear model and neural net from scratch'"
+        done: false
+        resources:
+          - label: "Linear model & neural net from scratch (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/linear-model-and-neural-net-from-scratch"
+      - text: "Work through 'Why you should use a framework'"
+        done: false
+        resources:
+          - label: "Why you should use a framework (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/why-you-should-use-a-framework"
+      - text: "Re-read fastbook chapter 4 with the from-scratch code in mind"
+        done: false
+        resources:
+          - label: "fastbook 04_mnist_basics"
+            url: "https://github.com/fastai/fastbook/blob/master/04_mnist_basics.ipynb"
+  - id: "random-forests"
+    title: "Random Forests"
+    subtitle: "Lesson 6 — Decision trees, random forests, and starting the 'Road to the Top' Kaggle series"
+    tasks:
+      - text: "Watch Lesson 6: Random forests"
+        done: false
+        resources:
+          - label: "Lesson 6 video"
+            url: "https://www.youtube.com/watch?v=AdhG64NF76E"
+          - label: "Lesson 6 page"
+            url: "https://course.fast.ai/Lessons/lesson6.html"
+      - text: "Work through 'How random forests really work'"
+        done: false
+        resources:
+          - label: "How random forests really work (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/how-random-forests-really-work"
+      - text: "Work through 'First Steps: Road to the Top, Part 1'"
+        done: false
+        resources:
+          - label: "Road to the Top, Part 1 (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/first-steps-road-to-the-top-part-1"
+      - text: "Read fastbook chapter 9 (Tabular)"
+        done: false
+        resources:
+          - label: "fastbook 09_tabular"
+            url: "https://github.com/fastai/fastbook/blob/master/09_tabular.ipynb"
+      - text: "Answer the chapter 9 questionnaire"
+        done: false
+        bonus: true
+  - id: "collaborative-filtering"
+    title: "Collaborative Filtering"
+    subtitle: "Lesson 7 — Scaling up and multi-target models, then embeddings and recommendation systems"
+    tasks:
+      - text: "Watch Lesson 7: Collaborative filtering"
+        done: false
+        resources:
+          - label: "Lesson 7 video"
+            url: "https://www.youtube.com/watch?v=p4ZZq0736Po"
+          - label: "Lesson 7 page"
+            url: "https://course.fast.ai/Lessons/lesson7.html"
+      - text: "Work through 'Scaling Up: Road to the Top, Part 3'"
+        done: false
+        resources:
+          - label: "Road to the Top, Part 3 (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/scaling-up-road-to-the-top-part-3"
+      - text: "Work through 'Multi-target: Road to the Top, Part 4'"
+        done: false
+        resources:
+          - label: "Road to the Top, Part 4 (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/multi-target-road-to-the-top-part-4"
+      - text: "Work through 'Collaborative filtering deep dive'"
+        done: false
+        resources:
+          - label: "Collaborative filtering deep dive (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/collaborative-filtering-deep-dive"
+      - text: "Read fastbook chapter 8 (Collaborative filtering)"
+        done: false
+        resources:
+          - label: "fastbook 08_collab"
+            url: "https://github.com/fastai/fastbook/blob/master/08_collab.ipynb"
+      - text: "Answer the chapter 8 questionnaire"
+        done: false
+        bonus: true
+  - id: "convolutions"
+    title: "Convolutions (CNNs)"
+    subtitle: "Lesson 8 — Embeddings and model interpretation, then convolutions from the ground up"
+    tasks:
+      - text: "Watch Lesson 8: Convolutions (CNNs)"
+        done: false
+        resources:
+          - label: "Lesson 8 video"
+            url: "https://www.youtube.com/watch?v=htiNBPxcXgo"
+          - label: "Lesson 8 page"
+            url: "https://course.fast.ai/Lessons/lesson8.html"
+      - text: "Finish the 'Collaborative filtering deep dive' notebook (embeddings & interpretation)"
+        done: false
+        resources:
+          - label: "Collaborative filtering deep dive (Kaggle)"
+            url: "https://www.kaggle.com/code/jhoward/collaborative-filtering-deep-dive"
+      - text: "Read fastbook chapter 13 (Convolutions)"
+        done: false
+        resources:
+          - label: "fastbook 13_convolutions"
+            url: "https://github.com/fastai/fastbook/blob/master/13_convolutions.ipynb"
+      - text: "Answer the chapter 13 questionnaire"
+        done: false
+        bonus: true
+      - text: "Bookmark the full course playlist and the forums for Part 2"
+        done: false
+        bonus: true
+        resources:
+          - label: "YouTube playlist"
+            url: "https://www.youtube.com/playlist?list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU"
+          - label: "fast.ai forums"
+            url: "https://forums.fast.ai/c/p1v5/54"
