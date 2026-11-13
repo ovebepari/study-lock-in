@@ -2,7 +2,7 @@
 
 meta:
   title: "Math for ML/DL/Neural Networks"
-  subtitle: "Geometry-first linear algebra → calculus → probability → backprop by hand → training → attention. One section ≈ one unhurried 60–90 min sitting."
+  subtitle: "Geometry-first linear algebra → calculus → probability → backprop by hand → training → attention. One section ≈ two unhurried sittings (about 2–3 h)."
   status: "active"
   short: "Math"
   color: "#5B7046"
@@ -15,8 +15,8 @@ state:
 
 sections:
   - id: "vectors"
-    title: "Vectors"
-    subtitle: "Phase A · Linear Algebra — vectors as arrows AND as lists of numbers; the two views must click together"
+    title: "Vectors, Span & Basis"
+    subtitle: "Phase A · Linear Algebra — vectors as arrows and as lists of numbers; what scaling and adding can reach"
     tasks:
       - text: "Watch 3B1B 'Essence of Linear Algebra' Ch.1 — Vectors, what even are they? (~9 min). Don't just watch — pause every time a vector moves on screen and ask: what did that transformation DO to space? The whole series is on the playlist link below."
         done: true
@@ -37,10 +37,6 @@ sections:
         done: false
       - text: "Code (NumPy, 10 min): import numpy as np; v=np.array([2,3]); w=np.array([-1,2]); print(v+w, 2*v-3*w, np.linalg.norm(v)). Confirm every worksheet answer."
         done: false
-  - id: "span-basis"
-    title: "Span & Basis"
-    subtitle: "Phase A · Linear Algebra — what can you reach by scaling and adding? The idea behind 'dimension' and 'rank'"
-    tasks:
       - text: "Watch: 3B1B Ch.2 — Linear combinations, span, and basis vectors (~10 min). Draw the span of one vector, then two, while watching."
         done: false
         resources:
@@ -59,8 +55,8 @@ sections:
       - text: "Reflect (journal): In your own words: what is a basis, and why is 'linearly independent' the condition that makes coordinates unique?"
         done: false
   - id: "matrices"
-    title: "Matrices as Transformations"
-    subtitle: "Phase A · Linear Algebra — a matrix is a function that moves space; its columns say where î and ĵ land"
+    title: "Matrices & Multiplication"
+    subtitle: "Phase A · Linear Algebra — a matrix moves space; multiplying matrices chains those moves, and order matters"
     tasks:
       - text: "Watch: 3B1B Ch.3 — Linear transformations and matrices (~11 min). Key idea: columns = images of the basis vectors."
         done: false
@@ -76,12 +72,6 @@ sections:
         done: false
       - text: "Worksheet — build the matrix from where the basis goes. By hand, on paper: (1) A map sends î→[1,2] and ĵ→[3,−1]. Write it, then apply it to [2,1]. (2) Write the matrix that doubles x and leaves y alone. (3) Which matrix sends everything onto the x-axis (projection)? What is lost? ✔ Check: (1) [[1,3],[2,−1]] → [5, 3]; (2) [[2,0],[0,1]]; (3) [[1,0],[0,0]] — all y information is destroyed"
         done: false
-      - text: "Reflect (journal): A neural-net layer computes W·x + b. Describe in words what W does to the input space, using today's picture."
-        done: false
-  - id: "matrix-multiplication"
-    title: "Matrix Multiplication"
-    subtitle: "Phase A · Linear Algebra — multiplying matrices = applying one transformation after another; order matters"
-    tasks:
       - text: "Watch: 3B1B Ch.4 — Matrix multiplication as composition (~10 min)."
         done: false
         resources:
@@ -99,8 +89,8 @@ sections:
       - text: "Reflect (journal): Why does 'layer order matters' follow directly from AB ≠ BA?"
         done: false
   - id: "dot-product"
-    title: "Dot Product"
-    subtitle: "Phase A · Linear Algebra — the single most used operation in deep learning: alignment, similarity, a neuron's raw score"
+    title: "Dot Product & Projections"
+    subtitle: "Phase A · Linear Algebra — alignment, similarity, a neuron's raw score, and dropping a perpendicular"
     tasks:
       - text: "Watch: 3B1B Ch.9 — Dot products and duality (~14 min)."
         done: false
@@ -118,10 +108,6 @@ sections:
         done: false
       - text: "Code (NumPy, 10 min): np.dot, np.linalg.norm — recompute everything, then build a 5×3 'embedding table' and find the most similar pair with a cosine-similarity matrix E_n @ E_n.T."
         done: false
-  - id: "projections"
-    title: "Projections & Orthogonality"
-    subtitle: "Phase A · Linear Algebra — dropping a perpendicular: the geometry behind least squares, attention and 'directions' in embeddings"
-    tasks:
       - text: "Watch: MIT 18.06 (Strang) Lecture 15 — Projections onto subspaces (~48 min). Watch the first 25 min for vectors onto lines."
         done: false
         resources:
@@ -139,8 +125,8 @@ sections:
       - text: "Reflect (journal): Why is an orthonormal basis so convenient? (Hint: what replaces solving a linear system?)"
         done: false
   - id: "transpose-shapes"
-    title: "Transpose, Shapes & Batches"
-    subtitle: "Phase A · Linear Algebra — the bookkeeping that saves you hours: transposes, batch dimensions and broadcasting"
+    title: "Shapes, Batches & Norms"
+    subtitle: "Phase A · Linear Algebra — transposes, batch dimensions, broadcasting, and how to measure size and distance"
     tasks:
       - text: "Read: NumPy — Broadcasting (official guide). Read the rules and the 'general broadcasting rules' examples."
         done: false
@@ -158,9 +144,23 @@ sections:
         done: false
       - text: "Code (NumPy, 10 min): Reproduce X@W+b; then deliberately try X@W.T and read the error message — learn to read shape errors."
         done: false
+      - text: "Read: D2L §2.3.11 — Norms (L1, L2, Frobenius)."
+        done: false
+        resources:
+          - label: "D2L: Linear Algebra (Norms)"
+            url: "https://d2l.ai/chapter_preliminaries/linear-algebra.html"
+      - text: "Read: D2L appendix — Geometry and linear algebraic operations (angles, hyperplanes, distances)."
+        done: false
+        resources:
+          - label: "D2L: Geometry & LA ops"
+            url: "https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/geometry-linear-algebraic-ops.html"
+      - text: "Worksheet — norms. By hand, on paper: (1) v=[3, -4, 12]: L2, L1 and L∞ norms. (2) Distance between [1,2] and [4,6] (L2 and L1). (3) Frobenius norm of [[1, 2], [3, 4]]. (4) Sketch the unit 'circle' {x: ‖x‖=1} for L1, L2 and L∞ in 2D. ✔ Check: (1) L2=13, L1=19, L∞=12; (2) L2=5, L1=7; (3) √30 ≈ 5.477; (4) diamond, circle, square"
+        done: false
+      - text: "Worksheet — ML uses. By hand, on paper: (1) MSE between predictions [3,1] and targets [2.5,1.5] — as a squared L2 norm / n. (2) Gradient clipping: g=[6,8], max norm 5. Clipped g? (3) Why does an L2 penalty push weights toward zero 'smoothly' while L1 can make them exactly zero? (Use the sketches.) ✔ Check: (1) (0.25 + 0.25)/2 = 0.25; (2) g·5/10 = [3,4]; (3) the L1 'diamond' has corners on the axes, so optima tend to land where coordinates are 0"
+        done: false
   - id: "determinant"
-    title: "Determinant"
-    subtitle: "Phase A · Linear Algebra — how much a transformation scales area/volume; det = 0 means information is crushed"
+    title: "Determinant, Inverse & Rank"
+    subtitle: "Phase A · Linear Algebra — how much space is scaled or crushed, undoing a transformation, and how many dimensions survive"
     tasks:
       - text: "Watch: 3B1B Ch.6 — The determinant (~10 min)."
         done: false
@@ -171,12 +171,6 @@ sections:
         done: false
       - text: "Worksheet — meaning. By hand, on paper: (1) Unit square under [[2, 3], [1, 4]]: what is the new area? (2) A=[[1, 2], [3, 4]], B=[[0, 1], [2, 5]]: check det(AB) = det(A)·det(B). (3) Negative determinant — what happened to space? ✔ Check: (1) 5; (2) det A = -2, det B = -2, det AB = 4; (3) orientation flipped (a reflection is involved)"
         done: false
-      - text: "Reflect (journal): If a layer's square weight matrix had det = 0, which inputs could the layer no longer tell apart?"
-        done: false
-  - id: "inverse-rank"
-    title: "Inverse, Rank & Null Space"
-    subtitle: "Phase A · Linear Algebra — undoing a transformation, and measuring how many dimensions survive it"
-    tasks:
       - text: "Watch: 3B1B Ch.7 — Inverse matrices, column space and null space (~12 min)."
         done: false
         resources:
@@ -193,9 +187,9 @@ sections:
         done: false
       - text: "Reflect (journal): Explain column space, null space and rank to a friend using the 'layer output' example."
         done: false
-  - id: "change-of-basis"
-    title: "Change of Basis"
-    subtitle: "Phase A · Linear Algebra — the same vector, described in someone else's coordinates. Embeddings and PCA live here"
+  - id: "eigenvalues"
+    title: "Change of Basis & Eigenvectors"
+    subtitle: "Phase A · Linear Algebra — the same vector in other coordinates, and the directions a matrix only stretches"
     tasks:
       - text: "Watch: 3B1B Ch.13 — Change of basis (~13 min)."
         done: false
@@ -206,10 +200,6 @@ sections:
         done: false
       - text: "Reflect (journal): Why might a network 'prefer' some basis for its hidden activations, and why does the raw coordinate basis of a hidden layer often mean nothing?"
         done: false
-  - id: "eigenvalues"
-    title: "Eigenvalues & Eigenvectors"
-    subtitle: "Phase A · Linear Algebra — directions a matrix only stretches. Behind PCA, stability of deep nets and exploding gradients"
-    tasks:
       - text: "Watch: 3B1B Ch.14 — Eigenvectors and eigenvalues (~17 min)."
         done: false
         resources:
@@ -260,8 +250,8 @@ sections:
       - text: "Code (NumPy, 10 min): np.linalg.lstsq(X, y) — confirm b and w. Then add a 5th outlier point (4, 20) and see how much the line moves."
         done: false
   - id: "svd-pca"
-    title: "SVD & PCA"
-    subtitle: "Phase A · Linear Algebra — every matrix = rotate · stretch · rotate. Low rank, compression, PCA and LoRA all come from here"
+    title: "SVD, PCA & Linear Algebra Review"
+    subtitle: "Phase A · Linear Algebra — rotate · stretch · rotate; low rank, PCA and LoRA — then consolidate the phase"
     tasks:
       - text: "Watch: Steve Brunton — Singular Value Decomposition (SVD): Overview (~6 min)."
         done: false
@@ -294,28 +284,6 @@ sections:
         resources:
           - label: "arXiv: LoRA"
             url: "https://arxiv.org/abs/2106.09685"
-  - id: "norms"
-    title: "Norms & Distances"
-    subtitle: "Phase A · Linear Algebra — measuring size and distance. The vocabulary of losses, regularisation and gradient clipping"
-    tasks:
-      - text: "Read: D2L §2.3.11 — Norms (L1, L2, Frobenius)."
-        done: false
-        resources:
-          - label: "D2L: Linear Algebra (Norms)"
-            url: "https://d2l.ai/chapter_preliminaries/linear-algebra.html"
-      - text: "Read: D2L appendix — Geometry and linear algebraic operations (angles, hyperplanes, distances)."
-        done: false
-        resources:
-          - label: "D2L: Geometry & LA ops"
-            url: "https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/geometry-linear-algebraic-ops.html"
-      - text: "Worksheet — norms. By hand, on paper: (1) v=[3, -4, 12]: L2, L1 and L∞ norms. (2) Distance between [1,2] and [4,6] (L2 and L1). (3) Frobenius norm of [[1, 2], [3, 4]]. (4) Sketch the unit 'circle' {x: ‖x‖=1} for L1, L2 and L∞ in 2D. ✔ Check: (1) L2=13, L1=19, L∞=12; (2) L2=5, L1=7; (3) √30 ≈ 5.477; (4) diamond, circle, square"
-        done: false
-      - text: "Worksheet — ML uses. By hand, on paper: (1) MSE between predictions [3,1] and targets [2.5,1.5] — as a squared L2 norm / n. (2) Gradient clipping: g=[6,8], max norm 5. Clipped g? (3) Why does an L2 penalty push weights toward zero 'smoothly' while L1 can make them exactly zero? (Use the sketches.) ✔ Check: (1) (0.25 + 0.25)/2 = 0.25; (2) g·5/10 = [3,4]; (3) the L1 'diamond' has corners on the axes, so optima tend to land where coordinates are 0"
-        done: false
-  - id: "la-checkpoint"
-    title: "✔ Linear Algebra Checkpoint"
-    subtitle: "Phase A · Linear Algebra — consolidate before calculus. No new material; prove to yourself it stuck"
-    tasks:
       - text: "Worksheet — mixed review (no notes). By hand, on paper: (1) [[3,1],[0,2]]: eigenvalues, determinant, and is it invertible? (2) Project [1,3] onto [1,1]. (3) Shape of (32,768)·(768,3072), and of its transpose. (4) cosine([1,0,1],[0,1,1]). (5) Rank of [[1,2],[2,4],[3,6]] and a basis for its column space. ✔ Check: (1) 3 and 2; det 6; yes; (2) [2,2]; (3) (32,3072); (3072,32); (4) 0.5; (5) 1; span{[1,2,3]}"
         done: false
       - text: "Read: Mathematics for Machine Learning ch.2–4 — skim the chapter summaries and attempt 5 exercises of your choice."
@@ -327,8 +295,8 @@ sections:
       - text: "Reflect (journal): Explain without notes: a matrix as a transformation, rank, eigenvectors, SVD. Which one is still fuzzy? Re-watch exactly that video."
         done: false
   - id: "derivatives"
-    title: "Derivatives"
-    subtitle: "Phase B · Calculus — slope at a point: 'if I nudge the input a tiny bit, how much does the output move?'"
+    title: "Derivatives & the Chain Rule"
+    subtitle: "Phase B · Calculus — slope at a point, the derivative rules, and the chain rule that makes backprop possible"
     tasks:
       - text: "Watch: 3B1B Essence of Calculus Ch.1 — The essence of calculus (~17 min)."
         done: false
@@ -348,10 +316,6 @@ sections:
         done: false
       - text: "Code (NumPy, 10 min): def f(x): return x**2. Print forward and central differences for h = 1e-1 … 1e-12. Why does the error grow again for tiny h? (Floating point — you'll meet it again.)"
         done: false
-  - id: "chain-rule"
-    title: "Derivative Rules & Chain Rule"
-    subtitle: "Phase B · Calculus — the rule that makes backpropagation possible"
-    tasks:
       - text: "Watch: 3B1B Calc Ch.3 — Derivative formulas through geometry (~18 min)."
         done: false
         resources:
@@ -372,9 +336,9 @@ sections:
         done: false
       - text: "Worksheet — chain rule. By hand, on paper: (1) d/dx (3x+1)². Name inner and outer functions. (2) d/dx sin(x²). (3) d/dx e^(−x²/2). (4) Derive σ′(x) for σ(x) = 1/(1+e^(−x)) and show σ′ = σ(1−σ). (5) Evaluate σ′(0) and σ′(4). ✔ Check: (1) 6(3x+1); (2) 2x·cos(x²); (3) −x·e^(−x²/2); (4) σ′ = e^(−x)/(1+e^(−x))² = σ(1−σ); (5) 0.25 and 0.0177 — tiny: 'saturation'"
         done: false
-  - id: "partial-derivatives"
-    title: "Partial Derivatives"
-    subtitle: "Phase B · Calculus — one nudge at a time: how does the output react to each input separately?"
+  - id: "gradient"
+    title: "Partial Derivatives & the Gradient"
+    subtitle: "Phase B · Calculus — one nudge per input, stacked into the vector that points uphill"
     tasks:
       - text: "Watch: Khan Academy (Grant Sanderson) — Partial derivatives, introduction (~10 min)."
         done: false
@@ -388,12 +352,6 @@ sections:
             url: "https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/multivariable-calculus.html"
       - text: "Worksheet — partials. By hand, on paper: (1) f(x,y)=3x²y + 2xy³ − 5y: ∂f/∂x and ∂f/∂y. (2) Evaluate both at (x,y)=(2,-1). (3) f(x,y)=e^(xy): ∂f/∂x, ∂f/∂y. (4) f(w,b)=(w·2 + b − 5)²: ∂f/∂w and ∂f/∂b at w=1, b=0. ✔ Check: (1) 6xy + 2y³ and 3x² + 6xy² − 5; (2) -14 and 19; (3) y·e^(xy) and x·e^(xy); (4) u=2w+b−5=−3 → ∂/∂w=2u·2=−12, ∂/∂b=2u=−6"
         done: false
-      - text: "Reflect (journal): A network has 1M weights. What does one partial derivative ∂L/∂wᵢ tell you, in plain words?"
-        done: false
-  - id: "gradient"
-    title: "The Gradient"
-    subtitle: "Phase B · Calculus — all partials stacked into one vector that points uphill"
-    tasks:
       - text: "Watch: Khan Academy — Gradient (~6 min) and Gradient and graphs (~4 min)."
         done: false
         resources:
@@ -412,7 +370,7 @@ sections:
         done: false
   - id: "gradient-descent"
     title: "Gradient Descent"
-    subtitle: "Phase B · Calculus — the engine of learning: step downhill, repeat"
+    subtitle: "Phase B · Calculus — step downhill and repeat; then refit the least-squares line by walking instead of solving"
     tasks:
       - text: "Watch: 3B1B Neural Networks Ch.2 — Gradient descent, how neural networks learn (~21 min)."
         done: false
@@ -430,10 +388,6 @@ sections:
         done: false
       - text: "Worksheet — ill-conditioned bowl. By hand, on paper: (1) L(x,y)=x²+10y², start (1,1), α=0.09: compute two steps. (2) Which coordinate oscillates? Connect to the eigenvalues 2 and 20 of the Hessian. (3) Largest α that still converges in y? ✔ Check: (1) [0.82, -0.8] → [0.672, 0.64]; (2) y — factor (1 − 20α) = −0.8 flips sign each step; (3) α < 2/20 = 0.1"
         done: false
-  - id: "linear-regression-gd"
-    title: "Linear Regression by Gradient Descent"
-    subtitle: "Phase B · Calculus — the same line from 'Least Squares', found by walking downhill instead of solving"
-    tasks:
       - text: "Read: D2L §3.1 — Linear regression: minibatch stochastic gradient descent."
         done: false
         resources:
@@ -444,8 +398,8 @@ sections:
       - text: "Code (NumPy, 10 min): Run 2000 GD steps in NumPy and print (w,b,L) every 200 steps. Try α=0.2 — what happens?"
         done: false
   - id: "matrix-calculus"
-    title: "Jacobians & Matrix Calculus"
-    subtitle: "Phase B · Calculus — derivatives of vector functions; why the transpose shows up in backprop"
+    title: "Jacobians, Matrix Calculus & Review"
+    subtitle: "Phase B · Calculus — derivatives of vector functions, why the transpose appears in backprop, curvature — then consolidate"
     tasks:
       - text: "Watch: Khan Academy — The Jacobian matrix (~6 min)."
         done: false
@@ -466,10 +420,6 @@ sections:
         done: false
       - text: "Worksheet — the two backprop formulas. By hand, on paper: (1) z = W·x with W=[[1, -2], [0.5, 3]], x=[2, 1]. Given δ = ∂L/∂z = [0.3, -0.1]: ∂L/∂W = δ·xᵀ. (2) ∂L/∂x = Wᵀ·δ. (3) Check the shapes: ∂L/∂W must match W, ∂L/∂x must match x. ✔ Check: (1) [[0.6, 0.3], [-0.2, -0.1]]; (2) [0.25, -0.9]; (3) (2,1)(1,2)=(2,2) ✓; (2,2)(2,1)=(2,1) ✓"
         done: false
-  - id: "calculus-checkpoint"
-    title: "✔ Calculus Checkpoint"
-    subtitle: "Phase B · Calculus — consolidate; a first look at curvature"
-    tasks:
       - text: "Watch: 3B1B Calc Ch.10 — Higher order derivatives (~6 min) and Ch.11 — Taylor series (~22 min). Curvature is why learning rates and optimizers matter."
         done: false
         resources:
@@ -482,8 +432,8 @@ sections:
       - text: "Reflect (journal): Write the chain rule in words, then explain why 'multiplying many small derivatives' is dangerous in a deep network."
         done: false
   - id: "probability-basics"
-    title: "Random Variables, Expectation & Variance"
-    subtitle: "Phase C · Probability — averages and spread: the language for data, noise, initialisation and losses"
+    title: "Expectation, Variance & the Gaussian"
+    subtitle: "Phase C · Probability — averages, spread, the bell curve, covariance and the √d inside attention"
     tasks:
       - text: "Watch: StatQuest — Expected Values, Main Ideas (~14 min)."
         done: false
@@ -510,10 +460,6 @@ sections:
         done: false
       - text: "Worksheet — data. By hand, on paper: (1) Data [2, 4, 4, 4, 5, 5, 7, 9]: mean. (2) Population variance and standard deviation. (3) Sample variance (divide by n−1). Why n−1? (4) Standardise the value 9: z = (x − mean)/sd. ✔ Check: (1) 5; (2) 4 and 2; (3) 4.571; the sample mean is fitted to the same data, so spread is underestimated; (4) 2"
         done: false
-  - id: "gaussian"
-    title: "The Gaussian & the Central Limit Theorem"
-    subtitle: "Phase C · Probability — why the bell curve is everywhere, and the √d that appears inside attention"
-    tasks:
       - text: "Watch: StatQuest — The Normal Distribution, Clearly Explained (~5 min)."
         done: false
         resources:
@@ -543,9 +489,9 @@ sections:
         done: false
       - text: "Worksheet — covariance. By hand, on paper: (1) x=[1, 2, 3, 4], y=[2, 4, 5, 8]: sample covariance. (2) Correlation (cov / (sd_x·sd_y)). (3) What would a covariance of 0 mean — and not mean? ✔ Check: (1) 3.167; (2) 0.981; (3) no linear relationship — but a non-linear one may still exist"
         done: false
-  - id: "bayes"
-    title: "Conditional Probability & Bayes"
-    subtitle: "Phase C · Probability — updating beliefs with evidence; the logic under classifiers and calibration"
+  - id: "maximum-likelihood"
+    title: "Bayes & Maximum Likelihood"
+    subtitle: "Phase C · Probability — updating beliefs with evidence, and where MSE and cross-entropy really come from"
     tasks:
       - text: "Watch: 3B1B — Bayes theorem, the geometry of changing beliefs (~15 min)."
         done: false
@@ -561,10 +507,6 @@ sections:
             url: "https://www.youtube.com/watch?v=9wCnvr7Xw4E"
       - text: "Worksheet — updates. By hand, on paper: (1) Disease prevalence 1%, test sensitivity 90%, false-positive rate 5%. P(disease | positive)? (2) Draw it as 1000 people (3B1B style) to check. (3) A second independent positive test: new posterior? (4) A classifier outputs 0.9 'cat'. What extra information would you need to call that a calibrated probability? ✔ Check: (1) ≈15.4%; (2) ≈9 true positives vs ≈50 false positives; (3) ≈76.6%; (4) that, among all inputs it scores 0.9, about 90% really are cats"
         done: false
-  - id: "maximum-likelihood"
-    title: "Maximum Likelihood → MSE & Cross-Entropy"
-    subtitle: "Phase C · Probability — where loss functions come from. MSE and cross-entropy stop being magic here"
-    tasks:
       - text: "Watch: StatQuest — Probability is not Likelihood (~5 min)."
         done: false
         resources:
@@ -585,8 +527,8 @@ sections:
       - text: "Worksheet — losses fall out. By hand, on paper: (1) If y = ŷ + noise with noise ~ N(0, σ²), write −log p(y | ŷ). Which terms depend on ŷ? (2) Conclude: maximising Gaussian likelihood = minimising which loss? (3) If y ∈ {0,1} with P(y=1) = p̂, write −log p(y | p̂). (4) Compute that loss for y=1, p̂=0.9 and for y=1, p̂=0.1. ✔ Check: (1) (y−ŷ)²/(2σ²) + const; (2) mean squared error; (3) −[y·log p̂ + (1−y)·log(1−p̂)] = binary cross-entropy; (4) 0.105 and 2.303 — confident and wrong is punished hard"
         done: false
   - id: "entropy-kl"
-    title: "Entropy, Cross-Entropy, KL & Perplexity"
-    subtitle: "Phase C · Information — the measuring stick for LLM training: surprise, bits and perplexity"
+    title: "Entropy, KL & Perplexity"
+    subtitle: "Phase C · Information — surprise, bits, cross-entropy, KL and perplexity — then consolidate the phase"
     tasks:
       - text: "Watch: StatQuest — Entropy (for data science) Clearly Explained (~16 min)."
         done: false
@@ -612,10 +554,6 @@ sections:
         done: false
       - text: "Worksheet — LLM numbers. By hand, on paper: (1) A language model's average loss is 2.0 nats/token. Perplexity = e^loss? (2) Loss falls to 1.5. New perplexity — and what does 'perplexity' mean in words? (3) Uniform guessing over a 50,000-token vocabulary: what loss (nats) is that? ✔ Check: (1) 7.389; (2) 4.482 — as uncertain as choosing uniformly among that many tokens; (3) ln 50000 ≈ 10.82"
         done: false
-  - id: "probability-checkpoint"
-    title: "✔ Probability Checkpoint"
-    subtitle: "Phase C · Probability — consolidate"
-    tasks:
       - text: "Worksheet — mixed review (no notes). By hand, on paper: (1) Var(3X − 1) if Var(X) = 2. (2) Sum of 100 independent N(0,1) variables: distribution? (3) P(A|B) if P(B|A)=0.8, P(A)=0.1, P(B)=0.2. (4) Why is cross-entropy the natural loss for classification, in one sentence? (5) Entropy of [0.25, 0.25, 0.25, 0.25] in bits. ✔ Check: (1) 18; (2) N(0, 100); (3) 0.4; (4) minimising it = maximising the likelihood of the true labels; (5) 2"
         done: false
       - text: "Read: Mathematics for Machine Learning ch.6 — Probability and Distributions: skim and try 3 exercises."
@@ -626,9 +564,9 @@ sections:
             url: "https://mml-book.github.io/book/mml-book.pdf"
       - text: "Reflect (journal): Where did MSE and cross-entropy come from? Write the derivation path from 'likelihood' in five lines."
         done: false
-  - id: "activations"
-    title: "Activation Functions"
-    subtitle: "Phase D · Neural Nets — non-linearity is the whole point: without it, depth collapses into one matrix"
+  - id: "forward-pass"
+    title: "Activations, Forward Pass & Loss"
+    subtitle: "Phase D · Neural Nets — non-linearity, one example through a 2-layer net by hand, and the losses that score it"
     tasks:
       - text: "Watch: 3B1B Neural Networks Ch.1 — But what is a neural network? (~19 min)."
         done: false
@@ -644,25 +582,12 @@ sections:
         done: false
       - text: "Worksheet — why non-linearity. By hand, on paper: (1) Two linear layers A=[[1, 2], [0, 1]] then B=[[2, 0], [1, 1]]: compute B·A. What single layer is equivalent? (2) Insert ReLU between them and apply to x=[1,−2]. Compare with (B·A)·x. (3) XOR: points (0,0),(1,1)→0 and (0,1),(1,0)→1. Can one straight line separate them? ✔ Check: (1) [[2, 4], [1, 3]] — one linear layer; (2) with ReLU: [0, 0]; without: [-6, -5]; (3) no — you need a hidden layer with a non-linearity"
         done: false
-  - id: "forward-pass"
-    title: "Forward Pass"
-    subtitle: "Phase D · Neural Nets — push one example through a 2-layer network, writing down every intermediate value"
-    tasks:
-      - text: "Watch: 3B1B NN Ch.1 — re-watch from the matrix notation onward (~8 min): a⁽¹⁾ = σ(W·a⁽⁰⁾ + b)."
-        done: false
-        resources:
-          - label: "3B1B NN Ch.1"
-            url: "https://www.youtube.com/watch?v=aircAruvnKk"
       - text: "Worksheet — forward. By hand, on paper: (1) Network (use it in the next sections): x=[1, 0.5], W1=[[0.1, 0.4], [0.2, -0.3]], b1=0, ReLU, W2=[[0.5, -0.2]], b2=0, target y=1, loss L=(ŷ−y)². Compute z1 = W1·x. (2) a1 = ReLU(z1). (3) ŷ = z2 = W2·a1. (4) L = (ŷ − y)². ✔ Check: (1) [0.3, 0.05]; (2) [0.3, 0.05]; (3) 0.14; (4) 0.7396"
         done: false
       - text: "Worksheet — variations. By hand, on paper: (1) Change x to [−1, 0.5]. Which hidden units are 'dead' (ReLU = 0)? (2) With x = [1, 0.5], what single change to W2 would make ŷ exactly 1? (Many answers.) ✔ Check: (1) z1 = [0.1, -0.35] → dead unit(s): 2; ŷ = 0.05; (2) e.g. W2 = [3.333, 0] (since a1[0] = 0.3)"
         done: false
       - text: "Code (NumPy, 10 min): Write forward(x, W1, W2) in NumPy and reproduce every number. Keep this file — the next three sections extend it."
         done: false
-  - id: "loss-functions"
-    title: "Loss Functions & Softmax"
-    subtitle: "Phase D · Neural Nets — MSE and cross-entropy, now derived (Phase C) instead of memorised; softmax turns scores into probabilities"
-    tasks:
       - text: "Watch: StatQuest — Neural Networks Part 5: ArgMax and SoftMax (~14 min)."
         done: false
         resources:
@@ -683,8 +608,8 @@ sections:
       - text: "Worksheet — classification loss. By hand, on paper: (1) Logits z=[2, 1, 0.1]: softmax. (2) True class 0. Cross-entropy loss −ln p₀. (3) Gradient w.r.t. logits: p − y (one-hot y). (4) Add 10 to every logit. Does softmax change? (Useful for stability.) ✔ Check: (1) [0.659, 0.242, 0.099]; (2) 0.417; (3) [-0.341, 0.242, 0.099]; (4) no — softmax is shift-invariant"
         done: false
   - id: "backpropagation"
-    title: "Backpropagation"
-    subtitle: "Phase D · Neural Nets — the chain rule run backwards through your network; every gradient by hand"
+    title: "Backpropagation & Weight Update"
+    subtitle: "Phase D · Neural Nets — the chain rule run backwards, the update step, and a gradient check to prove it"
     tasks:
       - text: "Watch: 3B1B NN Ch.3 — Backpropagation, intuitively (~13 min). Watch twice."
         done: false
@@ -711,10 +636,6 @@ sections:
         done: false
       - text: "Worksheet — your network (values from 'Forward Pass'). By hand, on paper: (1) ∂L/∂ŷ = 2(ŷ − y). (2) ∂L/∂W2 = ∂L/∂ŷ · a1ᵀ. (3) ∂L/∂a1 = W2ᵀ · ∂L/∂ŷ. (4) ∂L/∂z1 = ∂L/∂a1 ⊙ ReLU′(z1). (5) ∂L/∂W1 = ∂L/∂z1 · xᵀ. Check its shape. ✔ Check: (1) -1.72; (2) [-0.516, -0.086]; (3) [-0.86, 0.344]; (4) [-0.86, 0.344]; (5) [[-0.86, -0.43], [0.344, 0.172]] — (2,2) like W1 ✓"
         done: false
-  - id: "weight-update"
-    title: "Weight Update & Gradient Check"
-    subtitle: "Phase D · Neural Nets — take the step, watch the loss fall, and prove your gradients are right"
-    tasks:
       - text: "Watch: DeepLearning.AI (Andrew Ng) — Gradient Checking (~6 min)."
         done: false
         resources:
@@ -732,8 +653,8 @@ sections:
       - text: "Reflect (journal): What did it feel like to see the loss drop after your own hand-computed update? Which step is still fuzzy?"
         done: false
   - id: "micrograd"
-    title: "Micrograd I — Autograd from Scratch"
-    subtitle: "Phase D · Neural Nets — Karpathy builds the engine you just ran by hand. First half of the lecture"
+    title: "Micrograd & Editing Weights"
+    subtitle: "Phase D · Neural Nets — Karpathy's full lecture, your own Value class, a trained MLP you then edit by hand"
     tasks:
       - text: "Watch: Karpathy — The spelled-out intro to neural networks and backpropagation: building micrograd. Part 1: from the start to the end of the manual backprop examples and the Value class with backward() (~first 1h15). Code along."
         done: false
@@ -744,12 +665,6 @@ sections:
             url: "https://github.com/karpathy/micrograd"
       - text: "Code: type out the Value class yourself (don't copy-paste): __add__, __mul__, tanh, and _backward for each. Re-create the 'warm-up graph' from Backpropagation and check the gradients match your hand answers."
         done: false
-      - text: "Reflect (journal): For each operation (+, ×, tanh), write the local derivative and how the gradient flows through it. Which matches your hand computation from Backpropagation?"
-        done: false
-  - id: "edit-weights"
-    title: "Micrograd II — Train & Edit Weights"
-    subtitle: "Phase D · Neural Nets — finish the lecture, train a tiny MLP, then open it up and change weights by hand"
-    tasks:
       - text: "Watch: Karpathy micrograd — Part 2: topological sort, PyTorch comparison, building the MLP and training loop (from ~1h15 to the end)."
         done: false
         resources:
@@ -769,7 +684,7 @@ sections:
             url: "https://www.youtube.com/watch?v=q8SA3rM6ckI"
   - id: "optimizers"
     title: "Optimizers: Momentum, RMSProp, Adam"
-    subtitle: "Phase E · Training — smarter steps: memory of past gradients and per-parameter learning rates"
+    subtitle: "Phase E · Training — memory of past gradients and per-parameter learning rates"
     tasks:
       - text: "Watch: DeepLearning.AI — Gradient Descent with Momentum (~9 min), RMSProp (~8 min), Adam (~7 min)."
         done: false
@@ -797,9 +712,9 @@ sections:
         done: false
       - text: "Worksheet — one Adam step. By hand, on paper: (1) g=0.5, β₁=0.9, β₂=0.999, α=0.01, step t=1: m and v. (2) Bias-corrected m̂ = m/(1−β₁), v̂ = v/(1−β₂). (3) Update size α·m̂/(√v̂ + ε). Notice anything about its magnitude? ✔ Check: (1) m=0.05, v=0.00025; (2) m̂=0.5, v̂=0.25; (3) 0.01 ≈ α — Adam's first steps have size ≈ α regardless of the gradient's scale"
         done: false
-  - id: "init-normalization"
-    title: "Initialisation & Normalisation"
-    subtitle: "Phase E · Training — keeping signals and gradients at a healthy size through many layers"
+  - id: "init-regularization"
+    title: "Initialisation, Normalisation & Regularisation"
+    subtitle: "Phase E · Training — healthy signal sizes through depth, and doing well on data you haven't seen"
     tasks:
       - text: "Watch: DeepLearning.AI — Vanishing/Exploding Gradients (~6 min) and Weight Initialization in a Deep Network (~6 min)."
         done: false
@@ -830,10 +745,6 @@ sections:
         done: false
       - text: "Worksheet — normalise. By hand, on paper: (1) LayerNorm (no γ, β) of [2, 4, 6, 8]: mean, sd, and normalised vector. (2) Why can normalisation let you use a larger learning rate? ✔ Check: (1) mean 5, sd 2.236, → [-1.342, -0.447, 0.447, 1.342]; (2) it keeps activations in a fixed range, so the loss surface is better conditioned"
         done: false
-  - id: "regularization"
-    title: "Regularisation & Generalisation"
-    subtitle: "Phase E · Training — fitting the training set is easy; doing well on new data is the actual goal"
-    tasks:
       - text: "Watch: DeepLearning.AI — Bias/Variance (~8 min), Regularization (~10 min), Dropout Regularization (~9 min)."
         done: false
         resources:
@@ -859,9 +770,9 @@ sections:
             url: "https://d2l.ai/chapter_multilayer-perceptrons/dropout.html"
       - text: "Worksheet — by hand. By hand, on paper: (1) Loss + (λ/2)‖w‖² with λ=0.01. Extra gradient term for w=2.0? (2) With α=0.1 and no data gradient, one step multiplies w by what? (This is why it's called weight decay.) (3) Dropout with keep-prob 0.8 on a = [1, 2, 3, 4, 5]: what must you multiply surviving units by so E[output] = a? (4) Train error 1%, validation error 15%. Diagnosis and two remedies. (5) Train 20%, validation 21%? ✔ Check: (1) λw = 0.02; (2) (1 − αλ) = 0.999; (3) 1/0.8 = 1.25 (inverted dropout); (4) high variance (overfitting): more data, regularisation/dropout, smaller model; (5) high bias (underfitting): bigger model, train longer, better features"
         done: false
-  - id: "softmax"
-    title: "Softmax, Temperature & Log-Sum-Exp"
-    subtitle: "Phase F · Toward Transformers — controlling randomness in generation, and computing it without overflow"
+  - id: "embeddings-attention"
+    title: "Softmax, Temperature & Attention"
+    subtitle: "Phase F · Toward Transformers — temperature, log-sum-exp, embeddings and attention by hand"
     tasks:
       - text: "Watch: 3B1B NN Ch.5 — Transformers, the tech behind LLMs (~27 min). Focus on the embedding, unembedding and softmax-with-temperature parts."
         done: false
@@ -877,10 +788,6 @@ sections:
         done: false
       - text: "Worksheet — stability. By hand, on paper: (1) Why does naive softmax of [1000, 999, 998] fail in float64? (2) Subtract the max first and compute it. (3) log Σ exp(zᵢ) for those logits via c + log Σ exp(zᵢ − c). ✔ Check: (1) e^1000 overflows to inf → inf/inf = nan; (2) [0.665, 0.245, 0.09]; (3) 1000 + ln(1 + e⁻¹ + e⁻²) ≈ 1000.4076"
         done: false
-  - id: "embeddings-attention"
-    title: "Embeddings & Attention"
-    subtitle: "Phase F · Toward Transformers — words as vectors, and the dot-product machinery that lets tokens look at each other"
-    tasks:
       - text: "Watch: 3B1B NN Ch.6 — Attention in transformers, step-by-step (~26 min)."
         done: false
         resources:
