@@ -3581,3 +3581,33 @@ button, a, input, select, textarea, .block-header, .day-pill {
 .snake-edge { stroke-width: 1.6; }
 .snake-edge.is-done { stroke: var(--c, var(--green)); stroke-width: 2; }
 .syllabi-map:not(.view-aerial) .map-snake .snake-edge.is-done { stroke: var(--green); }
+
+/* Log ad-hoc activity (things studied outside any syllabus) */
+.heatmap-header { gap: 10px; }
+.log-activity-btn {
+  margin-left: auto; height: 26px; padding: 0 10px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border-hover); background: var(--bg-card); color: var(--text-secondary);
+  font-size: 0.72rem; font-weight: 600; cursor: pointer; transition: all var(--transition);
+}
+.log-activity-btn:hover, .log-activity-btn.active { border-color: var(--accent); color: var(--accent); }
+.log-activity { margin: 0 0 12px; }
+.log-activity-form { display: grid; grid-template-columns: 1fr 200px 150px auto; gap: 8px; align-items: center; }
+.log-activity-form .add-item-actions { margin: 0; }
+.log-activity-recent { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+.log-activity-recent-label, .log-activity-hint { font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-mono); }
+.log-activity-hint { margin-top: 4px; }
+.log-activity-item {
+  display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: var(--radius);
+  background: var(--bg-card); font-size: 0.78rem;
+}
+.log-activity-date { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); white-space: nowrap; }
+.log-activity-topic { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-primary); }
+.log-activity-cat { font-size: 0.68rem; color: var(--text-muted); white-space: nowrap; }
+.log-activity-rm { border: none; background: none; color: var(--text-muted); cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 2px; }
+.log-activity-rm:hover { color: var(--red); }
+@media (max-width: 768px) {
+  .log-activity-form { grid-template-columns: 1fr 1fr; }
+  .log-activity-form #logTopic { grid-column: 1 / -1; }
+  .log-activity-form .add-item-actions { grid-column: 1 / -1; }
+  .log-activity-cat { display: none; }
+}

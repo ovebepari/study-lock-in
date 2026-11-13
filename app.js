@@ -955,6 +955,10 @@ function postEvent(event) {
       const b = (d.blocks || []).find(blk => blk.id === event.id);
       if (b) { for (const k of ['title', 'badge', 'icon', 'isBonus']) if (k in event) b[k] = event[k]; break; }
     }
+  } else if (op === 'activity_add') {
+    addLocalActivity(event.entry);
+  } else if (op === 'activity_rm') {
+    removeLocalActivity(event.key);
   } else if (op === 'task_edit') {
     for (const d of state.days || []) {
       for (const b of d.blocks || []) {
@@ -1245,6 +1249,7 @@ function renderApp() {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Study Activity
         </h3>
+        <button class="log-activity-btn" id="logActivityBtn" onclick="toggleLogActivity()" title="Log something you studied that isn't in a syllabus (a talk, an article, a video…)">+ Log</button>
         <div class="heatmap-legend">
           <span class="heatmap-legend-label">Less</span>
           <span class="heatmap-legend-cell" data-level="0"></span>
@@ -1259,6 +1264,7 @@ function renderApp() {
           <span class="heatmap-legend-label">🔥</span>
         </div>
       </div>
+      <div class="log-activity" id="logActivity" hidden></div>
       <div class="heatmap-body" id="heatmapBody"></div>
     </div>
 
@@ -2979,6 +2985,96 @@ function exportActivity() {
   const blob = new Blob([activityToYaml(log)], { type: 'text/yaml;charset=utf-8' });
   downloadBlob(blob, 'activity.yml');
   showToast(`🔥 Exported activity.yml (${log.length} entries, ${newCount} new) — replace _data/activity.yml & commit`);
+}
+
+// ── Ad-hoc activity (things studied outside any syllabus) ──────────────
+const ADHOC_DEFAULT_CATEGORY = 'Daily Study Log';
+
+function addLocalActivity(entry) {
+  const log = getLocalActivity();
+  log.push(entry);
+  localStorage.setItem('study-lock-in:activity', JSON.stringify(log));
+  renderHeatmap(getActivityLog());
+}
+
+function removeLocalActivity(key) {
+  const log = getLocalActivity().filter(e => _activityKey(e) !== key);
+  localStorage.setItem('study-lock-in:activity', JSON.stringify(log));
+  renderHeatmap(getActivityLog());
+}
+
+/** Categories offered in the form: what's already in the log, plus every syllabus title. */
+function _activityCategories() {
+  const cats = new Set([ADHOC_DEFAULT_CATEGORY]);
+  getActivityLog().forEach(e => e.syllabus && cats.add(e.syllabus));
+  Object.values(getEmbeddedSyllabi()).forEach(s => s?.meta?.title && cats.add(s.meta.title));
+  return [...cats];
+}
+
+function _todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+function toggleLogActivity(forceOpen) {
+  const box = document.getElementById('logActivity');
+  if (!box) return;
+  const open = forceOpen === true || box.hidden;
+  box.hidden = !open;
+  document.getElementById('logActivityBtn')?.classList.toggle('active', open);
+  if (open) { renderLogActivity(); setTimeout(() => document.getElementById('logTopic')?.focus(), 30); }
+}
+
+function renderLogActivity() {
+  const box = document.getElementById('logActivity');
+  if (!box || box.hidden) return;
+  const lastCat = localStorage.getItem('study-lock-in:last-activity-category') || ADHOC_DEFAULT_CATEGORY;
+  const committed = new Set(getEmbeddedActivity().map(_activityKey));
+  // Unexported manual entries (local, not task ticks), newest first
+  const recent = getLocalActivity().filter(e => e.manual && e.action === 'done' && !committed.has(_activityKey(e)))
+    .sort((a, b) => new Date(b.t) - new Date(a.t)).slice(0, 8);
+  box.innerHTML = `
+    <form class="log-activity-form" onsubmit="event.preventDefault(); submitLogActivity()">
+      <input id="logTopic" class="add-item-input" type="text" placeholder="What did you study? e.g. Talk: How Discord stores trillions of messages" maxlength="200" required>
+      <input id="logCategory" class="add-item-input" type="text" list="logCategoryList" value="${escapeHtml(lastCat)}" placeholder="Category" title="Category (shown in the heatmap tooltip)">
+      <datalist id="logCategoryList">${_activityCategories().map(c => `<option value="${escapeHtml(c)}">`).join('')}</datalist>
+      <input id="logDate" class="add-item-input" type="date" value="${_todayStr()}" max="${_todayStr()}" title="Date studied">
+      <div class="add-item-actions">
+        <button type="submit" class="resource-form-btn save">Add</button>
+        <button type="button" class="resource-form-btn cancel" onclick="toggleLogActivity()">Close</button>
+      </div>
+    </form>
+    ${recent.length ? `<div class="log-activity-recent"><span class="log-activity-recent-label">Logged on this device — not exported yet</span>
+      ${recent.map(e => `<div class="log-activity-item"><span class="log-activity-date">${escapeHtml(formatHeatmapDate(_localDateOf(e.t)))}</span>
+        <span class="log-activity-topic">${escapeHtml(e.topic)}</span><span class="log-activity-cat">${escapeHtml(e.syllabus)}</span>
+        <button class="log-activity-rm" onclick="removeLogActivity('${_jsq(_activityKey(e))}')" title="Remove">×</button></div>`).join('')}
+      <span class="log-activity-hint">Export Activity (Data panel) → replace <code>_data/activity.yml</code> → commit to sync.</span></div>` : ''}`;
+}
+
+function _localDateOf(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+function submitLogActivity() {
+  const topic = document.getElementById('logTopic').value.trim();
+  if (!topic) { showToast('⚠️ What did you study?'); return; }
+  const category = document.getElementById('logCategory').value.trim() || ADHOC_DEFAULT_CATEGORY;
+  const date = document.getElementById('logDate').value || _todayStr();
+  // Today → now; a past date → noon local time on that day (keeps it on the right heatmap cell in any timezone)
+  const t = date === _todayStr() ? new Date() : new Date(`${date}T12:00:00`);
+  const entry = { t: t.toISOString(), syllabus: category, topic, action: 'done', manual: true };
+  localStorage.setItem('study-lock-in:last-activity-category', category);
+  postEvent({ op: 'activity_add', entry });
+  renderLogActivity();
+  setTimeout(() => document.getElementById('logTopic')?.focus(), 30);
+  showToast(`🔥 Logged: ${topic.length > 40 ? topic.slice(0, 39) + '…' : topic}`);
+}
+
+function removeLogActivity(key) {
+  if (!confirm('Remove this activity entry?')) return;
+  postEvent({ op: 'activity_rm', key });
+  renderLogActivity();
 }
 
 function appendLocalActivity(topic, action) {

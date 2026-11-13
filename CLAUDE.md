@@ -99,7 +99,8 @@ All browser storage keys are prefixed to avoid collisions:
 | `study-lock-in:unlocked` | `"true"` or unset | Indicates whether workspace is unlocked. |
 | `study-lock-in:active-syllabus` | string (e.g. `"math-for-ml"`) | Currently selected syllabus key. |
 | `study-lock-in:state:<syllabusKey>` | JSON string | Local state overrides (checked tasks, timestamps, journal, time logs, comments). |
-| `study-lock-in:activity` | JSON array `[{ t, syllabus, topic, action }]` | Local completion log entries added on the current device. |
+| `study-lock-in:activity` | JSON array `[{ t, syllabus, topic, action, manual? }]` | Local completion log entries added on the current device (task ticks, plus ad-hoc entries from **+ Log** with `manual: true`). |
+| `study-lock-in:last-activity-category` | string | Last category used in the **+ Log** form. |
 | `study-lock-in:trophies` | JSON array `["Task name", ...]` | Titles of completed tasks for the gravity trophy pile. |
 | `study-lock-in:custom-passcode-hash` | hex string | Custom SHA-256 passcode hash if changed by user. |
 | `study-tracker-ui:<syllabusKey>` | JSON string | Pure UI preferences (`activeDay`, `journalDay`, `theme`). |
@@ -199,6 +200,7 @@ progress that has not been exported yet.
 4. **Activity Heatmap Invariants**:
    * Always combine base historical activity from `getEmbeddedActivity()` with device activity from `getLocalActivity()` via `getActivityLog()`, which de-duplicates entries (by `t|syllabus|topic|action`) that exist in both after an `activity.yml` export is committed.
    * `exportActivity()` writes the merged log as `activity.yml`; keep `t` quoted so Jekyll treats timestamps as strings, not `Time` objects.
+   * Ad-hoc study outside any syllabus (talks, articles, videos) is logged from the heatmap's **+ Log** form via `postEvent({op:'activity_add'})` / `activity_rm`. `syllabus` is a free-text category (default "Daily Study Log"); past dates use local noon so they land on the right cell. These entries never touch a syllabus file — they only reach Git through **Export Activity**.
    * Date parsing must use local date strings (`toDateStr`) to avoid UTC day-shift bugs.
    * `renderHeatmap()` shows a rolling 12-month window (the 11 previous months + the current month, rendered last). If there is no activity in that window (e.g. device clock far from the data), it anchors the window on the latest activity date instead; preserve this so the grid never renders empty.
 
