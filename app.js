@@ -1405,7 +1405,9 @@ function _bindDayNavScroll(nav) {
   }
   updateFade();
 }
-window.addEventListener('resize', () => { const nav = document.getElementById('dayNav'); if (nav && nav._updateFade) nav._updateFade(); });
+window.addEventListener('resize', () => {
+  document.querySelectorAll('#dayNav, .journal-tabs').forEach(el => { if (el._updateFade) el._updateFade(); });
+});
 
 // ===== RENDER: ACTIVE DAY PANEL =====
 function renderActivePanel() {
@@ -1579,6 +1581,14 @@ function renderJournal() {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Note
       </button>
     </div>`;
+
+  // Journal tabs scroll horizontally like the section bar; keep the selected tab in view
+  const tabs = section.querySelector('.journal-tabs');
+  const activeTab = tabs.querySelector('.journal-tab.active');
+  if (activeTab && tabs.scrollWidth > tabs.clientWidth) {
+    tabs.scrollLeft = activeTab.offsetLeft - tabs.offsetLeft - (tabs.clientWidth - activeTab.offsetWidth) / 2;
+  }
+  _bindDayNavScroll(tabs);
 
   document.getElementById('journalSave').addEventListener('click', function () {
     saveJournalEntry();
