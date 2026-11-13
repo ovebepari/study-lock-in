@@ -1378,12 +1378,34 @@ function renderDayNav() {
   </button>`;
   nav.innerHTML = html;
 
-  // On phones the day-nav is a single horizontally scrolling row; keep the active day visible
+  // The section nav is a single horizontally scrolling row; keep the active section visible
   const activePill = nav.querySelector('.day-pill.active');
   if (activePill && nav.scrollWidth > nav.clientWidth) {
     nav.scrollLeft = activePill.offsetLeft - (nav.clientWidth - activePill.offsetWidth) / 2;
   }
+  _bindDayNavScroll(nav);
 }
+
+/** Desktop niceties for the scrolling section nav: vertical wheel scrolls it sideways, edges fade when more is hidden. */
+function _bindDayNavScroll(nav) {
+  const updateFade = () => {
+    const max = nav.scrollWidth - nav.clientWidth;
+    nav.classList.toggle('fade-left', nav.scrollLeft > 2);
+    nav.classList.toggle('fade-right', max > 2 && nav.scrollLeft < max - 2);
+  };
+  if (!nav._scrollBound) {
+    nav._scrollBound = true;
+    nav.addEventListener('scroll', updateFade, { passive: true });
+    nav.addEventListener('wheel', e => {
+      if (nav.scrollWidth <= nav.clientWidth || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // trackpads already scroll sideways
+      e.preventDefault();
+      nav.scrollLeft += e.deltaY;
+    }, { passive: false });
+    nav._updateFade = updateFade;
+  }
+  updateFade();
+}
+window.addEventListener('resize', () => { const nav = document.getElementById('dayNav'); if (nav && nav._updateFade) nav._updateFade(); });
 
 // ===== RENDER: ACTIVE DAY PANEL =====
 function renderActivePanel() {
