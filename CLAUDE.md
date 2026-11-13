@@ -103,7 +103,7 @@ All browser storage keys are prefixed to avoid collisions:
 | `study-lock-in:trophies` | JSON array `["Task name", ...]` | Titles of completed tasks for the gravity trophy pile. |
 | `study-lock-in:custom-passcode-hash` | hex string | Custom SHA-256 passcode hash if changed by user. |
 | `study-tracker-ui:<syllabusKey>` | JSON string | Pure UI preferences (`activeDay`, `journalDay`, `theme`). |
-| `study-lock-in:map-view` | `"auto"` \| `"graph"` \| `"list"` | Syllabi map view (auto = graph on desktop, list on phones). |
+| `study-lock-in:map-view` | `"auto"` \| `"graph"` \| `"list"` \| `"aerial"` | Syllabi map view (auto = graph on desktop, list on phones). |
 | `study-lock-in:map-collapsed` | `"true"` or unset | Syllabi map collapsed. |
 
 ## 📄 Syllabus YAML Schema (`_data/syllabi/<key>.yml`)
@@ -205,9 +205,11 @@ progress that has not been exported yet.
 5. **Syllabi Map Invariants** (`renderSyllabiMap()`, under the heatmap):
    * Read-only view over the same sources as everything else: `getEmbeddedSyllabi()` + each syllabus's localStorage overrides via `getSyllabusState(key)` (the active syllabus uses live `state`). Never add a separate map data store.
    * Nodes = sections; edges = section order within a syllabus + each section's `requires`. A node is **done** when all non-bonus tasks are checked (`sectionProgress()`); a prerequisite counts as satisfied if done, if its syllabus has `status: done`, or if it no longer exists.
-   * Lanes show `active` + `paused` syllabi; `queued`/`done` appear as chips below. Columns come from the longest prerequisite chain (cycles are guarded, not rejected).
+   * **Graph** and **List** show only the selected syllabus. Graph is a serpentine path (`_renderMapSnake()`): row 1 left→right, row 2 right→left, …, one continuous 1 → 2 → 3 line, row length fitted to the card width (re-flows on resize, never scrolls sideways). No `requires` edges here.
+   * **Aerial** (`_renderMapAerial()`) is the only cross-syllabus view: one node per syllabus, `requires` aggregated into syllabus-level edges; `queued`/`done` syllabi appear as chips below.
+   * "Up next" is scoped the same way (selected syllabus in Graph/List, all active syllabi in Aerial).
    * It re-renders from `updateStats()` and `switchDay()`; keep it cheap (no DOM work beyond the map host).
-   * Phones (≤720px) default to the list view; keep both views working.
+   * Phones (≤720px) default to the list view in Auto; keep every view working.
 
 6. **Aesthetic & UX Fidelity**:
    Preserve the Anthropic-inspired warm cream palette, typography (`Inter` + `JetBrains Mono`), micro-animations (card hover lift, checkbox bounce, Khan Academy-style particle burst, trophy pile), and Zen focus audio.

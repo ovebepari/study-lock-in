@@ -3573,3 +3573,11 @@ button, a, input, select, textarea, .block-header, .day-pill {
   }
   .journal-tabs .journal-tab { justify-self: stretch; }
 }
+
+/* Graph view: serpentine path of the selected syllabus (no horizontal scroll) */
+.map-snake { display: flex; justify-content: center; padding: 6px 0; }
+.map-num { font-family: var(--font-mono); font-size: 10px; fill: var(--text-muted); pointer-events: none; }
+.map-node.is-complete .map-num { fill: rgba(255,255,255,.75); }
+.snake-edge { stroke-width: 1.6; }
+.snake-edge.is-done { stroke: var(--c, var(--green)); stroke-width: 2; }
+.syllabi-map:not(.view-aerial) .map-snake .snake-edge.is-done { stroke: var(--green); }

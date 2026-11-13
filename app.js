@@ -2482,23 +2482,6 @@ function buildSyllabiMap() {
   return { syllabi, byId, sylByKey, satisfied };
 }
 
-/** Column = longest prerequisite chain among visible nodes, so every arrow points right. */
-function _mapColumns(nodes, byId) {
-  const visible = new Set(nodes.map(n => n.id));
-  const col = {}, visiting = new Set();
-  const depth = n => {
-    if (n.id in col) return col[n.id];
-    if (visiting.has(n.id)) return 0; // cycle guard — a cyclic `requires` just stops pushing right
-    visiting.add(n.id);
-    let d = 0;
-    for (const p of n.prereqs) if (visible.has(p.id)) d = Math.max(d, depth(byId[p.id]) + 1);
-    visiting.delete(n.id);
-    return (col[n.id] = d);
-  };
-  nodes.forEach(depth);
-  return col;
-}
-
 function _nodeState(n) {
   return n.complete ? 'is-complete' : n.ready ? 'is-ready' : n.inProgress ? 'is-progress' : n.blockedBy.length ? 'is-blocked' : '';
 }
@@ -2516,78 +2499,6 @@ function _nodeTooltip(n, model) {
   return lines.join('\n');
 }
 
-function _renderMapGraph(model, lanes) {
-  const NODE_W = 148, NODE_H = 50, GAP_X = 30, LANE_H = 96, PAD_X = 14, PAD_Y = 18;
-  const nodes = lanes.flatMap(s => s.nodes);
-  const col = _mapColumns(nodes, model.byId);
-  const maxCol = Math.max(0, ...Object.values(col));
-  const width = PAD_X * 2 + (maxCol + 1) * NODE_W + maxCol * GAP_X;
-  const height = Math.max(1, lanes.length) * LANE_H;
-  const pos = {};
-  lanes.forEach((s, li) => s.nodes.forEach(n => {
-    pos[n.id] = { x: PAD_X + col[n.id] * (NODE_W + GAP_X), y: li * LANE_H + PAD_Y + (n.index % 2 ? 10 : 0) };
-  }));
-
-  const curve = (a, b) => {
-    const sx = a.x + NODE_W, sy = a.y + NODE_H / 2, tx = b.x, ty = b.y + NODE_H / 2;
-    const m = Math.max(24, (tx - sx) / 2);
-    return `M${sx},${sy} C${sx + m},${sy} ${tx - m},${ty} ${tx},${ty}`;
-  };
-
-  let bands = '', edges = '', cross = '', boxes = '';
-  lanes.forEach((s, li) => {
-    bands += `<rect class="map-band ${li % 2 ? 'odd' : ''}" x="0" y="${li * LANE_H}" width="${width}" height="${LANE_H}"/>`;
-  });
-  const act = _activeSyllabusKey;
-  const keyOf = id => id.slice(0, id.indexOf('/'));
-  nodes.forEach(n => n.prereqs.forEach(p => {
-    if (!pos[p.id]) return;
-    const other = n.key !== act && keyOf(p.id) !== act ? ' is-other' : '';
-    if (p.implicit) edges += `<path class="map-edge${other}" d="${curve(pos[p.id], pos[n.id])}" marker-end="url(#mapArrow)"/>`;
-    else {
-      const ok = model.satisfied(p.id);
-      cross += `<path class="map-edge-x ${ok ? 'ok' : ''}${other}" d="${curve(pos[p.id], pos[n.id])}" marker-end="url(#${ok ? 'mapArrowOk' : 'mapArrowX'})"><title>${escapeHtml(_nodeTooltip(n, model))}</title></path>`;
-    }
-  }));
-  lanes.forEach(s => s.nodes.forEach(n => {
-    const { x, y } = pos[n.id];
-    const isCurrent = s.key === _activeSyllabusKey && n.sid === state.activeDay;
-    const hiddenReqs = n.prereqs.filter(p => !p.implicit && !pos[p.id]);
-    const icon = n.complete ? '✓' : n.ready ? '★' : n.inProgress ? '▸' : n.blockedBy.length ? '⧗' : '○';
-    let sub = n.complete ? 'done' : `${n.done}/${n.total}`;
-    if (!n.complete && hiddenReqs.some(p => !model.satisfied(p.id))) sub += ' · needs other';
-    const label = n.title.length > 18 ? n.title.slice(0, 17) + '…' : n.title;
-    boxes += `<g class="map-node ${_nodeState(n)} ${s.status === 'paused' ? 'is-paused' : ''} ${isCurrent ? 'is-current' : ''} ${s.key !== act ? 'is-other' : ''}"
-        data-node="${escapeHtml(n.id)}" style="--c:${s.color}" onclick="mapGo('${_jsq(s.key)}','${_jsq(n.sid)}')" tabindex="0" role="button"
-        onkeydown="if(event.key==='Enter')mapGo('${_jsq(s.key)}','${_jsq(n.sid)}')">
-      <title>${escapeHtml(_nodeTooltip(n, model))}</title>
-      <rect class="map-box" x="${x}" y="${y}" width="${NODE_W}" height="${NODE_H}" rx="10"/>
-      ${n.inProgress ? `<rect class="map-fill" x="${x + 2}" y="${y + NODE_H - 6}" width="${Math.max(4, (NODE_W - 4) * n.pct)}" height="4" rx="2"/>` : ''}
-      <text class="map-label" x="${x + 10}" y="${y + 21}">${icon} ${escapeHtml(label)}</text>
-      <text class="map-sub" x="${x + 10}" y="${y + 38}">${escapeHtml(sub)}</text>
-    </g>`;
-  }));
-
-  const labels = lanes.map(s => `<div class="map-lane-label${s.key !== act ? ' is-other' : ''}" style="--c:${s.color};height:${LANE_H}px" title="${escapeHtml(s.title)}">
-      <span class="map-lane-name">${escapeHtml(s.title)}</span>
-      <span class="map-lane-meta">${Math.round(s.taskPct * 100)}% · ${s.done}/${s.nodes.length} done${s.status === 'paused' ? ' · paused' : ''}</span>
-    </div>`).join('');
-
-  return `<div class="map-graph">
-    <div class="map-lane-labels">${labels}</div>
-    <div class="map-graph-scroll">
-      <svg class="map-svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker id="mapArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="map-arrow" d="M0,0L10,5L0,10z"/></marker>
-          <marker id="mapArrowOk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="map-arrow-ok" d="M0,0L10,5L0,10z"/></marker>
-          <marker id="mapArrowX" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="map-arrow-x" d="M0,0L10,5L0,10z"/></marker>
-        </defs>
-        ${bands}${edges}${cross}${boxes}
-      </svg>
-    </div>
-  </div>`;
-}
-
 function _renderMapList(lanes) {
   return `<div class="map-list">${lanes.map(s => `
     <div class="map-lane ${s.status === 'paused' ? 'is-paused' : ''} ${s.key !== _activeSyllabusKey ? 'is-other' : ''}" style="--c:${s.color}">
@@ -2598,8 +2509,8 @@ function _renderMapList(lanes) {
       </div>
       <div class="map-lane-strip">${s.nodes.map(n => {
         const isCurrent = s.key === _activeSyllabusKey && n.sid === state.activeDay;
-        const icon = n.complete ? '✓' : n.ready ? '★' : n.inProgress ? '▸' : n.blockedBy.length ? '⧗' : '○';
-        return `<button class="map-chip ${_nodeState(n)} ${isCurrent ? 'is-current' : ''}" data-node="${escapeHtml(n.id)}"
+        const icon = n.complete ? '✓' : n.ready ? '★' : n.inProgress ? '▸' : '○';
+        return `<button class="map-chip ${_nodeState(n).replace('is-blocked', '')} ${isCurrent ? 'is-current' : ''}" data-node="${escapeHtml(n.id)}"
             onclick="mapGo('${_jsq(s.key)}','${_jsq(n.sid)}')" title="${escapeHtml(n.fullTitle)} — ${n.done}/${n.total}">
           <span class="map-chip-fill" style="width:${n.complete ? 100 : Math.round(n.pct * 100)}%"></span>
           <span class="map-chip-text">${icon} ${escapeHtml(n.title)}</span></button>`;
@@ -2696,30 +2607,98 @@ function aerialGo(key) {
   if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+/** Graph view: the selected syllabus only, as a serpentine path — row 1 L→R, row 2 R→L, … — one continuous 1 → 2 → 3 line. */
+function _renderMapSnake(s, host) {
+  const n = s.nodes.length;
+  if (!n) return '<p class="map-empty">This syllabus has no sections yet.</p>';
+  const avail = Math.max(260, (host.clientWidth || 900) - 48);
+  const TURN = 30, GAP_X = 34, GAP_Y = 34, NODE_H = 54, PAD_Y = 14;
+  let NODE_W = 156;
+  let cols = Math.max(2, Math.floor((avail - 2 * TURN + GAP_X) / (NODE_W + GAP_X)));
+  cols = Math.min(cols, n);
+  // Stretch nodes to fill the row (fewer truncated titles), capped so short syllabi don't get giant boxes
+  NODE_W = Math.min(cols === 2 ? NODE_W : 220, Math.floor((avail - 2 * TURN - (cols - 1) * GAP_X) / cols));
+  const rows = Math.ceil(n / cols);
+  const width = 2 * TURN + cols * NODE_W + (cols - 1) * GAP_X;
+  const height = 2 * PAD_Y + rows * NODE_H + (rows - 1) * GAP_Y;
+
+  const pos = s.nodes.map((_, i) => {
+    const r = Math.floor(i / cols), c = i % cols;
+    const col = r % 2 === 0 ? c : cols - 1 - c;
+    return { x: TURN + col * (NODE_W + GAP_X), y: PAD_Y + r * (NODE_H + GAP_Y), r };
+  });
+
+  let edges = '';
+  for (let i = 0; i < n - 1; i++) {
+    const a = pos[i], b = pos[i + 1], mid = NODE_H / 2;
+    let d;
+    if (a.r === b.r) {
+      d = a.r % 2 === 0 ? `M${a.x + NODE_W},${a.y + mid} L${b.x},${b.y + mid}` : `M${a.x},${a.y + mid} L${b.x + NODE_W},${b.y + mid}`;
+    } else if (a.r % 2 === 0) {          // end of a L→R row: turn down on the right
+      const k = a.x + NODE_W + TURN * 0.95;
+      d = `M${a.x + NODE_W},${a.y + mid} C${k},${a.y + mid} ${k},${b.y + mid} ${b.x + NODE_W},${b.y + mid}`;
+    } else {                             // end of a R→L row: turn down on the left
+      const k = a.x - TURN * 0.95;
+      d = `M${a.x},${a.y + mid} C${k},${a.y + mid} ${k},${b.y + mid} ${b.x},${b.y + mid}`;
+    }
+    edges += `<path class="map-edge snake-edge ${s.nodes[i].complete ? 'is-done' : ''}" d="${d}" marker-end="url(#mapArrow${s.nodes[i].complete ? 'Done' : ''})"/>`;
+  }
+
+  const maxChars = Math.max(8, Math.floor((NODE_W - 44) / 7.1));
+  const boxes = s.nodes.map((nd, i) => {
+    const { x, y } = pos[i];
+    const isCurrent = nd.sid === state.activeDay;
+    // On a single path "waiting on the previous section" is implied, so not-started sections are just ○
+    const icon = nd.complete ? '✓' : nd.ready ? '★' : nd.inProgress ? '▸' : '○';
+    const label = nd.title.length > maxChars ? nd.title.slice(0, maxChars - 1) + '…' : nd.title;
+    return `<g class="map-node ${_nodeState(nd).replace('is-blocked', '')} ${isCurrent ? 'is-current' : ''}" data-node="${escapeHtml(nd.id)}" style="--c:${s.color}"
+        onclick="mapGo('${_jsq(s.key)}','${_jsq(nd.sid)}')" tabindex="0" role="button" onkeydown="if(event.key==='Enter')mapGo('${_jsq(s.key)}','${_jsq(nd.sid)}')">
+      <title>${escapeHtml(`${i + 1}. ${nd.fullTitle}\n${nd.done}/${nd.total} tasks${nd.complete ? ' — done' : ''}`)}</title>
+      <rect class="map-box" x="${x}" y="${y}" width="${NODE_W}" height="${NODE_H}" rx="10"/>
+      ${nd.inProgress ? `<rect class="map-fill" x="${x + 2}" y="${y + NODE_H - 6}" width="${Math.max(4, (NODE_W - 4) * nd.pct)}" height="4" rx="2"/>` : ''}
+      <text class="map-num" x="${x + 10}" y="${y + 21}">${i + 1}</text>
+      <text class="map-label" x="${x + 28}" y="${y + 21}">${icon} ${escapeHtml(label)}</text>
+      <text class="map-sub" x="${x + 28}" y="${y + 39}">${nd.complete ? 'done' : `${nd.done}/${nd.total}`}</text>
+    </g>`;
+  }).join('');
+
+  return `<div class="map-graph map-snake">
+    <svg class="map-svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="mapArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="map-arrow" d="M0,0L10,5L0,10z"/></marker>
+        <marker id="mapArrowDone" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path class="map-arrow-done" style="fill:${s.color}" d="M0,0L10,5L0,10z"/></marker>
+      </defs>
+      ${edges}${boxes}
+    </svg>
+  </div>`;
+}
+
 function renderSyllabiMap() {
   const host = document.getElementById('syllabiMap');
   if (!host || !state) return;
   const model = buildSyllabiMap();
   const lanes = model.syllabi.filter(s => s.status === 'active' || s.status === 'paused')
     .sort((a, b) => (a.status === 'paused') - (b.status === 'paused'));
-  const others = model.syllabi.filter(s => !lanes.includes(s));
   const view = localStorage.getItem(MAP_VIEW_KEY) || 'auto';
+  const aerial = view === 'aerial';
+  const current = model.sylByKey[_activeSyllabusKey];
+  // Graph/List focus on the selected syllabus only; Aerial shows every syllabus.
+  const scope = aerial ? lanes : (current ? [current] : []);
+  const others = aerial ? model.syllabi.filter(s => !lanes.includes(s)) : [];
   const collapsed = localStorage.getItem(MAP_COLLAPSED_KEY) === 'true';
 
   // Up next: what you're in the middle of, then what's unblocked — per active syllabus.
   const upNext = [];
-  lanes.filter(s => s.status === 'active').forEach(s => {
+  scope.filter(s => aerial ? s.status === 'active' : true).forEach(s => {
     const prog = s.nodes.filter(n => n.inProgress);
     const ready = s.nodes.filter(n => n.ready && !n.inProgress);
     [...prog, ...ready].slice(0, 2).forEach(n => upNext.push({ s, n }));
   });
 
-  const prevGraph = host.querySelector('.map-graph-scroll');
-  const keepScroll = prevGraph ? prevGraph.scrollLeft : null;
   const prevStrips = [...host.querySelectorAll('.map-lane-strip')].map(el => el.scrollLeft);
 
-  const totalSections = lanes.reduce((a, s) => a + s.nodes.length, 0);
-  const doneSections = lanes.reduce((a, s) => a + s.done, 0);
+  const totalSections = scope.reduce((a, s) => a + s.nodes.length, 0);
+  const doneSections = scope.reduce((a, s) => a + s.done, 0);
 
   host.className = `syllabi-map view-${view}${collapsed ? ' collapsed' : ''}`;
   host.innerHTML = `
@@ -2729,9 +2708,9 @@ function renderSyllabiMap() {
         Syllabi Map
         <span class="map-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M6 9l6 6 6-6"/></svg></span>
       </button>
-      <span class="map-summary">${lanes.filter(s => s.status === 'active').length} active · ${doneSections}/${totalSections} sections done</span>
+      <span class="map-summary">${aerial ? `${lanes.filter(s => s.status === 'active').length} active · ` : `${escapeHtml(current ? current.title : '')} · `}${doneSections}/${totalSections} sections done</span>
       <div class="map-view-toggle" role="group" aria-label="Map view">
-        <button class="${view === 'graph' ? 'on' : ''}" onclick="setMapView('graph')" title="Dependency graph">Graph</button>
+        <button class="${view === 'graph' ? 'on' : ''}" onclick="setMapView('graph')" title="Selected syllabus as a winding path">Graph</button>
         <button class="${view === 'list' ? 'on' : ''}" onclick="setMapView('list')" title="Compact lanes">List</button>
         <button class="${view === 'auto' ? 'on' : ''}" onclick="setMapView('auto')" title="Graph on desktop, list on phone">Auto</button>
         <button class="${view === 'aerial' ? 'on' : ''}" onclick="setMapView('aerial')" title="One node per syllabus">Aerial</button>
@@ -2744,32 +2723,40 @@ function renderSyllabiMap() {
             <i>${escapeHtml(s.short)}</i><span>${n.inProgress ? '▸' : '★'} ${escapeHtml(n.title)}</span><b>${n.done}/${n.total}</b></button>`).join('')
           : '<span class="map-empty">Nothing unblocked — everything is done or waiting on a prerequisite. 🎉</span>'}
       </div>
-      ${view === 'aerial' ? _renderMapAerial(model) : lanes.length ? _renderMapGraph(model, lanes) + _renderMapList(lanes) : '<p class="map-empty">No active syllabi. Set <code>meta.status: active</code> in a syllabus file.</p>'}
+      ${aerial ? _renderMapAerial(model) : current ? _renderMapSnake(current, host) + _renderMapList([current]) : '<p class="map-empty">No syllabus selected.</p>'}
       ${others.length ? `<div class="map-others">${others.map(s => `<button class="map-other" style="--c:${s.color}" onclick="switchSyllabus('${_jsq(s.key)}')" title="meta.status: ${escapeHtml(s.status)}">
           <span class="map-lane-dot"></span>${escapeHtml(s.title)} <em>${escapeHtml(s.status)}</em> <b>${Math.round(s.taskPct * 100)}%</b></button>`).join('')}</div>` : ''}
       <div class="map-legend">
         <span><b class="lg lg-complete"></b>done</span><span><b class="lg lg-progress"></b>▸ in progress</span>
-        <span><b class="lg lg-ready"></b>★ ready</span><span><b class="lg lg-blocked"></b>⧗ waiting on prereq</span>
-        <span><b class="lg lg-cross"></b>cross-syllabus prereq</span>
+        <span><b class="lg lg-ready"></b>★ ready</span>${aerial ? '<span><b class="lg lg-blocked"></b>⧗ waiting on prereq</span>' : ''}
+        ${aerial ? '<span><b class="lg lg-cross"></b>cross-syllabus prereq</span>' : ''}
       </div>
     </div>`;
 
-  // Restore scroll positions, or centre on where you are.
-  const graph = host.querySelector('.map-graph-scroll');
+  // Restore list-strip scroll positions, or centre on where you are.
   const centre = (scroller, el) => {
     if (!scroller || !el) return;
     const sr = scroller.getBoundingClientRect(), er = el.getBoundingClientRect();
     scroller.scrollLeft += (er.left - sr.left) - (sr.width - er.width) / 2;
   };
-  if (graph) {
-    if (keepScroll != null) graph.scrollLeft = keepScroll;
-    else centre(graph, graph.querySelector('.map-node.is-current') || graph.querySelector('.map-node.is-ready'));
-  }
   host.querySelectorAll('.map-lane-strip').forEach((strip, i) => {
     if (prevStrips.length === host.querySelectorAll('.map-lane-strip').length) strip.scrollLeft = prevStrips[i];
     else centre(strip, strip.querySelector('.map-chip.is-current') || strip.querySelector('.map-chip.is-progress, .map-chip.is-ready'));
   });
 }
+
+// The serpentine graph fits its row length to the card width, so re-flow it on resize.
+let _mapResizeTimer = null;
+let _mapLastWidth = 0;
+window.addEventListener('resize', () => {
+  clearTimeout(_mapResizeTimer);
+  _mapResizeTimer = setTimeout(() => {
+    const host = document.getElementById('syllabiMap');
+    if (!host || !state || host.clientWidth === _mapLastWidth) return;
+    _mapLastWidth = host.clientWidth;
+    renderSyllabiMap();
+  }, 150);
+});
 
 function setMapView(view) {
   localStorage.setItem(MAP_VIEW_KEY, view);
