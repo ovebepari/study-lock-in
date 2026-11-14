@@ -1475,6 +1475,22 @@ function renderActivePanel() {
   container.innerHTML = html;
 }
 
+/**
+ * Display-only formatting for task text (the stored text is untouched, so export/import are unaffected):
+ * numbered problems "(1) … (2) …" each start on their own line, and the "✔ Check:" answer key becomes
+ * its own block with one answer per line. "(N)" only splits after whitespace, so f′(3) or h(1) stay intact.
+ */
+function formatTaskText(text) {
+  const html = escapeHtml(text || '');
+  const num = /(^|\s)\((\d{1,2})\)\s/g;
+  const lines = body => body.replace(num, (m, pre, n, off) => `${off === 0 ? '' : '<br>'}<b class="task-num">(${n})</b> `);
+  const at = html.indexOf('✔ Check:');
+  if (at < 0) return lines(html);
+  const main = html.slice(0, at).trimEnd();
+  const check = html.slice(at + '✔ Check:'.length).trim().replace(/;\s+(?=\(\d{1,2}\)\s)/g, ' ');
+  return `${lines(main)}<span class="task-check"><span class="task-check-label">✔ Check</span>${lines(check)}</span>`;
+}
+
 // ===== RENDER: SINGLE TASK =====
 function renderTask(task, dayId) {
   const checked = state.checked[task.id] ? 'checked' : '';
@@ -1547,7 +1563,7 @@ function renderTask(task, dayId) {
   return `<div class="task-item ${doneClass} ${isComposing ? 'commenting' : ''}" data-task="${task.id}" id="task-${task.id}">
     <input type="checkbox" class="task-checkbox" ${checked} onchange="toggleTask('${task.id}', this)" onclick="event.stopPropagation()">
     <div class="task-info">
-      ${task.bonus ? '<span class="task-bonus-tag" title="Bonus — optional, does not block section completion">★ bonus</span>' : ''}<span class="task-text editable" onclick="event.stopPropagation(); editTaskInline('${task.id}', this)" title="Click to edit">${escapeHtml(task.text)}</span>
+      ${task.bonus ? '<span class="task-bonus-tag" title="Bonus — optional, does not block section completion">★ bonus</span>' : ''}<span class="task-text editable" onclick="event.stopPropagation(); editTaskInline('${task.id}', this)" title="Click to edit">${formatTaskText(task.text)}</span>
       ${resourceHtml}
     </div>
     <div class="task-actions">

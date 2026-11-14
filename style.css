@@ -3611,3 +3611,12 @@ button, a, input, select, textarea, .block-header, .day-pill {
   .log-activity-form .add-item-actions { grid-column: 1 / -1; }
   .log-activity-cat { display: none; }
 }
+
+/* Worksheet formatting: one problem per line, answer key in its own block */
+.task-text .task-num { font-family: var(--font-mono); font-size: 0.78em; font-weight: 600; color: var(--accent); margin-right: 2px; }
+.task-text .task-check {
+  display: block; margin-top: 8px; padding: 8px 12px; border-left: 3px solid var(--border-hover);
+  background: var(--bg-surface); border-radius: 0 var(--radius) var(--radius) 0; color: var(--text-secondary); font-size: 0.95em;
+}
+.task-text .task-check-label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em; color: var(--text-muted); margin-bottom: 2px; }
+.task-item.done .task-text .task-check { text-decoration: line-through; opacity: 0.8; }
